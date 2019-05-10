@@ -51,12 +51,12 @@ names(sun_g) <- c("code", "year", "month", "day", "hour_UT", "minute_UT",
                   "total_whole_area", "total_corr_umbrae_area",
                   "total_corr_whole_area", "w_mean_helio_lat_B",
                   "w_mean_helio_long_L", "w_mean_longitudinal_dist_LCM",
-                  "w_mean_position_angle", "w_mean_dist_centre_sun_disc")
+                  "w_mean_position_angle", "w_mean_dist_center_sun_disc")
 names(sun_s) <- c("code", "year", "month", "day", "hour_UT", "minute_UT",
                   "second_UT", "NOAA", "spot_number", "umbrae_area",
                   "whole_area", "corr_umbrae_area", "corr_whole_area",
                   "helio_lat_B", "helio_long_L", "longitudinal_dist_LCM",
-                  "position_angle", "dist_centre_sun_disc")
+                  "position_angle", "dist_center_sun_disc")
 
 # Remove spaces and cast to factors
 levels(sun_g$NOAA) <- gsub(pattern = " ", replacement = "",
@@ -161,7 +161,7 @@ sun_g_birth$phi <- sun_g_birth$w_mean_helio_lat_B / 180 * pi
 # Sunspots
 sunspots_births <- subset(sun_g_birth, 
                           select = c("date", "cycle", "total_corr_whole_area", 
-                                     "w_mean_dist_centre_sun_disc", 
+                                     "w_mean_dist_center_sun_disc", 
                                      "theta", "phi"))
 names(sunspots_births)[3:4] <- c("total_area", "dist_sun_disc")
 save(list = "sunspots_births", file = "sunspots_births.rda", 
