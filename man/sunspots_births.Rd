@@ -12,7 +12,7 @@
   solar cycle} in which the group of sunspots was observed.}
   \item{total_area}{total whole spot area of the group, measured in
   millionths of the solar hemisphere.}
-  \item{dist_sun_disc}{distance from the centre of Sun's disc, measured in
+  \item{dist_sun_disc}{distance from the center of Sun's disc, measured in
   units of the solar radius.}
   \item{theta}{mean colatitude angle \eqn{\theta \in [0, 2\pi)} of the
   group position.}
