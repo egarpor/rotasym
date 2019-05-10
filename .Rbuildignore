@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^README$
+^README.*$
+^checks$
+^TODO$
+^data-raw$
