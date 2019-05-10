@@ -11,7 +11,7 @@ hypersphere proposed in the paper ``On optimal tests for rotational symmetry
 against new classes of hyperspherical distribution''. The package
 implements the proposed distributions on the hypersphere based on the
 tangent-normal decomposition. It also allows for the replication of the
-data applications considered in the paper.
+data application considered in the paper.
 }
 \references{
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2019) On optimal tests

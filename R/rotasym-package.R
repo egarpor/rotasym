@@ -7,7 +7,7 @@
 #' against new classes of hyperspherical distribution''. The package
 #' implements the proposed distributions on the hypersphere based on the
 #' tangent-normal decomposition. It also allows for the replication of the
-#' data applications considered in the paper.
+#' data application considered in the paper.
 #'
 #' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
