@@ -1,0 +1,115 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", fig.path = "README/README-", 
+  message = FALSE, warning = FALSE, fig.asp = 1, fig.align = 'center'
+)
+```
+
+rotasym
+=======
+
+<!-- badges: start -->
+[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Travis build status](https://travis-ci.com/egarpor/rotasym.svg?branch=master)](https://travis-ci.com/egarpor/rotasym)
+<!-- badges: end -->
+
+## Overview
+
+Software companion for the paper "*On optimal tests for rotational symmetry against new classes of hyperspherical distributions*" (García-Portugués, Paindaveine and Verdebout, 2019). It implements the proposed tests and allows to replicate the data applications presented.
+
+## Installation
+
+To get the latest version from GitHub, run:
+
+```{r, install-GitHub, eval = FALSE}
+# Install the package
+library(devtools)
+install_github("egarpor/rotasym")
+
+# Load package
+library(rotasym)
+```
+
+Alternatively, from CRAN:
+
+```{r, install-CRAN, eval = FALSE}
+# Install the package
+install.packages("rotasym")
+
+# Load package
+library(rotasym)
+```
+
+```{r, load, echo = FALSE}
+# Load package
+library(rotasym)
+```
+
+## Tests usage
+
+The following are some simple examples of the usage of the main function of the package, `test_rotasym`, with simulated data. More examples are available in `?test_rotasym`.
+
+```{r, sample}
+# Sample data from a vMF (rotational symmetric distribution about mu)
+n <- 200
+p <- 10
+theta <- c(1, rep(0, p - 1))
+set.seed(123456789)
+data_0 <- r_vMF(n = n, mu = theta, kappa = 1)
+```
+
+### Specified-$\boldsymbol{\theta}$ case
+
+```{r, specified}
+# theta known
+test_rotasym(data = data_0, theta = theta, type = "sc")
+test_rotasym(data = data_0, theta = theta, type = "loc_vMF")
+test_rotasym(data = data_0, theta = theta, type = "hyb_vMF")
+```
+
+### Unspecified-$\boldsymbol{\theta}$ case
+
+```{r, unspecified}
+# theta unknown (employs the spherical mean as estimator)
+test_rotasym(data = data_0, type = "sc")
+test_rotasym(data = data_0, type = "loc_vMF")
+test_rotasym(data = data_0, type = "hyb_vMF")
+```
+
+## Data application: sunspots births
+
+```{r, sunspots_births}
+# Load data
+data("sunspots_births")
+sunspots_births$X <- 
+  cbind(cos(sunspots_births$phi) * cos(sunspots_births$theta), 
+        cos(sunspots_births$phi) * sin(sunspots_births$theta), 
+        sin(sunspots_births$phi))
+
+# Test rotational symmetry for the 23rd cycle
+sunspots_23 <- subset(sunspots_births, cycle == 23)
+test_rotasym(data = sunspots_23$X, type = "sc", theta = c(0, 0, 1))
+test_rotasym(data = sunspots_23$X, type = "loc", theta = c(0, 0, 1))
+test_rotasym(data = sunspots_23$X, type = "hyb", theta = c(0, 0, 1))
+
+# Test rotational symmetry for the 22nd cycle
+sunspots_22 <- subset(sunspots_births, cycle == 22)
+test_rotasym(data = sunspots_22$X, type = "sc", theta = c(0, 0, 1))
+test_rotasym(data = sunspots_22$X, type = "loc", theta = c(0, 0, 1))
+test_rotasym(data = sunspots_22$X, type = "hyb", theta = c(0, 0, 1))
+
+# More analyses in ?sunspots_births
+example("sunspots_births")
+```
+
+## References
+
+García-Portugués, E., Paindaveine, D., and Verdebout, T. (2019). On optimal tests for rotational symmetry against new classes of hyperspherical distributions. *arXiv:1706.05030*. <https://arxiv.org/abs/1706.05030>

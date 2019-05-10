@@ -1,0 +1,19 @@
+citHeader("To cite rotasym in publications use:")
+
+citEntry(entry = "Article",
+  title        = "On optimal tests for rotational symmetry against new classes of hyperspherical distributions",
+  author       = personList(as.person("Eduardo García-Portugués"),
+                   as.person("Davy Paindaveine"),
+                   as.person("Thomas Verdebout")),
+  journal      = "arXiv",
+  year         = "2019",
+  volume       = "",
+  number       = "",
+  pages        = "",
+  url          = "https://arxiv.org/abs/1706.05030",
+  textVersion  =
+  paste("García-Portugués, E., Paindaveine, D., and Verdebout, T. (2019).",
+        "On optimal tests for rotational symmetry against new classes of hyperspherical distributions.",
+        "arXiv:1706.05030.",
+        "URL https://arxiv.org/abs/1706.05030.")
+)
