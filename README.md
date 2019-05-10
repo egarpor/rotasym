@@ -3,17 +3,36 @@ rotasym
 =======
 
 <!-- badges: start -->
-[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Travis build status](https://travis-ci.com/egarpor/rotasym.svg?branch=master)](https://travis-ci.com/egarpor/rotasym) <!-- badges: end -->
+[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Travis build
+status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rotasym)](https://cran.r-project.org/package=rotasym)
+<!-- badges: end -->
 
 Overview
 --------
 
-Software companion for the paper "*On optimal tests for rotational symmetry against new classes of hyperspherical distributions*" (García-Portugués, Paindaveine and Verdebout, 2019). It implements the proposed tests and allows to replicate the data applications presented.
+Software companion for the paper “*On optimal tests for rotational
+symmetry against new classes of hyperspherical distributions*”
+(García-Portugués, Paindaveine and Verdebout, 2019). It implements the
+proposed tests for rotational symmetry of hyperspherical data and allows
+to replicate the data application presented.
 
 Installation
 ------------
 
-To get the latest version from GitHub, run:
+Get the released version from CRAN:
+
+``` r
+# Install the package
+install.packages("rotasym")
+
+# Load package
+library(rotasym)
+```
+
+Alternatively, get the latest version from GitHub:
 
 ``` r
 # Install the package
@@ -24,20 +43,12 @@ install_github("egarpor/rotasym")
 library(rotasym)
 ```
 
-Alternatively, from CRAN:
-
-``` r
-# Install the package
-install.packages("rotasym")
-
-# Load package
-library(rotasym)
-```
-
 Tests usage
 -----------
 
-The following are some simple examples of the usage of the main function of the package, `test_rotasym`, with simulated data. More examples are available in `?test_rotasym`.
+The following are some simple examples of the usage of the main function
+of the package, `test_rotasym`, with simulated data. More examples are
+available in `?test_rotasym`.
 
 ``` r
 # Sample data from a vMF (rotational symmetric distribution about mu)
@@ -96,8 +107,8 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 #> Q_hyb_vMF = 91.825, df = 53, p-value = 0.0007478
 ```
 
-Data application: sunspots births
----------------------------------
+Data application: rotational symmetry of sunspots
+-------------------------------------------------
 
 ``` r
 # Load data
@@ -263,4 +274,7 @@ example("sunspots_births")
 References
 ----------
 
-García-Portugués, E., Paindaveine, D., and Verdebout, T. (2019). On optimal tests for rotational symmetry against new classes of hyperspherical distributions. *arXiv:1706.05030*. <https://arxiv.org/abs/1706.05030>
+García-Portugués, E., Paindaveine, D., and Verdebout, T. (2019). On
+optimal tests for rotational symmetry against new classes of
+hyperspherical distributions. *arXiv:1706.05030*.
+<a href="https://arxiv.org/abs/1706.05030" class="uri">https://arxiv.org/abs/1706.05030</a>

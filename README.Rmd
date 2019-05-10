@@ -18,31 +18,32 @@ rotasym
 
 <!-- badges: start -->
 [![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Travis build status](https://travis-ci.com/egarpor/rotasym.svg?branch=master)](https://travis-ci.com/egarpor/rotasym)
+[![Travis build status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
+[![CRAN status](https://www.r-pkg.org/badges/version/rotasym)](https://cran.r-project.org/package=rotasym)
 <!-- badges: end -->
 
 ## Overview
 
-Software companion for the paper "*On optimal tests for rotational symmetry against new classes of hyperspherical distributions*" (García-Portugués, Paindaveine and Verdebout, 2019). It implements the proposed tests and allows to replicate the data applications presented.
+Software companion for the paper "*On optimal tests for rotational symmetry against new classes of hyperspherical distributions*" (García-Portugués, Paindaveine and Verdebout, 2019). It implements the proposed tests for rotational symmetry of hyperspherical data and allows to replicate the data application presented.
 
 ## Installation
 
-To get the latest version from GitHub, run:
+Get the released version from CRAN:
 
-```{r, install-GitHub, eval = FALSE}
+```{r, install-CRAN, eval = FALSE}
 # Install the package
-library(devtools)
-install_github("egarpor/rotasym")
+install.packages("rotasym")
 
 # Load package
 library(rotasym)
 ```
 
-Alternatively, from CRAN:
+Alternatively, get the latest version from GitHub:
 
-```{r, install-CRAN, eval = FALSE}
+```{r, install-GitHub, eval = FALSE}
 # Install the package
-install.packages("rotasym")
+library(devtools)
+install_github("egarpor/rotasym")
 
 # Load package
 library(rotasym)
@@ -84,7 +85,7 @@ test_rotasym(data = data_0, type = "loc_vMF")
 test_rotasym(data = data_0, type = "hyb_vMF")
 ```
 
-## Data application: sunspots births
+## Data application: rotational symmetry of sunspots
 
 ```{r, sunspots_births}
 # Load data
