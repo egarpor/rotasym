@@ -115,7 +115,7 @@ r_unif_sphere <- function(n, p) {
 w_p <- function(p, log = FALSE) {
 
   # Check dimension
-  if (p < 1) {
+  if (any(p < 1)) {
 
     stop("p must be an integer larger or equal to 1.")
 
