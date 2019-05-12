@@ -1,4 +1,3 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 rotasym
 =======
 
@@ -107,8 +106,13 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 #> Q_hyb_vMF = 91.825, df = 53, p-value = 0.0007478
 ```
 
-Data application: rotational symmetry of sunspots
--------------------------------------------------
+Data application: test for the rotational symmetry of sunspots
+--------------------------------------------------------------
+
+The data application in García-Portugués, Paindaveine and Verdebout
+(2019) can be reproduced through the script
+[sunspots-births.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots-births.R)
+(data gathering and preprocessing) and the code snippet below.
 
 ``` r
 # Load data
