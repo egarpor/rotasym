@@ -1,7 +1,7 @@
-rotasym
-=======
+# rotasym
 
 <!-- badges: start -->
+
 [![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Travis build
 status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
@@ -9,8 +9,7 @@ status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis
 status](https://www.r-pkg.org/badges/version/rotasym)](https://cran.r-project.org/package=rotasym)
 <!-- badges: end -->
 
-Overview
---------
+## Overview
 
 Software companion for the paper “*On optimal tests for rotational
 symmetry against new classes of hyperspherical distributions*”
@@ -18,8 +17,7 @@ symmetry against new classes of hyperspherical distributions*”
 proposed tests for rotational symmetry of hyperspherical data and allows
 to replicate the data application presented.
 
-Installation
-------------
+## Installation
 
 Get the released version from CRAN:
 
@@ -42,8 +40,7 @@ install_github("egarpor/rotasym")
 library(rotasym)
 ```
 
-Tests usage
------------
+## Tests usage
 
 The following are some simple examples of the usage of the main function
 of the package, `test_rotasym`, with simulated data. More examples are
@@ -58,7 +55,7 @@ set.seed(123456789)
 data_0 <- r_vMF(n = n, mu = theta, kappa = 1)
 ```
 
-### Specified-**θ** case
+### Specified-\(\boldsymbol{\theta}\) case
 
 ``` r
 # theta known
@@ -82,7 +79,7 @@ test_rotasym(data = data_0, theta = theta, type = "hyb_vMF")
 #> Q_hyb_vMF = 85.481, df = 53, p-value = 0.003115
 ```
 
-### Unspecified-**θ** case
+### Unspecified-\(\boldsymbol{\theta}\) case
 
 ``` r
 # theta unknown (employs the spherical mean as estimator)
@@ -106,8 +103,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 #> Q_hyb_vMF = 91.825, df = 53, p-value = 0.0007478
 ```
 
-Data application: test for the rotational symmetry of sunspots
---------------------------------------------------------------
+## Data application: test for the rotational symmetry of sunspots
 
 The data application in García-Portugués, Paindaveine and Verdebout
 (2019) can be reproduced through the script
@@ -275,10 +271,9 @@ example("sunspots_births")
     #> snspt_> 90 - acos(modes) / pi * 180
     #> [1] -13.69322  16.49001
 
-References
-----------
+## References
 
 García-Portugués, E., Paindaveine, D., and Verdebout, T. (2019). On
 optimal tests for rotational symmetry against new classes of
 hyperspherical distributions. *arXiv:1706.05030*.
-<a href="https://arxiv.org/abs/1706.05030" class="uri">https://arxiv.org/abs/1706.05030</a>
+<https://arxiv.org/abs/1706.05030>
