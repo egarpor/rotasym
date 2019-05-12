@@ -6,7 +6,7 @@ output:
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE, comment = "#>", fig.path = "README/README-", 
+  collapse = TRUE, comment = "#>", fig.path = "README/README-",
   message = FALSE, warning = FALSE, fig.asp = 1, fig.align = 'center'
 )
 ```
@@ -88,9 +88,9 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 ```{r, sunspots_births}
 # Load data
 data("sunspots_births")
-sunspots_births$X <- 
-  cbind(cos(sunspots_births$phi) * cos(sunspots_births$theta), 
-        cos(sunspots_births$phi) * sin(sunspots_births$theta), 
+sunspots_births$X <-
+  cbind(cos(sunspots_births$phi) * cos(sunspots_births$theta),
+        cos(sunspots_births$phi) * sin(sunspots_births$theta),
         sin(sunspots_births$phi))
 
 # Test rotational symmetry for the 23rd cycle

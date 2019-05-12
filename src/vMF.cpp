@@ -9,7 +9,7 @@ using namespace Rcpp;
 
 // [[Rcpp::export(".r_g_vMF_Cpp")]]
 arma::mat r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
-  
+
   // Algorithm VM in Wood (1994)
 
   // Step 0

@@ -92,7 +92,7 @@
 #'             lit = FALSE)
 #' n_cols <- 100
 #' cuts <- cut(x = sunspots_23$date, include.lowest = TRUE,
-#'             breaks = quantile(sunspots_23$date, 
+#'             breaks = quantile(sunspots_23$date,
 #'                              probs = seq(0, 1, l = n_cols + 1)))
 #' rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
 #' # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
@@ -110,7 +110,7 @@
 #' axis(1, at = at, line = 1, tick = FALSE,
 #'      labels = paste0("(", 90 - round(acos(at) / pi * 180, 1), "º)"))
 #' rug(V)
-#' legend("topright", legend = c("Full cycle", "Initial 25% cycle", 
+#' legend("topright", legend = c("Full cycle", "Initial 25% cycle",
 #'                               "Final 25% cycle"),
 #'        lwd = 2, col = c(1, viridisLite::viridis(12)[c(3, 8)]))
 #'

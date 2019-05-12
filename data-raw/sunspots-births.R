@@ -3,7 +3,7 @@
 
 # The sources are the Debrecen Photoheliographic Data (DPD, from 1974 onwards)
 # sunspot catalogue and the Greenwich Photoheliographic Results (GPR, from
-# 1872 to 1976). The curated data ("final complete") spans from 2005 to 2015 
+# 1872 to 1976). The curated data ("final complete") spans from 2005 to 2015
 # (as of Dec 2018)
 
 # Download the files GPR1872.txt to GPR1973.txt and DPD1974.txt to DPD2018.txt
@@ -72,10 +72,10 @@ sun_s[, numeric_vars] <- apply(sun_s[, numeric_vars], 2, as.numeric)
 
 # List of of the beginning of solar cycles
 cycles <- data.frame(
-  year = c(1755, 1766, 1775, 1784, 1798, 1810, 1823, 1833, 1843, 1855, 1867, 
-           1878, 1890, 1902, 1913, 1923, 1933, 1944, 1954, 1964, 1976, 1986, 
+  year = c(1755, 1766, 1775, 1784, 1798, 1810, 1823, 1833, 1843, 1855, 1867,
+           1878, 1890, 1902, 1913, 1923, 1933, 1944, 1954, 1964, 1976, 1986,
            1996, 2008, Inf),
-  month = c(3, 6, 6, 9, 4, 8, 5, 11, 7, 12, 3, 12, 3, 1, 7, 8, 9, 2, 4, 10, 
+  month = c(3, 6, 6, 9, 4, 8, 5, 11, 7, 12, 3, 12, 3, 1, 7, 8, 9, 2, 4, 10,
             3, 9, 8, 12, Inf)
 )
 
@@ -123,28 +123,28 @@ not_na <- complete.cases(sun_g$w_mean_helio_lat_B, sun_g$w_mean_helio_long_L)
 sun_g_birth <- sun_g[not_na, ]
 
 # Add year date with day precision
-sun_g_birth$date <- 
-  ymd_hms(paste(paste(sun_g_birth$year, sun_g_birth$month, 
-                      sun_g_birth$day, sep = "-"), 
-              paste(sun_g_birth$hour_UT, sun_g_birth$minute_UT, 
+sun_g_birth$date <-
+  ymd_hms(paste(paste(sun_g_birth$year, sun_g_birth$month,
+                      sun_g_birth$day, sep = "-"),
+              paste(sun_g_birth$hour_UT, sun_g_birth$minute_UT,
                     sun_g_birth$second_UT, sep = ":")))
 
 # Remove records with NAs in the date
 sun_g_birth <- sun_g_birth[!is.na(sun_g_birth$date), ]
 
 # Take only the "births" of the sunspots -- the first recorded observation
-# for each NOAA sunspot group number. Warning: NOAA numbers can be repeated 
-# without corresponding to the same sunspot group (e.g., NOAA 8073 appears 
+# for each NOAA sunspot group number. Warning: NOAA numbers can be repeated
+# without corresponding to the same sunspot group (e.g., NOAA 8073 appears
 # in 1917 and 1997):
 # plot(sun_g_birth$date, as.integer(as.character(sun_g_birth$NOAA)))
-# It seems that in 1974 the NOAA counter was restarted (probably 
-# because of the change in the data source -- DPD was employed from 1974 
+# It seems that in 1974 the NOAA counter was restarted (probably
+# because of the change in the data source -- DPD was employed from 1974
 # onwards; GPR before 1974)
 
 # Append to the NOAAA field from GPR the prefix "GPR" to distinguish from the
 # DPD observations
 sun_g_birth$NOAA <- as.character(sun_g_birth$NOAA)
-sun_g_birth$NOAA[sun_g_birth$year < 1974] <- 
+sun_g_birth$NOAA[sun_g_birth$year < 1974] <-
   paste0("GPR", sun_g_birth$NOAA[sun_g_birth$year < 1974])
 sun_g_birth$NOAA <- as.factor(sun_g_birth$NOAA)
 
@@ -159,10 +159,10 @@ sun_g_birth$phi <- sun_g_birth$w_mean_helio_lat_B / 180 * pi
 # in rotasym
 
 # Sunspots
-sunspots_births <- subset(sun_g_birth, 
-                          select = c("date", "cycle", "total_corr_whole_area", 
-                                     "w_mean_dist_center_sun_disc", 
+sunspots_births <- subset(sun_g_birth,
+                          select = c("date", "cycle", "total_corr_whole_area",
+                                     "w_mean_dist_center_sun_disc",
                                      "theta", "phi"))
 names(sunspots_births)[3:4] <- c("total_area", "dist_sun_disc")
-save(list = "sunspots_births", file = "sunspots_births.rda", 
+save(list = "sunspots_births", file = "sunspots_births.rda",
      compress = "bzip2")
