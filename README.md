@@ -188,7 +188,7 @@ example("sunspots_births")
 #> snspt_> n_cols <- 100
 #> 
 #> snspt_> cuts <- cut(x = sunspots_23$date, include.lowest = TRUE,
-#> snspt_+             breaks = quantile(sunspots_23$date, 
+#> snspt_+             breaks = quantile(sunspots_23$date,
 #> snspt_+                              probs = seq(0, 1, l = n_cols + 1)))
 #> 
 #> snspt_> rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
@@ -219,7 +219,7 @@ example("sunspots_births")
     #> 
     #> snspt_> rug(V)
     #> 
-    #> snspt_> legend("topright", legend = c("Full cycle", "Initial 25% cycle", 
+    #> snspt_> legend("topright", legend = c("Full cycle", "Initial 25% cycle",
     #> snspt_+                               "Final 25% cycle"),
     #> snspt_+        lwd = 2, col = c(1, viridisLite::viridis(12)[c(3, 8)]))
     #> 

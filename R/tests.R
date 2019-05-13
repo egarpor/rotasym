@@ -253,8 +253,10 @@
 #' # Test rotational symmetry for the 23rd cycle, unspecified theta
 #' spherical_loc_PCA(sunspots_23$X)
 #' test_rotasym(data = sunspots_23$X, type = "sc", theta = spherical_loc_PCA)
-#' test_rotasym(data = sunspots_23$X, type = "loc_vMF", theta = spherical_loc_PCA)
-#' test_rotasym(data = sunspots_23$X, type = "hyb_vMF", theta = spherical_loc_PCA)
+#' test_rotasym(data = sunspots_23$X, type = "loc_vMF",
+#'              theta = spherical_loc_PCA)
+#' test_rotasym(data = sunspots_23$X, type = "hyb_vMF",
+#'              theta = spherical_loc_PCA)
 #'
 #' # Test rotational symmetry for the 22nd cycle, specified theta
 #' sunspots_22 <- subset(sunspots_births, cycle == 22)
@@ -265,8 +267,10 @@
 #' # Test rotational symmetry for the 22nd cycle, unspecified theta
 #' spherical_loc_PCA(sunspots_22$X)
 #' test_rotasym(data = sunspots_22$X, type = "sc", theta = spherical_loc_PCA)
-#' test_rotasym(data = sunspots_22$X, type = "loc_vMF", theta = spherical_loc_PCA)
-#' test_rotasym(data = sunspots_22$X, type = "hyb_vMF", theta = spherical_loc_PCA)
+#' test_rotasym(data = sunspots_22$X, type = "loc_vMF",
+#'              theta = spherical_loc_PCA)
+#' test_rotasym(data = sunspots_22$X, type = "hyb_vMF",
+#'              theta = spherical_loc_PCA)
 #' @seealso \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
 #' \code{\link{spherical_mean}}.
 #' @export

@@ -265,8 +265,10 @@ test_rotasym(data = sunspots_23$X, type = "hyb", theta = c(0, 0, 1))
 # Test rotational symmetry for the 23rd cycle, unspecified theta
 spherical_loc_PCA(sunspots_23$X)
 test_rotasym(data = sunspots_23$X, type = "sc", theta = spherical_loc_PCA)
-test_rotasym(data = sunspots_23$X, type = "loc_vMF", theta = spherical_loc_PCA)
-test_rotasym(data = sunspots_23$X, type = "hyb_vMF", theta = spherical_loc_PCA)
+test_rotasym(data = sunspots_23$X, type = "loc_vMF",
+             theta = spherical_loc_PCA)
+test_rotasym(data = sunspots_23$X, type = "hyb_vMF",
+             theta = spherical_loc_PCA)
 
 # Test rotational symmetry for the 22nd cycle, specified theta
 sunspots_22 <- subset(sunspots_births, cycle == 22)
@@ -277,8 +279,10 @@ test_rotasym(data = sunspots_22$X, type = "hyb", theta = c(0, 0, 1))
 # Test rotational symmetry for the 22nd cycle, unspecified theta
 spherical_loc_PCA(sunspots_22$X)
 test_rotasym(data = sunspots_22$X, type = "sc", theta = spherical_loc_PCA)
-test_rotasym(data = sunspots_22$X, type = "loc_vMF", theta = spherical_loc_PCA)
-test_rotasym(data = sunspots_22$X, type = "hyb_vMF", theta = spherical_loc_PCA)
+test_rotasym(data = sunspots_22$X, type = "loc_vMF",
+             theta = spherical_loc_PCA)
+test_rotasym(data = sunspots_22$X, type = "hyb_vMF",
+             theta = spherical_loc_PCA)
 }
 \references{
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2019) On optimal tests
