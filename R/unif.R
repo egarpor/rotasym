@@ -102,7 +102,7 @@ r_unif_sphere <- function(n, p) {
   } else {
 
     # Project a N_p(0, I_p) to the sphere
-    x <- matrix(RcppZiggurat::zrnorm(n = n * p), nrow = n, ncol = p)
+    x <- matrix(rnorm(n = n * p), nrow = n, ncol = p, byrow = TRUE)
     return(x / sqrt(rowSums(x * x)))
 
   }

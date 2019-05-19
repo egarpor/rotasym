@@ -128,7 +128,7 @@ r_ACG <- function(n, Lambda) {
   p <- sqrt(length(Lambda))
 
   # Simulation (chol() generates an error if Lambda is not positive definite)
-  x <- matrix(RcppZiggurat::zrnorm(n = n * p), nrow = n, ncol = p) %*%
+  x <- matrix(rnorm(n = n * p), nrow = n, ncol = p, byrow = TRUE) %*%
     chol(Lambda)
 
   # Projection
