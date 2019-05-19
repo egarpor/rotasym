@@ -16,7 +16,7 @@
 #' \emph{arXiv:1706.05030}. \url{https://arxiv.org/abs/1706.05030}
 #' @docType package
 #' @name rotasym-package
-#' @import stats Rcpp RcppZiggurat
+#' @import stats Rcpp
 #' @useDynLib rotasym
 #' @aliases rotasym rotasym-package
 NULL
