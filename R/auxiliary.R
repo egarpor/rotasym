@@ -28,7 +28,7 @@ check_unit_norm <- function(x, warnings = TRUE) {
 
   # Check unit norms
   norms <- rowSums(rbind(x * x))
-  if (any(abs(norms - 1) > tol)) {
+  if (any(abs(norms - 1) > tol, na.rm = TRUE)) {
 
     # Warning for normalization
     if (warnings) {
@@ -72,7 +72,7 @@ check_unit_norm <- function(x, warnings = TRUE) {
 
     }
 
-    # Normalize
+    # Normalize (propagates NAs)
     x <- x / sqrt(norms)
 
   }

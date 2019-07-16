@@ -67,19 +67,19 @@ test_rotasym(data = data_0, theta = theta, type = "sc")
 #>  Scatter test for rotational symmetry
 #> 
 #> data:  data_0
-#> Q_sc = 76.369, df = 44, p-value = 0.001778
+#> Q_sc = 35.013, df = 44, p-value = 0.8315
 test_rotasym(data = data_0, theta = theta, type = "loc_vMF")
 #> 
 #>  Location vMF test for rotational symmetry
 #> 
 #> data:  data_0
-#> Q_loc_vMF = 9.1122, df = 9, p-value = 0.427
+#> Q_loc_vMF = 11.316, df = 9, p-value = 0.2547
 test_rotasym(data = data_0, theta = theta, type = "hyb_vMF")
 #> 
 #>  Hybrid vMF test (addition of statistics) for rotational symmetry
 #> 
 #> data:  data_0
-#> Q_hyb_vMF = 85.481, df = 53, p-value = 0.003115
+#> Q_hyb_vMF = 46.329, df = 53, p-value = 0.7297
 ```
 
 ### Unspecified-**θ** case
@@ -91,19 +91,19 @@ test_rotasym(data = data_0, type = "sc")
 #>  Scatter test for rotational symmetry
 #> 
 #> data:  data_0
-#> Q_sc = 76.898, df = 44, p-value = 0.001567
+#> Q_sc = 36.568, df = 44, p-value = 0.7793
 test_rotasym(data = data_0, type = "loc_vMF")
 #> 
 #>  Location vMF test for rotational symmetry
 #> 
 #> data:  data_0
-#> Q_loc_vMF = 14.928, df = 9, p-value = 0.09293
+#> Q_loc_vMF = 12.335, df = 9, p-value = 0.1951
 test_rotasym(data = data_0, type = "hyb_vMF")
 #> 
 #>  Hybrid vMF test (addition of statistics) for rotational symmetry
 #> 
 #> data:  data_0
-#> Q_hyb_vMF = 91.825, df = 53, p-value = 0.0007478
+#> Q_hyb_vMF = 48.902, df = 53, p-value = 0.6344
 ```
 
 Data application: test for the rotational symmetry of sunspots
