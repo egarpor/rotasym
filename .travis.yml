@@ -2,7 +2,7 @@
 
 language: r
 r:
-  - 3.4
+  - 3.4.0
 cache: packages
 warnings_are_errors: false
 env:
@@ -13,4 +13,4 @@ sudo: required
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
