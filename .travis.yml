@@ -14,3 +14,6 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+    packages:
+      - libglu1-mesa-dev
+      - libgsl0-dev
