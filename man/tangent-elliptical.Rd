@@ -126,9 +126,10 @@ dens <- d_TE(x = x, theta = theta, g_scaled = g_scaled, Lambda = Lambda)
 rgl::plot3d(x, col = col[rank(dens)], size = 5)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2019) On optimal tests
+García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 for rotational symmetry against new classes of hyperspherical distributions.
-\emph{arXiv:1706.05030}. \url{https://arxiv.org/abs/1706.05030}
+\emph{Journal of the American Statistical Association}, to appear.
+\url{https://doi.org/10.1007/s11222-017-9790-2}
 }
 \seealso{
 \code{\link{tang-norm-decomp}},

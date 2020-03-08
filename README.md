@@ -14,7 +14,7 @@ Overview
 
 Software companion for the paper “*On optimal tests for rotational
 symmetry against new classes of hyperspherical distributions*”
-(García-Portugués, Paindaveine and Verdebout, 2019). It implements the
+(García-Portugués, Paindaveine and Verdebout, 2020). It implements the
 proposed tests for rotational symmetry of hyperspherical data and allows
 to replicate the data application presented.
 
@@ -110,16 +110,16 @@ Data application: test for the rotational symmetry of sunspots
 --------------------------------------------------------------
 
 The data application in García-Portugués, Paindaveine and Verdebout
-(2019) can be reproduced through the script
+(2020) can be reproduced through the script
 [sunspots-births.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots-births.R)
 (data gathering and preprocessing) and the code snippet below.
 
 ``` r
 # Load data
 data("sunspots_births")
-sunspots_births$X <- 
-  cbind(cos(sunspots_births$phi) * cos(sunspots_births$theta), 
-        cos(sunspots_births$phi) * sin(sunspots_births$theta), 
+sunspots_births$X <-
+  cbind(cos(sunspots_births$phi) * cos(sunspots_births$theta),
+        cos(sunspots_births$phi) * sin(sunspots_births$theta),
         sin(sunspots_births$phi))
 
 # Test rotational symmetry for the 23rd cycle
@@ -278,7 +278,8 @@ example("sunspots_births")
 References
 ----------
 
-García-Portugués, E., Paindaveine, D., and Verdebout, T. (2019). On
+García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On
 optimal tests for rotational symmetry against new classes of
-hyperspherical distributions. *arXiv:1706.05030*.
-<a href="https://arxiv.org/abs/1706.05030" class="uri">https://arxiv.org/abs/1706.05030</a>
+hyperspherical distributions. *Journal of the American Statistical
+Association*, to appear.
+<a href="https://doi.org/10.1007/s11222-017-9790-2" class="uri">https://doi.org/10.1007/s11222-017-9790-2</a>

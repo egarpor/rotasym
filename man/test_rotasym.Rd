@@ -4,9 +4,8 @@
 \alias{test_rotasym}
 \title{Tests of rotational symmetry for hyperspherical data}
 \usage{
-test_rotasym(data, theta = spherical_mean, type = c("sc", "loc",
-  "loc_vMF", "hyb", "hyb_vMF")[5], Fisher = FALSE, U = NULL,
-  V = NULL)
+test_rotasym(data, theta = spherical_mean, type = c("sc", "loc", "loc_vMF",
+  "hyb", "hyb_vMF")[5], Fisher = FALSE, U = NULL, V = NULL)
 }
 \arguments{
 \item{data}{hyperspherical data, a matrix of size \code{c(n, p)} with unit
@@ -285,9 +284,10 @@ test_rotasym(data = sunspots_22$X, type = "hyb_vMF",
              theta = spherical_loc_PCA)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2019) On optimal tests
+García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 for rotational symmetry against new classes of hyperspherical distributions.
-\emph{arXiv:1706.05030}. \url{https://arxiv.org/abs/1706.05030}
+\emph{Journal of the American Statistical Association}, to appear.
+\url{https://doi.org/10.1007/s11222-017-9790-2}
 }
 \seealso{
 \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},

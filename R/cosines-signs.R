@@ -86,9 +86,10 @@
 #' \code{check_X = TRUE} prevents this from happening.
 #' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
-#' García-Portugués, E., Paindaveine, D., Verdebout, T. (2019) On optimal tests
+#' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.
-#' \emph{arXiv:1706.05030}. \url{https://arxiv.org/abs/1706.05030}
+#' \emph{Journal of the American Statistical Association}, to appear.
+#' \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' # Gamma_theta
 #' theta <- c(0, 1)
