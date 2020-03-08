@@ -10,3 +10,7 @@
 
 * Make the behaviour of `r_ACG` and `r_unif_sphere` consistent with `base::set.seed`: drop `RcppZiggurat`.
 * Fix bug in NA handling in `check_unit_norm`
+
+# rotasym 1.0.7
+
+* Update reference and CITATION.
