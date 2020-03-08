@@ -1,7 +1,7 @@
 GNU General Public License
 ==========================
 
-_Version 3, 29 June 2007_  
+_Version 3, 29 June 2007_
 _Copyright © 2007 Free Software Foundation, Inc. &lt;<http://fsf.org/>&gt;_
 
 Everyone is permitted to copy and distribute verbatim copies of this license
@@ -552,8 +552,8 @@ to the start of each source file to most effectively state the exclusion of warr
 and each file should have at least the “copyright” line and a pointer to
 where the full notice is found.
 
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2019 Eduardo García-Portugués; Davy Paindaveine; Thomas Verdebout
+    rotasym: Tests for Rotational Symmetry on the Hypersphere
+    Copyright (C) 2020 Eduardo García-Portugués; Davy Paindaveine; Thomas Verdebout
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -573,7 +573,7 @@ Also add information on how to contact you by electronic and paper mail.
 If the program does terminal interaction, make it output a short notice like this
 when it starts in an interactive mode:
 
-    rotasym Copyright (C) 2019 Eduardo García-Portugués; Davy Paindaveine; Thomas Verdebout
+    rotasym Copyright (C) 2020 Eduardo García-Portugués; Davy Paindaveine; Thomas Verdebout
     This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type 'show c' for details.
