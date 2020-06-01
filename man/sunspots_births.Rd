@@ -4,7 +4,8 @@
 \name{sunspots_births}
 \alias{sunspots_births}
 \title{Recorded sunspots births during 1872--2018}
-\format{A data frame with 51303 rows and 6 variables:
+\format{
+A data frame with 51303 rows and 6 variables:
 \describe{
   \item{date}{UTC date, as \code{\link[base]{POSIXct}}, of the first
   observation of a group of sunspots.}
@@ -14,11 +15,12 @@
   millionths of the solar hemisphere.}
   \item{dist_sun_disc}{distance from the center of Sun's disc, measured in
   units of the solar radius.}
-  \item{theta}{mean colatitude angle \eqn{\theta \in [0, 2\pi)} of the
+  \item{theta}{mean longitude angle \eqn{\theta \in [0, 2\pi)} of the
   group position.}
-  \item{phi}{mean longitude angle \eqn{\phi \in [-\pi/2, \pi/2)} of the
+  \item{phi}{mean latitude angle \eqn{\phi \in [-\pi/2, \pi/2)} of the
   group position.}
-}}
+}
+}
 \source{
 \url{http://fenyi.solarobs.csfk.mta.hu}
 }
@@ -158,7 +160,7 @@ compiled at the Debrecen observatory and their extensions with the
 Greenwich sunspot data. \emph{Solar Physics}, 291(9--10):3081--3102.
 \url{http://dx.doi.org/10.1007/s11207-016-0930-1}
 
-Győri, L., Ludmány, A., Baranyi, T. (2017) Comparative analysis of Debrecen
+Győri, L., Ludmány, A., Baranyi, T. (2019) Comparative analysis of Debrecen
 sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical
 Society}, 465(2):1259--1273. \url{https://doi.org/10.1093/mnras/stw2667}
 }
