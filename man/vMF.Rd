@@ -28,7 +28,7 @@ internally if required (with a \code{warning} message).}
 A unit-norm vector of length \code{p}.}
 
 \item{kappa}{concentration parameter \eqn{\kappa} of the vMF.
-A nonnegative scalar.}
+A nonnegative scalar. Can be a vector for \code{c_vMF}.}
 
 \item{log}{flag to indicate if the logarithm of the density (or the
 normalizing constant) is to be computed.}
@@ -130,6 +130,7 @@ for (p in 3:M) {
 \references{
 Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
 \emph{Commun. Stat. Simulat.}, 23(1):157--164.
+\url{https://doi.org/10.1080/03610919408813161}
 }
 \seealso{
 \code{\link{tangent-vMF}}.
