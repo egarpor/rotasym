@@ -30,7 +30,7 @@
 #' @param mu the directional mean \eqn{\boldsymbol{\mu}}{\mu} of the vMF.
 #' A unit-norm vector of length \code{p}.
 #' @param kappa concentration parameter \eqn{\kappa} of the vMF.
-#' A nonnegative scalar.
+#' A nonnegative scalar. Can be a vector for \code{c_vMF}.
 #' @param t a vector with values in \eqn{[-1, 1]}.
 #' @param scaled whether to scale the angular function by the von Mises--Fisher
 #' normalizing constant. Defaults to \code{TRUE}.
@@ -53,6 +53,7 @@
 #' @references
 #' Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
 #' \emph{Commun. Stat. Simulat.}, 23(1):157--164.
+#' \url{https://doi.org/10.1080/03610919408813161}
 #' @examples
 #' # Simulation and density evaluation for p = 2
 #' mu <- c(0, 1)
@@ -133,9 +134,9 @@ d_vMF <- function(x, mu, kappa, log = FALSE) {
 c_vMF <- function(p, kappa, log = FALSE) {
 
   # Check kappa
-  if (kappa < 0) {
+  if (any(kappa < 0)) {
 
-    stop("kappa must be positive.")
+    stop("kappa must be non-negative.")
 
   }
 
@@ -156,7 +157,7 @@ r_vMF <- function(n, mu, kappa) {
   mu <- check_unit_norm(x = mu, warnings = TRUE)
   if (kappa < 0) {
 
-    stop("kappa must be positive.")
+    stop("kappa must be non-negative.")
 
   }
 
@@ -199,7 +200,7 @@ g_vMF <- function(t, p, kappa, scaled = TRUE, log = FALSE) {
   # Check kappa
   if (kappa < 0) {
 
-    stop("kappa must be positive.")
+    stop("kappa must be non-negative.")
 
   }
 

@@ -84,6 +84,7 @@ rgl::plot3d(x, col = col[rank(d_ACG(x = x, Lambda = Lambda))], size = 5)
 \references{
 Tyler, D. E. (1987). Statistical analysis for the angular central Gaussian
 distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
+\url{https://doi.org/10.1093/biomet/74.3.579}
 }
 \seealso{
 \code{\link{tangent-elliptical}}.
