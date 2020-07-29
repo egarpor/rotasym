@@ -7,8 +7,8 @@
 \format{
 A data frame with 51303 rows and 6 variables:
 \describe{
-  \item{date}{UTC date, as \code{\link[base]{POSIXct}}, of the first
-  observation of a group of sunspots.}
+  \item{date}{UTC date, as \code{\link[base:DateTimeClasses]{POSIXct}}, of
+  the first observation of a group of sunspots.}
   \item{cycle}{\href{https://en.wikipedia.org/wiki/List_of_solar_cycles}{
   solar cycle} in which the group of sunspots was observed.}
   \item{total_area}{total whole spot area of the group, measured in
