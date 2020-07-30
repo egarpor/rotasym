@@ -76,7 +76,7 @@ sqrt(sum((theta - theta_PCA)^2)) # Better suited in this case
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 for rotational symmetry against new classes of hyperspherical distributions.
 \emph{Journal of the American Statistical Association}, to appear.
-\url{https://doi.org/10.1007/s11222-017-9790-2}
+\url{https://doi.org/10.1080/01621459.2019.1665527}
 }
 \author{
 Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.

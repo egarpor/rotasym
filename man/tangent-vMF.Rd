@@ -132,7 +132,7 @@ rgl::plot3d(x, col = col[rank(dens)], size = 5)
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 for rotational symmetry against new classes of hyperspherical distributions.
 \emph{Journal of the American Statistical Association}, to appear.
-\url{https://doi.org/10.1007/s11222-017-9790-2}
+\url{https://doi.org/10.1080/01621459.2019.1665527}
 }
 \seealso{
 \code{\link{tang-norm-decomp}},
