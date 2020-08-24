@@ -21,3 +21,7 @@
 * Add missing links to references and other fixes in documentation.
 * Fix "Non-file package-anchored link(s) in documentation object".
 
+# rotasym 1.0.9
+
+* Fix incorrect doi.
+* Remove compiler warning std::move(W).
