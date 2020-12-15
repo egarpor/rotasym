@@ -98,7 +98,9 @@ kappa_V <- 2
 x <- r_TE(n = n, theta = theta, r_V = r_V, Lambda = Lambda)
 col <- viridisLite::viridis(n)
 dens <- d_TE(x = x, theta = theta, g_scaled = g_scaled, Lambda = Lambda)
-rgl::plot3d(x, col = col[rank(dens)], size = 5)
+if (requireNamespace("rgl")) {
+  rgl::plot3d(x, col = col[rank(dens)], size = 5)
+}
 
 ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
 ## Beta(1/2, (p + 1)/2) distribution.
@@ -123,7 +125,9 @@ diag(Lambda) <- 1
 x <- r_TE(n = n, theta = theta, r_V = r_V, Lambda = Lambda)
 col <- viridisLite::viridis(n)
 dens <- d_TE(x = x, theta = theta, g_scaled = g_scaled, Lambda = Lambda)
-rgl::plot3d(x, col = col[rank(dens)], size = 5)
+if (requireNamespace("rgl")) {
+  rgl::plot3d(x, col = col[rank(dens)], size = 5)
+}
 }
 \references{
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests

@@ -130,7 +130,9 @@
 #' x <- r_tang_norm(n = n, theta = theta, r_V = r_V, r_U = r_U)
 #' col <- viridisLite::viridis(n)
 #' dens <- d_tang_norm(x = x, theta = theta, g_scaled = g_scaled, d_U = d_U)
-#' rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' if (requireNamespace("rgl")) {
+#'   rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' }
 #'
 #' ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
 #' ## Beta(1/2, (p + 1)/2) distribution.
@@ -162,7 +164,9 @@
 #' dens <- d_tang_norm(x = x, theta = theta, d_V = d_V, d_U = d_unif_sphere)
 #' # dens <- d_tang_norm(x = x, theta = theta, g_scaled = g_scaled,
 #' #                     d_U = d_unif_sphere) # The same
-#' rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' if (requireNamespace("rgl")) {
+#'   rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' }
 #' @seealso \code{\link{Gamma_theta}}, \code{\link{signs}},
 #' \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
 #' \code{\link{vMF}}.

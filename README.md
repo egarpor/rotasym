@@ -1,13 +1,14 @@
 rotasym
 =======
 
-<!-- badges: start -->
-[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Travis build
-status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/rotasym)](https://cran.r-project.org/package=rotasym)
-<!-- badges: end -->
+[![License:
+GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
+[![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+[![](http://cranlogs.r-pkg.org/badges/last-month/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+
+<!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
 Overview
 --------
