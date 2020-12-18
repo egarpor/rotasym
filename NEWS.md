@@ -25,3 +25,9 @@
 
 * Fix incorrect doi.
 * Remove compiler warning std::move(W).
+
+# rotasym 1.1.0
+
+* Add `if(requireNamespace("rgl"))` as required.
+* Change return type of `r_g_vMF_Cpp`.
+* Update reference.

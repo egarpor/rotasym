@@ -57,7 +57,9 @@
 #'                 c(1, 2, 1),
 #'                 c(0.5, 1, 1))
 #' x <- r_ACG(n = n, Lambda = Lambda)
-#' rgl::plot3d(x, col = col[rank(d_ACG(x = x, Lambda = Lambda))], size = 5)
+#' if (requireNamespace("rgl")) {
+#'   rgl::plot3d(x, col = col[rank(d_ACG(x = x, Lambda = Lambda))], size = 5)
+#' }
 #' @seealso \code{\link{tangent-elliptical}}.
 #' @name ACG
 

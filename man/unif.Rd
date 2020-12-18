@@ -77,7 +77,9 @@ head(d_unif_sphere(x))
 
 # p = 3
 x <- r_unif_sphere(n = n, p = 3)
-rgl::plot3d(x)
+if (requireNamespace("rgl")) {
+  rgl::plot3d(x)
+}
 head(d_unif_sphere(x))
 }
 \author{

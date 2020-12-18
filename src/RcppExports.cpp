@@ -7,7 +7,7 @@
 using namespace Rcpp;
 
 // r_g_vMF_Cpp
-arma::mat r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa);
+arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa);
 RcppExport SEXP _rotasym_r_g_vMF_Cpp(SEXP nSEXP, SEXP pSEXP, SEXP kappaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

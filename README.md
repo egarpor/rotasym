@@ -1,13 +1,14 @@
 rotasym
 =======
 
-<!-- badges: start -->
-[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Travis build
-status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/rotasym)](https://cran.r-project.org/package=rotasym)
-<!-- badges: end -->
+[![License:
+GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
+[![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+[![](http://cranlogs.r-pkg.org/badges/last-month/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+
+<!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
 Overview
 --------
@@ -181,9 +182,11 @@ example("sunspots_births")
 #> 
 #> snspt_> n <- nrow(sunspots_23$X)
 #> 
-#> snspt_> rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
-#> snspt_+             radius = 1, type = "s", col = "lightblue", alpha = 0.25,
-#> snspt_+             lit = FALSE)
+#> snspt_> if (requireNamespace("rgl")) {
+#> snspt_+   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
+#> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
+#> snspt_+               lit = FALSE)
+#> snspt_+ }
 #> 
 #> snspt_> n_cols <- 100
 #> 
@@ -191,7 +194,9 @@ example("sunspots_births")
 #> snspt_+             breaks = quantile(sunspots_23$date,
 #> snspt_+                              probs = seq(0, 1, l = n_cols + 1)))
 #> 
-#> snspt_> rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
+#> snspt_> if (requireNamespace("rgl")) {
+#> snspt_+   rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
+#> snspt_+ }
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #> snspt_> # color) tend to appear at higher latitutes, gradually decreasing to the
@@ -281,5 +286,5 @@ References
 García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On
 optimal tests for rotational symmetry against new classes of
 hyperspherical distributions. *Journal of the American Statistical
-Association*, to appear.
+Association*, 115(532):1873–1887.
 <a href="https://doi.org/10.1080/01621459.2019.1665527" class="uri">https://doi.org/10.1080/01621459.2019.1665527</a>

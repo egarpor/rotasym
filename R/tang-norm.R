@@ -77,7 +77,7 @@
 #' @references
 #' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.
-#' \emph{Journal of the American Statistical Association}, to appear.
+#' \emph{Journal of the American Statistical Association}, 115(532):1873--1887.
 #' \url{https://doi.org/10.1080/01621459.2019.1665527}
 #' @examples
 #' ## Simulation and density evaluation for p = 2
@@ -130,7 +130,9 @@
 #' x <- r_tang_norm(n = n, theta = theta, r_V = r_V, r_U = r_U)
 #' col <- viridisLite::viridis(n)
 #' dens <- d_tang_norm(x = x, theta = theta, g_scaled = g_scaled, d_U = d_U)
-#' rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' if (requireNamespace("rgl")) {
+#'   rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' }
 #'
 #' ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
 #' ## Beta(1/2, (p + 1)/2) distribution.
@@ -162,7 +164,9 @@
 #' dens <- d_tang_norm(x = x, theta = theta, d_V = d_V, d_U = d_unif_sphere)
 #' # dens <- d_tang_norm(x = x, theta = theta, g_scaled = g_scaled,
 #' #                     d_U = d_unif_sphere) # The same
-#' rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' if (requireNamespace("rgl")) {
+#'   rgl::plot3d(x, col = col[rank(dens)], size = 5)
+#' }
 #' @seealso \code{\link{Gamma_theta}}, \code{\link{signs}},
 #' \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
 #' \code{\link{vMF}}.
