@@ -99,8 +99,10 @@ plot(r * x, pch = 16, col = col[rank(d_vMF(x = x, mu = mu, kappa = kappa))])
 mu <- c(0, 0, 1)
 kappa <- 2
 x <- r_vMF(n = n, mu = mu, kappa = kappa)
-rgl::plot3d(x, col = col[rank(d_vMF(x = x, mu = mu, kappa = kappa))],
-            size = 5)
+if (requireNamespace("rgl")) {
+  rgl::plot3d(x, col = col[rank(d_vMF(x = x, mu = mu, kappa = kappa))],
+              size = 5)
+}
 
 # Cosines density
 g_tilde <- function(t, p, kappa) {

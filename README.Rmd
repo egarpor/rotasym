@@ -14,11 +14,18 @@ knitr::opts_chunk$set(
 rotasym
 =======
 
-<!-- badges: start -->
-[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Travis build status](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
-[![CRAN status](https://www.r-pkg.org/badges/version/rotasym)](https://cran.r-project.org/package=rotasym)
-<!-- badges: end -->
+```{r, echo = FALSE, results = 'asis'}
+cat(
+  badger::badge_license(license = "GPLv3", color = "blue",
+                        url = "https://www.gnu.org/licenses/gpl-3.0"),
+  badger::badge_travis(ref = NULL),
+	badger::badge_cran_release(color = "green"),
+	badger::badge_cran_download(pkg = NULL, type = "grand-total"),
+	badger::badge_cran_download(pkg = NULL, type = "last-month")
+)
+```
+
+<!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
 ## Overview
 
@@ -114,4 +121,4 @@ example("sunspots_births")
 
 ## References
 
-García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal tests for rotational symmetry against new classes of hyperspherical distributions. *Journal of the American Statistical Association*, to appear. <https://doi.org/10.1080/01621459.2019.1665527>
+García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal tests for rotational symmetry against new classes of hyperspherical distributions. *Journal of the American Statistical Association*, 115(532):1873--1887. <https://doi.org/10.1080/01621459.2019.1665527>
