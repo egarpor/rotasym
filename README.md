@@ -286,5 +286,5 @@ References
 García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On
 optimal tests for rotational symmetry against new classes of
 hyperspherical distributions. *Journal of the American Statistical
-Association*, to appear.
+Association*, 115(532):1873–1887.
 <a href="https://doi.org/10.1080/01621459.2019.1665527" class="uri">https://doi.org/10.1080/01621459.2019.1665527</a>
