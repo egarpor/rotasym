@@ -5,7 +5,8 @@ Version: 1.1.0
 Date: 2020-12-18
 Authors@R: c(
      person(given = "Eduardo", family = "García-Portugués",
-            role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es"),
+            role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es",
+            comment = c(ORCID = "0000-0002-9224-4111")),
      person(given = "Davy", family = "Paindaveine", role = "aut"),
      person(given = "Thomas", family = "Verdebout", role = "aut")
      )

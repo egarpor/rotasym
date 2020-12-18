@@ -49,7 +49,7 @@ arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
   }
 
   // Sample
-  return(W);
+  return(std::move(W));
 
 }
 

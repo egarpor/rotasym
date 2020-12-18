@@ -17,3 +17,7 @@
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
+
+On some platforms:
+
+* "Found the following (possibly) invalid URLs" -- double-checked and correctly spelled
