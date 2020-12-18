@@ -2,7 +2,7 @@ Package: rotasym
 Type: Package
 Title: Tests for Rotational Symmetry on the Hypersphere
 Version: 1.0.10
-Date: 2020-12-15
+Date: 2020-12-18
 Authors@R: c(
      person(given = "Eduardo", family = "García-Portugués",
             role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es"),
