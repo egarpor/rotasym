@@ -135,7 +135,7 @@ hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 for rotational symmetry against new classes of hyperspherical distributions.
 \emph{Journal of the American Statistical Association}, 115(532):1873--1887.
-\url{https://doi.org/10.1080/01621459.2019.1665527}
+\doi{10.1080/01621459.2019.1665527}
 }
 \author{
 Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
