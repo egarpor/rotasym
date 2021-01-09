@@ -132,7 +132,7 @@ for (p in 3:M) {
 \references{
 Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
 \emph{Commun. Stat. Simulat.}, 23(1):157--164.
-\url{https://doi.org/10.1080/03610919408813161}
+\doi{10.1080/03610919408813161}
 }
 \seealso{
 \code{\link{tangent-vMF}}.
