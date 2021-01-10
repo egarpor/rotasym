@@ -14,10 +14,16 @@
 * Oracle Solaris 10, x86, 32 bit, R-release (on R-hub)
 * Oracle Solaris 10, x86, 32 bit, R-release, Oracle Developer Studio 12.6 (on R-hub)
 
+On some platforms:
+
+* "Found the following (possibly) invalid URLs" -- double-checked and correctly spelled
+
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
 
-On some platforms:
+## Resubmission
 
-* "Found the following (possibly) invalid URLs" -- double-checked and correctly spelled
+This is a resubmission. In this version I have:
+
+* Corrected NOTE about using \doi{}.
