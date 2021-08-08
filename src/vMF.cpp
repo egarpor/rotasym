@@ -11,12 +11,14 @@ using namespace Rcpp;
 arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
 
   // Algorithm VM in Wood (1994)
+  // b is computed so it is numerically stable for large kappas
 
   // Step 0
   double q = p - 1.0;
-  double b = (-2 * kappa + sqrt(4 * kappa * kappa + q * q)) / q;
+  //double b = (-2.0 * kappa + sqrt(4.0 * kappa * kappa + q * q)) / q;
+  double b = q / (sqrt(4.0 * kappa * kappa + q * q) + 2 * kappa);
   double x0 = (1.0 - b) / (1.0 + b);
-  double c = kappa * x0 + q * log(1 - x0 * x0);
+  double c = kappa * x0 + q * log(1.0 - x0 * x0);
 
   // Steps 1, 2
   arma::uword counter = 0;
@@ -52,4 +54,3 @@ arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
   return(W);
 
 }
-
