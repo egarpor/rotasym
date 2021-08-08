@@ -31,3 +31,7 @@
 * Add `if(requireNamespace("rgl"))` as required.
 * Change return type of `r_g_vMF_Cpp`.
 * Update reference.
+
+# rotasym 1.1.1
+
+* Make `r_g_vMF` numerically robust for large kappas

@@ -1,6 +1,6 @@
 ## Test environments
 
-* local R installation, R 4.0.3
+* local R installation, R 4.1.0
 * ubuntu 16.04 (on travis-ci), R 3.4.0
 * win-builder (release, devel)
 * Windows Server 2008 R2 SP1, R-devel, 32/64 bit (on R-hub)
@@ -22,8 +22,3 @@ On some platforms:
 
 0 errors | 0 warnings | 0 notes
 
-## Resubmission
-
-This is a resubmission. In this version I have:
-
-* Corrected NOTE about using \doi{}.
