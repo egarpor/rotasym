@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // r_g_vMF_Cpp
 arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa);
 RcppExport SEXP _rotasym_r_g_vMF_Cpp(SEXP nSEXP, SEXP pSEXP, SEXP kappaSEXP) {
