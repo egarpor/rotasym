@@ -11,7 +11,7 @@ using namespace Rcpp;
 arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
 
   // Algorithm VM in Wood (1994)
-  // b is computed so it is numerically stable for large kappas
+  // b is computed in a numerically stable way for large kappas
 
   // Step 0
   double q = p - 1.0;
