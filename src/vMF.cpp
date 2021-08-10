@@ -31,8 +31,9 @@ arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
     double U = R::runif(0, 1);
     double W_proposal = (1.0 - (1.0 + b) * Z) / (1.0 - (1.0 - b) * Z);
 
-    // Step 2. Acception-rejection
-    if (kappa * W_proposal + q * log(1.0 - x0 * W_proposal) - c > log(U)) {
+    // Step 2. Acceptation-rejection sampling, avoiding extreme cases
+    if ((abs(W_proposal) < 1.0) &
+        (kappa * W_proposal + q * log(1.0 - x0 * W_proposal) - c > log(U))) {
 
       W(counter) = W_proposal;
       counter++;
