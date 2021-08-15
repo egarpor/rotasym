@@ -34,8 +34,9 @@
 
 # rotasym 1.1.1
 
-* Make `r_g_vMF` numerically robust for large kappas
+* Make `r_g_vMF` numerically robust for large kappas.
 
 # rotasym 1.1.2
 
-* Fix possible NaNs in `r_g_vMF` for low kappas
+* Fix possible NaNs in `r_g_vMF` for low kappas.
+* Fix bug in `d_ACG`.

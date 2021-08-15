@@ -94,7 +94,7 @@ d_ACG <- function(x, Lambda, log = FALSE) {
 
     # Log-density
     log_dens <- c_ACG(p = p, Lambda = Lambda, log = TRUE) -
-      0.5 * (p - 1) * log(rowSums((x %*% solve(Lambda)) * x))
+      0.5 * p * log(rowSums((x %*% solve(Lambda)) * x))
 
   }
   return(switch(log + 1, exp(log_dens), log_dens))
