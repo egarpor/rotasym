@@ -40,3 +40,4 @@
 
 * Fix possible NaNs in `r_g_vMF` for low kappas.
 * Fix bug in `d_ACG`.
+
