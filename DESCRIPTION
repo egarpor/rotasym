@@ -4,18 +4,18 @@ Title: Tests for Rotational Symmetry on the Hypersphere
 Version: 1.1.2
 Date: 2021-08-19
 Authors@R: c(
-     person(given = "Eduardo", family = "García-Portugués",
-            role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es",
-            comment = c(ORCID = "0000-0002-9224-4111")),
-     person(given = "Davy", family = "Paindaveine", role = "aut"),
-     person(given = "Thomas", family = "Verdebout", role = "aut")
-     )
-Description: Implementation of the tests for rotational symmetry on the hypersphere
-     proposed in García-Portugués, Paindaveine and Verdebout (2020) 
-     <doi:10.1080/01621459.2019.1665527>. The package also implements the
-     proposed distributions on the hypersphere, based on the tangent-normal
-     decomposition, and allows for the replication of the data application
-     considered in the paper.
+    person(given = "Eduardo", family = "García-Portugués",
+           role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es",
+           comment = c(ORCID = "0000-0002-9224-4111")),
+    person(given = "Davy", family = "Paindaveine", role = "aut"),
+    person(given = "Thomas", family = "Verdebout", role = "aut")
+    )
+Description: Implementation of the tests for rotational symmetry on the
+    hypersphere proposed in García-Portugués, Paindaveine and Verdebout (2020)
+    <doi:10.1080/01621459.2019.1665527>. The package also implements the
+    proposed distributions on the hypersphere, based on the tangent-normal
+    decomposition, and allows for the replication of the data application
+    considered in the paper.
 License: GPL-3
 LazyData: true
 Depends:
