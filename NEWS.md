@@ -39,3 +39,5 @@
 # rotasym 1.1.2
 
 * Fix possible NaNs in `r_g_vMF` for low kappas.
+* Fix bug in `d_ACG`.
+
