@@ -1,17 +1,15 @@
-rotasym
-=======
+# rotasym
 
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![](https://travis-ci.org/egarpor/rotasym.svg?branch=master)](https://travis-ci.org/egarpor/rotasym)
+[![](https://app.travis-ci.com/egarpor/rotasym.svg?branch=master)](https://app.travis-ci.com/egarpor/rotasym)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/last-month/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 
 <!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
-Overview
---------
+## Overview
 
 Software companion for the paper “*On optimal tests for rotational
 symmetry against new classes of hyperspherical distributions*”
@@ -19,8 +17,7 @@ symmetry against new classes of hyperspherical distributions*”
 proposed tests for rotational symmetry of hyperspherical data and allows
 to replicate the data application presented.
 
-Installation
-------------
+## Installation
 
 Get the released version from CRAN:
 
@@ -43,8 +40,7 @@ install_github("egarpor/rotasym")
 library(rotasym)
 ```
 
-Tests usage
------------
+## Tests usage
 
 The following are some simple examples of the usage of the main function
 of the package, `test_rotasym`, with simulated data. More examples are
@@ -107,8 +103,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 #> Q_hyb_vMF = 48.902, df = 53, p-value = 0.6344
 ```
 
-Data application: test for the rotational symmetry of sunspots
---------------------------------------------------------------
+## Data application: test for the rotational symmetry of sunspots
 
 The data application in García-Portugués, Paindaveine and Verdebout
 (2020) can be reproduced through the script
@@ -187,6 +182,12 @@ example("sunspots_births")
 #> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
 #> snspt_+               lit = FALSE)
 #> snspt_+ }
+#> Error in dyn.load(dynlib <- getDynlib(dir)) : 
+#>   unable to load shared object '/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so':
+#>   dlopen(/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so, 6): Symbol not found: _hb_buffer_add_utf8
+#>   Referenced from: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
+#>   Expected in: flat namespace
+#>  in /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
 #> 
 #> snspt_> n_cols <- 100
 #> 
@@ -197,6 +198,12 @@ example("sunspots_births")
 #> snspt_> if (requireNamespace("rgl")) {
 #> snspt_+   rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
 #> snspt_+ }
+#> Error in dyn.load(dynlib <- getDynlib(dir)) : 
+#>   unable to load shared object '/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so':
+#>   dlopen(/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so, 6): Symbol not found: _hb_buffer_add_utf8
+#>   Referenced from: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
+#>   Expected in: flat namespace
+#>  in /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #> snspt_> # color) tend to appear at higher latitutes, gradually decreasing to the
@@ -280,8 +287,7 @@ example("sunspots_births")
     #> snspt_> 90 - acos(modes) / pi * 180
     #> [1] -13.69322  16.49001
 
-References
-----------
+## References
 
 García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On
 optimal tests for rotational symmetry against new classes of
