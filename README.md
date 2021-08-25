@@ -2,7 +2,8 @@
 
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![](https://app.travis-ci.com/egarpor/rotasym.svg?branch=master)](https://app.travis-ci.com/egarpor/rotasym)
+[![R build
+status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/rotasym/actions)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/last-month/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
