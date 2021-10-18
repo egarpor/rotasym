@@ -41,3 +41,7 @@
 * Fix possible NaNs in `r_g_vMF` for low kappas.
 * Fix bug in `d_ACG`.
 
+# rotasym 1.1.3
+
+* Fix warning in r-devel-linux-x86_64-debian-clang.
+
