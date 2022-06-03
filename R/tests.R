@@ -334,9 +334,9 @@ test_rotasym <- function(data, theta = spherical_mean,
   if (type == "sc") {
 
     # Test
-    U_bar <- colMeans(U)
-    S <- (n - 1) / n * cov(U) + tcrossprod(U_bar)
-    statistic <- 0.5 * n * (p * p - 1) * (sum(diag(S %*% S)) - 1 / (p - 1))
+    S <- crossprod(U) / n
+    statistic <- 0.5 * n * (p * p - 1) *
+      (sum(diag(tcrossprod(S))) - 1 / (p - 1))
     df <- 0.5 * (p - 2) * (p + 1)
     p_value <- pchisq(q = statistic, df = df, lower.tail = FALSE)
 
