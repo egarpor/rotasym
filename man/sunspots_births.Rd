@@ -142,7 +142,7 @@ kde_level_set <- function(kde, data, alpha) {
   # Begin and end index for the potentially many intervals in the level sets
   kde_larger_c <- kde$y >= c
   run_length_kde <- rle(kde_larger_c)
-  begin <- which(diff(kde_larger_c) > 0)
+  begin <- which(diff(kde_larger_c) > 0) + 1
   end <- begin + run_length_kde$lengths[run_length_kde$values] - 1
 
   # Return the [a_i, b_i], i = 1, ..., K in the K rows
