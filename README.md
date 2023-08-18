@@ -5,8 +5,8 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org
 [![R build
 status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/rotasym/actions)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
-[![](http://cranlogs.r-pkg.org/badges/last-month/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym)](https://cran.r-project.org/package=rotasym)
+[![](http://cranlogs.r-pkg.org/badges/last-month/rotasym)](https://cran.r-project.org/package=rotasym)
 
 <!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
@@ -107,7 +107,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 ## Data application: test for the rotational symmetry of sunspots
 
 The data application in García-Portugués, Paindaveine and Verdebout
-(2020) can be reproduced through the script
+(2020) can be replicated through the script
 [sunspots-births.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots-births.R)
 (data gathering and preprocessing) and the code snippet below.
 
@@ -183,12 +183,6 @@ example("sunspots_births")
 #> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
 #> snspt_+               lit = FALSE)
 #> snspt_+ }
-#> Error in dyn.load(dynlib <- getDynlib(dir)) : 
-#>   unable to load shared object '/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so':
-#>   dlopen(/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so, 6): Symbol not found: _hb_buffer_add_utf8
-#>   Referenced from: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
-#>   Expected in: flat namespace
-#>  in /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
 #> 
 #> snspt_> n_cols <- 100
 #> 
@@ -199,12 +193,6 @@ example("sunspots_births")
 #> snspt_> if (requireNamespace("rgl")) {
 #> snspt_+   rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
 #> snspt_+ }
-#> Error in dyn.load(dynlib <- getDynlib(dir)) : 
-#>   unable to load shared object '/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so':
-#>   dlopen(/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so, 6): Symbol not found: _hb_buffer_add_utf8
-#>   Referenced from: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
-#>   Expected in: flat namespace
-#>  in /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/rgl/libs/rgl.so
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #> snspt_> # color) tend to appear at higher latitutes, gradually decreasing to the
@@ -267,7 +255,7 @@ example("sunspots_births")
     #> snspt_+   # Begin and end index for the potentially many intervals in the level sets
     #> snspt_+   kde_larger_c <- kde$y >= c
     #> snspt_+   run_length_kde <- rle(kde_larger_c)
-    #> snspt_+   begin <- which(diff(kde_larger_c) > 0)
+    #> snspt_+   begin <- which(diff(kde_larger_c) > 0) + 1
     #> snspt_+   end <- begin + run_length_kde$lengths[run_length_kde$values] - 1
     #> snspt_+ 
     #> snspt_+   # Return the [a_i, b_i], i = 1, ..., K in the K rows
@@ -278,8 +266,8 @@ example("sunspots_births")
     #> snspt_> # Level set containing the 90% of the probability, in latitude angles
     #> snspt_> 90 - acos(kde_level_set(kde = kde, data = V, alpha = 0.10)) / pi * 180
     #>            [,1]      [,2]
-    #> [1,] -29.464311 -2.469989
-    #> [2,]   2.568013 28.107467
+    #> [1,] -29.448244 -2.455986
+    #> [2,]   2.582017 28.123329
     #> 
     #> snspt_> # Modes (in cosines and latitude angles)
     #> snspt_> modes <- c(kde$x[kde$x < 0][which.max(kde$y[kde$x < 0])],
