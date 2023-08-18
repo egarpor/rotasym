@@ -53,4 +53,3 @@
 # rotasym 1.1.5
 
 * Drop C++11 requirement
-
