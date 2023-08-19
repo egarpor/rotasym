@@ -4,11 +4,12 @@ note <- paste("R package version", meta$Version)
 
 citHeader("To cite rotasym in publications use:")
 
-citEntry(entry = "Manual",
+bibentry(
+  bibtype      = "Manual",
   title        = "{rotasym}: Tests for Rotational Symmetry on the Hypersphere",
-  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es"),
-                   as.person("Davy Paindaveine"),
-                   as.person("Thomas Verdebout")),
+  author       = c(person(given = "Eduardo", family = "García-Portugués"),
+                   person(given = "Davy", family = "Paindaveine"),
+                   person(given = "Thomas", family = "Verdebout")),
   year         = year,
   note         = note,
   url          = "https://CRAN.R-project.org/package=rotasym",
@@ -18,11 +19,12 @@ citEntry(entry = "Manual",
         paste0(note, "."), "https://CRAN.R-project.org/package=rotasym")
 )
 
-citEntry(entry = "Article",
+bibentry(
+  bibtype      = "Article",
   title        = "On optimal tests for rotational symmetry against new classes of hyperspherical distributions",
-  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es"),
-                   as.person("Davy Paindaveine"),
-                   as.person("Thomas Verdebout")),
+  author       = c(person(given = "Eduardo", family = "García-Portugués"),
+                   person(given = "Davy", family = "Paindaveine"),
+                   person(given = "Thomas", family = "Verdebout")),
   journal      = "Journal of the American Statistical Association",
   year         = "2020",
   volume       = "115",

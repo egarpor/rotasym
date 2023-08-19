@@ -50,3 +50,7 @@
 * Fix warning in r-devel-linux-x86_64-fedora-clang and  r-devel-linux-x86_64-debian-clang.
 * Fix bug in `kde_level_set()` (example).
 
+# rotasym 1.1.5
+
+* Drop C++11 requirement to adhere to new CRAN policies.
+* Drop `personList()` and `citEntry()`.
