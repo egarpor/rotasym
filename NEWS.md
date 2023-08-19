@@ -52,4 +52,5 @@
 
 # rotasym 1.1.5
 
-* Drop C++11 requirement
+* Drop C++11 requirement to adhere to new CRAN policies.
+* Drop `personList()` and `citEntry()`.
