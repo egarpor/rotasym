@@ -56,7 +56,7 @@ set.seed(123456789)
 data_0 <- r_vMF(n = n, mu = theta, kappa = 1)
 ```
 
-### Specified-$\theta$ case
+### Specified-θ case
 
 ``` r
 # theta known
@@ -80,7 +80,7 @@ test_rotasym(data = data_0, theta = theta, type = "hyb_vMF")
 #> Q_hyb_vMF = 46.329, df = 53, p-value = 0.7297
 ```
 
-### Unspecified-$\theta$ case
+### Unspecified-θ case
 
 ``` r
 # theta unknown (employs the spherical mean as estimator)
