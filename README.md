@@ -206,75 +206,74 @@ example("sunspots_births")
 #> snspt_> plot(kde <- density(x = V, bw = h, n = 2^13, from = -1, to = 1), col = 1,
 #> snspt_+      xlim = c(-1, 1), ylim = c(0, 3), axes = FALSE, main = "",
 #> snspt_+      xlab = "Cosines (latitude angles)", lwd = 2)
+#> 
+#> snspt_> at <- seq(-1, 1, by = 0.25)
+#> 
+#> snspt_> axis(2); axis(1, at = at)
+#> 
+#> snspt_> axis(1, at = at, line = 1, tick = FALSE,
+#> snspt_+      labels = paste0("(", 90 - round(acos(at) / pi * 180, 1), "º)"))
+#> 
+#> snspt_> rug(V)
+#> 
+#> snspt_> legend("topright", legend = c("Full cycle", "Initial 25% cycle",
+#> snspt_+                               "Final 25% cycle"),
+#> snspt_+        lwd = 2, col = c(1, viridisLite::viridis(12)[c(3, 8)]))
+#> 
+#> snspt_> # Density for the observations within the initial 25% of the cycle
+#> snspt_> part1 <- sunspots_23$date < quantile(sunspots_23$date, 0.25)
+#> 
+#> snspt_> V1 <- cosines(X = sunspots_23$X[part1, ], theta = c(0, 0, 1))
+#> 
+#> snspt_> h1 <- bw.SJ(x = V1, method = "dpi")
+#> 
+#> snspt_> lines(kde1 <- density(x = V1, bw = h1, n = 2^13, from = -1, to = 1),
+#> snspt_+       col = viridisLite::viridis(12)[3], lwd = 2)
+#> 
+#> snspt_> # Density for the observations within the final 25% of the cycle
+#> snspt_> part2 <- sunspots_23$date > quantile(sunspots_23$date, 0.75)
+#> 
+#> snspt_> V2 <- cosines(X = sunspots_23$X[part2, ], theta = c(0, 0, 1))
+#> 
+#> snspt_> h2 <- bw.SJ(x = V2, method = "dpi")
+#> 
+#> snspt_> lines(kde2 <- density(x = V2, bw = h2, n = 2^13, from = -1, to = 1),
+#> snspt_+       col = viridisLite::viridis(12)[8], lwd = 2)
+#> 
+#> snspt_> # Computation the level set of a kernel density estimator that contains
+#> snspt_> # at least 1 - alpha of the probability (kde stands for an object
+#> snspt_> # containing the output of density(x = data))
+#> snspt_> kde_level_set <- function(kde, data, alpha) {
+#> snspt_+ 
+#> snspt_+   # Estimate c from alpha
+#> snspt_+   c <- quantile(approx(x = kde$x, y = kde$y, xout = data)$y, probs = alpha)
+#> snspt_+ 
+#> snspt_+   # Begin and end index for the potentially many intervals in the level sets
+#> snspt_+   kde_larger_c <- kde$y >= c
+#> snspt_+   run_length_kde <- rle(kde_larger_c)
+#> snspt_+   begin <- which(diff(kde_larger_c) > 0) + 1
+#> snspt_+   end <- begin + run_length_kde$lengths[run_length_kde$values] - 1
+#> snspt_+ 
+#> snspt_+   # Return the [a_i, b_i], i = 1, ..., K in the K rows
+#> snspt_+   return(cbind(kde$x[begin], kde$x[end]))
+#> snspt_+ 
+#> snspt_+ }
+#> 
+#> snspt_> # Level set containing the 90% of the probability, in latitude angles
+#> snspt_> 90 - acos(kde_level_set(kde = kde, data = V, alpha = 0.10)) / pi * 180
+#>            [,1]      [,2]
+#> [1,] -29.448244 -2.455986
+#> [2,]   2.582017 28.123329
+#> 
+#> snspt_> # Modes (in cosines and latitude angles)
+#> snspt_> modes <- c(kde$x[kde$x < 0][which.max(kde$y[kde$x < 0])],
+#> snspt_+            kde$x[kde$x > 0][which.max(kde$y[kde$x > 0])])
+#> 
+#> snspt_> 90 - acos(modes) / pi * 180
+#> [1] -13.69322  16.49001
 ```
 
 <img src="README/README-sunspots_births-1.png" style="display: block; margin: auto;" />
-
-    #> 
-    #> snspt_> at <- seq(-1, 1, by = 0.25)
-    #> 
-    #> snspt_> axis(2); axis(1, at = at)
-    #> 
-    #> snspt_> axis(1, at = at, line = 1, tick = FALSE,
-    #> snspt_+      labels = paste0("(", 90 - round(acos(at) / pi * 180, 1), "º)"))
-    #> 
-    #> snspt_> rug(V)
-    #> 
-    #> snspt_> legend("topright", legend = c("Full cycle", "Initial 25% cycle",
-    #> snspt_+                               "Final 25% cycle"),
-    #> snspt_+        lwd = 2, col = c(1, viridisLite::viridis(12)[c(3, 8)]))
-    #> 
-    #> snspt_> # Density for the observations within the initial 25% of the cycle
-    #> snspt_> part1 <- sunspots_23$date < quantile(sunspots_23$date, 0.25)
-    #> 
-    #> snspt_> V1 <- cosines(X = sunspots_23$X[part1, ], theta = c(0, 0, 1))
-    #> 
-    #> snspt_> h1 <- bw.SJ(x = V1, method = "dpi")
-    #> 
-    #> snspt_> lines(kde1 <- density(x = V1, bw = h1, n = 2^13, from = -1, to = 1),
-    #> snspt_+       col = viridisLite::viridis(12)[3], lwd = 2)
-    #> 
-    #> snspt_> # Density for the observations within the final 25% of the cycle
-    #> snspt_> part2 <- sunspots_23$date > quantile(sunspots_23$date, 0.75)
-    #> 
-    #> snspt_> V2 <- cosines(X = sunspots_23$X[part2, ], theta = c(0, 0, 1))
-    #> 
-    #> snspt_> h2 <- bw.SJ(x = V2, method = "dpi")
-    #> 
-    #> snspt_> lines(kde2 <- density(x = V2, bw = h2, n = 2^13, from = -1, to = 1),
-    #> snspt_+       col = viridisLite::viridis(12)[8], lwd = 2)
-    #> 
-    #> snspt_> # Computation the level set of a kernel density estimator that contains
-    #> snspt_> # at least 1 - alpha of the probability (kde stands for an object
-    #> snspt_> # containing the output of density(x = data))
-    #> snspt_> kde_level_set <- function(kde, data, alpha) {
-    #> snspt_+ 
-    #> snspt_+   # Estimate c from alpha
-    #> snspt_+   c <- quantile(approx(x = kde$x, y = kde$y, xout = data)$y, probs = alpha)
-    #> snspt_+ 
-    #> snspt_+   # Begin and end index for the potentially many intervals in the level sets
-    #> snspt_+   kde_larger_c <- kde$y >= c
-    #> snspt_+   run_length_kde <- rle(kde_larger_c)
-    #> snspt_+   begin <- which(diff(kde_larger_c) > 0) + 1
-    #> snspt_+   end <- begin + run_length_kde$lengths[run_length_kde$values] - 1
-    #> snspt_+ 
-    #> snspt_+   # Return the [a_i, b_i], i = 1, ..., K in the K rows
-    #> snspt_+   return(cbind(kde$x[begin], kde$x[end]))
-    #> snspt_+ 
-    #> snspt_+ }
-    #> 
-    #> snspt_> # Level set containing the 90% of the probability, in latitude angles
-    #> snspt_> 90 - acos(kde_level_set(kde = kde, data = V, alpha = 0.10)) / pi * 180
-    #>            [,1]      [,2]
-    #> [1,] -29.448244 -2.455986
-    #> [2,]   2.582017 28.123329
-    #> 
-    #> snspt_> # Modes (in cosines and latitude angles)
-    #> snspt_> modes <- c(kde$x[kde$x < 0][which.max(kde$y[kde$x < 0])],
-    #> snspt_+            kde$x[kde$x > 0][which.max(kde$y[kde$x > 0])])
-    #> 
-    #> snspt_> 90 - acos(modes) / pi * 180
-    #> [1] -13.69322  16.49001
 
 ## References
 

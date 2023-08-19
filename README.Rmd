@@ -95,7 +95,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 The data application in García-Portugués, Paindaveine and Verdebout (2020) can
 be replicated through the script [sunspots-births.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots-births.R) (data gathering and preprocessing) and the code snippet below.
 
-```{r, sunspots_births}
+```{r, sunspots_births, fig.show = 'hold'}
 # Load data
 data("sunspots_births")
 sunspots_births$X <-
