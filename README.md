@@ -195,7 +195,7 @@ example("sunspots_births")
 #> snspt_+ }
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
-#> snspt_> # color) tend to appear at higher latitutes, gradually decreasing to the
+#> snspt_> # color) tend to appear at higher latitudes, gradually decreasing to the
 #> snspt_> # equator as the solar cycle advances (yellow color)
 #> snspt_> 
 #> snspt_> # Estimation of the density of the cosines
