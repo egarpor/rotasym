@@ -99,7 +99,7 @@ if (requireNamespace("rgl")) {
   rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
 }
 # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
-# color) tend to appear at higher latitutes, gradually decreasing to the
+# color) tend to appear at higher latitudes, gradually decreasing to the
 # equator as the solar cycle advances (yellow color)
 
 # Estimation of the density of the cosines
