@@ -54,3 +54,7 @@
 
 * Drop C++11 requirement to adhere to new CRAN policies.
 * Drop `personList()` and `citEntry()`.
+
+# rotasym 1.1.6
+
+* Add stop for kappa > 1e15 in `rvMF` and `r_g_vMF` to avoid infinite looping.

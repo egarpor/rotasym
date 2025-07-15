@@ -238,6 +238,10 @@ r_g_vMF <- function(n, p, kappa) {
 
     stop("kappa has to be non-negative")
 
+  } else if (kappa > 1e15) {
+
+    stop("kappa is too large")
+
   }
 
   # Call C++ function
