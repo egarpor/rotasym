@@ -161,6 +161,10 @@ r_vMF <- function(n, mu, kappa) {
 
     stop("kappa must be non-negative.")
 
+  } else if (kappa > 1e15) {
+
+    stop("kappa is too large")
+
   }
 
   # Dimension
