@@ -27,7 +27,7 @@ A data frame with 51303 rows and 6 variables:
 An object of class \code{data.frame} with 51303 rows and 7 columns.
 }
 \source{
-\url{http://fenyi.solarobs.csfk.mta.hu}
+\url{http://fenyi.solarobs.epss.hun-ren.hu}
 }
 \usage{
 sunspots_births
@@ -36,10 +36,10 @@ sunspots_deaths
 }
 \description{
 Processed version of the
-\href{http://fenyi.solarobs.csfk.mta.hu/DPD/}{
+\href{http://fenyi.solarobs.epss.hun-ren.hu/DPD/}{
 Debrecen Photoheliographic Data (DPD)} sunspot catalog and the
 revised version of the
-\href{http://fenyi.solarobs.csfk.mta.hu/GPR/}{
+\href{http://fenyi.solarobs.epss.hun-ren.hu/GPR/}{
 Greenwich Photoheliographic Results (GPR)} sunspot catalog. The two
 sources contain the records of sunspots appeared during 1872--2018 (GPR for
 1872--1976; DPD for 1974--2018).
@@ -60,7 +60,7 @@ coordinates are:
 with \eqn{(0, 0, 1)} denoting the north pole.
 
 The DPD data has
-\href{http://fenyi.solarobs.csfk.mta.hu/ftp/pub/DPD/README.txt}{
+\href{http://fenyi.solarobs.epss.hun-ren.hu/ftp/pub/DPD/README.txt}{
 different states} of completeness and quality control. The
 longest span of "final complete data" (no missing observation days and
 the data has undergone a systematic quality control) is from 2005 to 2015.
@@ -162,7 +162,7 @@ kde_level_set <- function(kde, data, alpha) {
 modes <- c(kde$x[kde$x < 0][which.max(kde$y[kde$x < 0])],
            kde$x[kde$x > 0][which.max(kde$y[kde$x > 0])])
 90 - acos(modes) / pi * 180
-
+\donttest{
 # Load deaths data of the 23rd cycle
 data("sunspots_deaths")
 sp_dea_23 <- subset(sunspots_deaths, cycle == 23)
@@ -191,6 +191,7 @@ if (requireNamespace("rgl")) {
                  col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) \%\%
                                (2 * pi) < pi, 2, 3))
   }
+}
 }
 }
 \references{

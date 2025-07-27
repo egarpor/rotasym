@@ -1,5 +1,5 @@
 
-## Retrieve data from http://fenyi.solarobs.csfk.mta.hu
+## Retrieve data from http://fenyi.solarobs.epss.hun-ren.hu/
 
 # The sources are the Debrecen Photoheliographic Data (DPD, from 1974 onwards)
 # sunspot catalogue and the Greenwich Photoheliographic Results (GPR, from
@@ -14,7 +14,7 @@ for (year in years) {
 
   catalogue <- ifelse(year >= 1974, "DPD", "GPR")
   file_year <- paste0(catalogue, year, ".txt")
-  url_year <- paste0("http://fenyi.solarobs.csfk.mta.hu/ftp/pub/", catalogue,
+  url_year <- paste0("http://fenyi.solarobs.epss.hun-ren.hu/ftp/pub/", catalogue,
                      "/data/", file_year)
   download.file(url = url_year, destfile = paste0("rawdata/", file_year))
 
