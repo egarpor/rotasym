@@ -59,4 +59,4 @@
 
 * Add new dataset `sunspots_deaths` as companion to `sunspots_births`.
 * Add stop for kappa > 1e15 in `rvMF` and `r_g_vMF` to avoid infinite looping.
-
+* Replace `rgl` with `scatterplot3d` in examples.

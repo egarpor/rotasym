@@ -91,18 +91,20 @@ mu <- c(0, 1)
 kappa <- 2
 n <- 1e3
 x <- r_vMF(n = n, mu = mu, kappa = kappa)
+dens <- d_vMF(x = x, mu = mu, kappa = kappa)
 col <- viridisLite::viridis(n)
 r <- runif(n, 0.95, 1.05) # Radius perturbation to improve visualization
-plot(r * x, pch = 16, col = col[rank(d_vMF(x = x, mu = mu, kappa = kappa))])
+plot(r * x, pch = 16, col = col[rank(dens)])
 
 # Simulation and density evaluation for p = 3
 mu <- c(0, 0, 1)
 kappa <- 2
 x <- r_vMF(n = n, mu = mu, kappa = kappa)
-if (requireNamespace("rgl")) {
-  rgl::plot3d(x, col = col[rank(d_vMF(x = x, mu = mu, kappa = kappa))],
-              size = 5)
-}
+dens <- d_vMF(x = x, mu = mu, kappa = kappa)
+scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+                             zlim = c(-1, 1), color = col[rank(dens)],
+                             pch = 16, xlab = "", ylab = "", zlab = "",
+                             angle = 20)
 
 # Cosines density
 g_tilde <- function(t, p, kappa) {

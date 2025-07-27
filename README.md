@@ -177,18 +177,17 @@ example("sunspots_births")
 #> snspt_+         sin(sp_bir_23$phi))
 #> 
 #> snspt_> # Plot births
-#> snspt_> n <- nrow(sp_bir_23)
+#> snspt_> n_cols <- 100
 #> 
-#> snspt_> if (requireNamespace("rgl")) {
-#> snspt_+   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
-#> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
-#> snspt_+               lit = FALSE)
-#> snspt_+   n_cols <- 100
-#> snspt_+   cuts <- cut(x = sp_bir_23$date, include.lowest = TRUE,
-#> snspt_+               breaks = quantile(sp_bir_23$date,
-#> snspt_+                                 probs = seq(0, 1, l = n_cols + 1)))
-#> snspt_+   rgl::points3d(sp_bir_23$X_bir, col = viridisLite::viridis(n_cols)[cuts])
-#> snspt_+ }
+#> snspt_> cuts <- cut(x = sp_bir_23$date, include.lowest = TRUE,
+#> snspt_+             breaks = quantile(sp_bir_23$date,
+#> snspt_+                               probs = seq(0, 1, l = n_cols + 1)))
+#> 
+#> snspt_> scatterplot3d::scatterplot3d(sp_bir_23$X_bir, xlim = c(-1, 1),
+#> snspt_+                              ylim = c(-1, 1), zlim = c(-1, 1),
+#> snspt_+                              color = viridisLite::viridis(n_cols)[cuts],
+#> snspt_+                              pch = 16, cex.symbols = 0.5, xlab = "",
+#> snspt_+                              ylab = "", zlab = "", angle = 30)
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #> snspt_> # color) tend to appear at higher latitudes, gradually decreasing to the
@@ -287,21 +286,22 @@ example("sunspots_births")
 #> 
 #> snspt_> # Plot births and deaths associated to the 23rd cycle, and color according
 #> snspt_> # to movement direction of sunspots
-#> snspt_> if (requireNamespace("rgl")) {
-#> snspt_+   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
-#> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
-#> snspt_+               lit = FALSE)
-#> snspt_+   rgl::points3d(sp_23$X_bir, size = 1)
-#> snspt_+   rgl::points3d(sp_23$X_dea, size = 1)
-#> snspt_+   for (i in seq_len(nrow(sp_23))) {
-#> snspt_+     rgl::lines3d(rbind(sp_23$X_bir[i, ], sp_23$X_dea[i, ]),
-#> snspt_+                  col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
-#> snspt_+                                (2 * pi) < pi, 2, 3))
-#> snspt_+   }
+#> snspt_> sc <- scatterplot3d::scatterplot3d(sp_23$X_bir, xlim = c(-1, 1),
+#> snspt_+                                    ylim = c(-1, 1), zlim = c(-1, 1),
+#> snspt_+                                    color = 1, cex.symbols = 0.1,
+#> snspt_+                                    pch = 16, xlab = "", ylab = "", zlab = "",
+#> snspt_+                                    angle = 30)
+#> 
+#> snspt_> sc$points3d(sp_23$X_dea, col = 1, cex = 0.1)
+#> 
+#> snspt_> for (i in seq_len(nrow(sp_23))) {
+#> snspt_+   sc$points3d(rbind(sp_23$X_bir[i, ], sp_23$X_dea[i, ]),
+#> snspt_+               col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
+#> snspt_+                             (2 * pi) < pi, 2, 3), type = "l")
 #> snspt_+ }
 ```
 
-<img src="README/README-sunspots_births-1.png" style="display: block; margin: auto;" />
+<img src="README/README-sunspots_births-1.png" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-2.png" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-3.png" style="display: block; margin: auto;" />
 
 ## References
 

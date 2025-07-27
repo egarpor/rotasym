@@ -3,10 +3,10 @@
 #' @title Recorded sunspots births/deaths during 1872--2018
 #'
 #' @description Processed version of the
-#' \href{http://fenyi.solarobs.epss.hun-ren.hu/DPD/}{
+#' \href{http://fenyi.solarobs.epss.hun-ren.hu/DPD}{
 #' Debrecen Photoheliographic Data (DPD)} sunspot catalog and the
 #' revised version of the
-#' \href{http://fenyi.solarobs.epss.hun-ren.hu/GPR/}{
+#' \href{http://fenyi.solarobs.epss.hun-ren.hu/GPR}{
 #' Greenwich Photoheliographic Results (GPR)} sunspot catalog. The two
 #' sources contain the records of sunspots appeared during 1872--2018 (GPR for
 #' 1872--1976; DPD for 1974--2018).
@@ -87,17 +87,15 @@
 #'         sin(sp_bir_23$phi))
 #'
 #' # Plot births
-#' n <- nrow(sp_bir_23)
-#' if (requireNamespace("rgl")) {
-#'   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
-#'               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
-#'               lit = FALSE)
-#'   n_cols <- 100
-#'   cuts <- cut(x = sp_bir_23$date, include.lowest = TRUE,
-#'               breaks = quantile(sp_bir_23$date,
-#'                                 probs = seq(0, 1, l = n_cols + 1)))
-#'   rgl::points3d(sp_bir_23$X_bir, col = viridisLite::viridis(n_cols)[cuts])
-#' }
+#' n_cols <- 100
+#' cuts <- cut(x = sp_bir_23$date, include.lowest = TRUE,
+#'             breaks = quantile(sp_bir_23$date,
+#'                               probs = seq(0, 1, l = n_cols + 1)))
+#' scatterplot3d::scatterplot3d(sp_bir_23$X_bir, xlim = c(-1, 1),
+#'                              ylim = c(-1, 1), zlim = c(-1, 1),
+#'                              color = viridisLite::viridis(n_cols)[cuts],
+#'                              pch = 16, cex.symbols = 0.5, xlab = "",
+#'                              ylab = "", zlab = "", angle = 30)
 #' # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #' # color) tend to appear at higher latitudes, gradually decreasing to the
 #' # equator as the solar cycle advances (yellow color)
@@ -157,7 +155,7 @@
 #' modes <- c(kde$x[kde$x < 0][which.max(kde$y[kde$x < 0])],
 #'            kde$x[kde$x > 0][which.max(kde$y[kde$x > 0])])
 #' 90 - acos(modes) / pi * 180
-#' \donttest{
+#'
 #' # Load deaths data of the 23rd cycle
 #' data("sunspots_deaths")
 #' sp_dea_23 <- subset(sunspots_deaths, cycle == 23)
@@ -175,18 +173,16 @@
 #'
 #' # Plot births and deaths associated to the 23rd cycle, and color according
 #' # to movement direction of sunspots
-#' if (requireNamespace("rgl")) {
-#'   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
-#'               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
-#'               lit = FALSE)
-#'   rgl::points3d(sp_23$X_bir, size = 1)
-#'   rgl::points3d(sp_23$X_dea, size = 1)
-#'   for (i in seq_len(nrow(sp_23))) {
-#'     rgl::lines3d(rbind(sp_23$X_bir[i, ], sp_23$X_dea[i, ]),
-#'                  col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
-#'                                (2 * pi) < pi, 2, 3))
-#'   }
-#' }
+#' sc <- scatterplot3d::scatterplot3d(sp_23$X_bir, xlim = c(-1, 1),
+#'                                    ylim = c(-1, 1), zlim = c(-1, 1),
+#'                                    color = 1, cex.symbols = 0.1,
+#'                                    pch = 16, xlab = "", ylab = "", zlab = "",
+#'                                    angle = 30)
+#' sc$points3d(sp_23$X_dea, col = 1, cex = 0.1)
+#' for (i in seq_len(nrow(sp_23))) {
+#'   sc$points3d(rbind(sp_23$X_bir[i, ], sp_23$X_dea[i, ]),
+#'               col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
+#'                             (2 * pi) < pi, 2, 3), type = "l")
 #' }
 #' @name sunspots
 

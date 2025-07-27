@@ -59,9 +59,9 @@
 #'
 #' # p = 3
 #' x <- r_unif_sphere(n = n, p = 3)
-#' if (requireNamespace("rgl")) {
-#'   rgl::plot3d(x)
-#' }
+#' scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+#'                              zlim = c(-1, 1), pch = 16, xlab = "", ylab = "",
+#'                              zlab = "", angle = 20)
 #' head(d_unif_sphere(x))
 #' @name unif
 
