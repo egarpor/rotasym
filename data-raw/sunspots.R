@@ -129,8 +129,8 @@ sun_s_bd <- sun_s[complete.cases(sun_s$helio_lat_B,
 sun_g_bd$date <-
   ymd_hms(paste(paste(sun_g_bd$year, sun_g_bd$month,
                       sun_g_bd$day, sep = "-"),
-              paste(sun_g_bd$hour_UT, sun_g_bd$minute_UT,
-                    sun_g_bd$second_UT, sep = ":")))
+                paste(sun_g_bd$hour_UT, sun_g_bd$minute_UT,
+                      sun_g_bd$second_UT, sep = ":")))
 sun_s_bd$date <-
   ymd_hms(paste(paste(sun_s_bd$year, sun_s_bd$month,
                       sun_s_bd$day, sep = "-"),
@@ -198,7 +198,7 @@ sunspots_births <- subset(births_g,
                                      "w_mean_dist_center_sun_disc",
                                      "theta", "phi"))
 sunspots_deaths <- subset(deaths_g,
-                          select = c("NOAA", "date", "cycle", 
+                          select = c("NOAA", "date", "cycle",
                                      "total_corr_whole_area",
                                      "w_mean_dist_center_sun_disc",
                                      "theta", "phi"))
