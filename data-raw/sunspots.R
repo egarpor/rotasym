@@ -188,7 +188,7 @@ deaths_g$phi <- deaths_g$w_mean_helio_lat_B / 180 * pi
 save("births_g", file = "births_g.rda", compress = "bzip2")
 save("deaths_g", file = "deaths_g.rda", compress = "bzip2")
 
-# Save a smaller object with the most important information, the one included
+# Save smaller objects with the most important information, the ones included
 # in rotasym
 
 # Sunspots
