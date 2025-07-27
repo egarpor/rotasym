@@ -295,7 +295,7 @@ test_rotasym <- function(data, theta = spherical_mean,
   if (is.function(theta)) {
 
     # Warning for tests affected by the estimation of theta
-    if (type == "loc" | type == "hyb") {
+    if (type == "loc" || type == "hyb") {
 
       warning(paste0("\"loc\" and \"hyb\" tests are not properly ",
                      "calibrated when theta is estimated.\n Consider using ",
@@ -320,7 +320,7 @@ test_rotasym <- function(data, theta = spherical_mean,
   }
 
   # Compute V's
-  if (type == "loc_vmf" & is.null(V)) {
+  if (type == "loc_vmf" && is.null(V)) {
 
     V <- cosines(X = data, theta = theta, check_X = FALSE)
 
@@ -369,7 +369,7 @@ test_rotasym <- function(data, theta = spherical_mean,
     df <- p - 1
     p_value <- pchisq(q = statistic, df = df, lower.tail = FALSE)
 
-  } else if (type == "hyb" | type == "hyb_vmf") {
+  } else if (type == "hyb" || type == "hyb_vmf") {
 
     # Individual tests
     type_loc <- switch(type, "hyb" = "loc", "hyb_vmf" = "loc_vMF")

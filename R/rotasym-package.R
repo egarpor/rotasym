@@ -15,9 +15,8 @@
 #' for rotational symmetry against new classes of hyperspherical distributions.
 #' \emph{Journal of the American Statistical Association}, 115(532):1873--1887.
 #' \doi{10.1080/01621459.2019.1665527}
-#' @docType package
 #' @name rotasym-package
 #' @import stats Rcpp
 #' @useDynLib rotasym
 #' @aliases rotasym rotasym-package
-NULL
+"_PACKAGE"

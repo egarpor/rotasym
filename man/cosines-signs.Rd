@@ -113,23 +113,25 @@ Gamma_theta(theta = theta)
 L <- rbind(c(1, 0.5),
            c(0.5, 1))
 X <- r_ACG(n = 1e3, Lambda = L)
-par(mfrow = c(1, 2))
+old_par <- par(mfrow = c(1, 2))
 plot(signs(X = X, theta = theta), main = "Signs", xlab = expression(x[1]),
      ylab = expression(x[2]))
 hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
      xlab = expression(x * "'" * theta))
+par(old_par)
 
 # Signs and cosines for p = 3
 L <- rbind(c(2, 0.25, 0.25),
            c(0.25, 0.5, 0.25),
            c(0.25, 0.25, 0.5))
 X <- r_ACG(n = 1e3, Lambda = L)
-par(mfrow = c(1, 2))
+old_par <- par(mfrow = c(1, 2))
 theta <- c(0, 1, 0)
 plot(signs(X = X, theta = theta), main = "Signs", xlab = expression(x[1]),
      ylab = expression(x[2]))
 hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
      xlab = expression(x * "'" * theta))
+par(old_par)
 }
 \references{
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests

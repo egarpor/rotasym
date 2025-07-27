@@ -8,7 +8,7 @@
 
 # rotasym 1.0-6
 
-* Make the behaviour of `r_ACG` and `r_unif_sphere` consistent with `base::set.seed`: drop `RcppZiggurat`.
+* Make the behavior of `r_ACG` and `r_unif_sphere` consistent with `base::set.seed`: drop `RcppZiggurat`.
 * Fix bug in NA handling in `check_unit_norm`.
 
 # rotasym 1.0.7
@@ -54,3 +54,9 @@
 
 * Drop C++11 requirement to adhere to new CRAN policies.
 * Drop `personList()` and `citEntry()`.
+
+# rotasym 1.2.0
+
+* Add new dataset `sunspots_deaths` as companion to `sunspots_births`.
+* Add stop for kappa > 1e15 in `rvMF` and `r_g_vMF` to avoid infinite looping.
+* Replace `rgl` with `scatterplot3d` in examples.

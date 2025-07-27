@@ -73,9 +73,10 @@
 #' col <- viridisLite::viridis(n)
 #' dens <- d_TM(x = x, theta = theta, g_scaled = g_scaled, mu = mu,
 #'              kappa = kappa)
-#' if (requireNamespace("rgl")) {
-#'   rgl::plot3d(x, col = col[rank(dens)], size = 5)
-#' }
+#' scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+#'                              zlim = c(-1, 1), color = col[rank(dens)],
+#'                              pch = 16, xlab = "", ylab = "", zlab = "",
+#'                              angle = 20)
 #'
 #' ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
 #' ## Beta(1/2, (p + 1)/2) distribution.
@@ -99,9 +100,10 @@
 #' col <- viridisLite::viridis(n)
 #' dens <- d_TM(x = x, theta = theta, g_scaled = g_scaled,
 #'              mu = mu, kappa = kappa)
-#' if (requireNamespace("rgl")) {
-#'   rgl::plot3d(x, col = col[rank(dens)], size = 5)
-#' }
+#' scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+#'                              zlim = c(-1, 1), color = col[rank(dens)],
+#'                              pch = 16, xlab = "", ylab = "", zlab = "",
+#'                              angle = 20)
 #' @seealso \code{\link{tang-norm-decomp}},
 #' \code{\link{tangent-elliptical}}, \code{\link{vMF}}.
 #' @name tangent-vMF
