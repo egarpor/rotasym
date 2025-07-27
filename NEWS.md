@@ -55,8 +55,8 @@
 * Drop C++11 requirement to adhere to new CRAN policies.
 * Drop `personList()` and `citEntry()`.
 
-# rotasym 1.1.6
+# rotasym 1.2.0
 
+* Add new dataset `sunspots_deaths` as companion to `sunspots_births`.
 * Add stop for kappa > 1e15 in `rvMF` and `r_g_vMF` to avoid infinite looping.
-* Add new dataset `sunspots_deaths`.
 
