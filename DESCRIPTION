@@ -19,9 +19,10 @@ Description: Implementation of the tests for rotational symmetry on the
 License: GPL-3
 LazyData: true
 Depends:
-    R (>= 3.4.0),
+    R (>= 3.5.0),
     Rcpp
 Suggests:
+    dplyr,
     rgl,
     testthat (>= 3.0.0),
     viridisLite

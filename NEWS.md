@@ -58,3 +58,5 @@
 # rotasym 1.1.6
 
 * Add stop for kappa > 1e15 in `rvMF` and `r_g_vMF` to avoid infinite looping.
+* Add new dataset `sunspots_deaths`.
+

@@ -173,7 +173,7 @@ sun_s_bd$NOAA <- as.factor(sun_s_bd$NOAA)
 # happen before the last observation of sunspot number 5, but sunspot number 6
 # would be assigned label 5 when the sunspot number 5 is not observed anymore.
 # In the sunspot number field there never is a series of records with gaps, like
-# "1, 5, 6" indicating that spots 2, 3, 4 died; rather, the record would be
+# "1, 5, 6" indicating that spots 2, 3, 4 died; rather, the record is
 # "1, 2, 3" due to relabeling.
 births_g <- sun_g_bd[!duplicated(sun_g_bd$NOAA), ]
 deaths_g <- sun_g_bd[!rev(duplicated(rev(sun_g_bd$NOAA))), ]
