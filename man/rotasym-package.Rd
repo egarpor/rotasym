@@ -19,6 +19,14 @@ for rotational symmetry against new classes of hyperspherical distributions.
 \emph{Journal of the American Statistical Association}, 115(532):1873--1887.
 \doi{10.1080/01621459.2019.1665527}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/egarpor/rotasym}
+  \item Report bugs at \url{https://github.com/egarpor/rotasym/issues}
+}
+
+}
 \author{
 Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 }
