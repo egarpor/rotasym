@@ -56,7 +56,7 @@
 #'   \item Filter for sunspot groups.
 #'   \item Relabel the NOAA identifier for the sunspot group for records
 #'   before 1974, prefixing the "GPR" string. Otherwise, very different groups
-#'   of sunspots from the two catalogues may share the same identifier.
+#'   of sunspots from the two catalogs may share the same identifier.
 #'   \item Keep only the first row of each NOAA instance, the first-ever
 #'   observation of each sunspot group.
 #' }
@@ -157,11 +157,11 @@
 #' modes <- c(kde$x[kde$x < 0][which.max(kde$y[kde$x < 0])],
 #'            kde$x[kde$x > 0][which.max(kde$y[kde$x > 0])])
 #' 90 - acos(modes) / pi * 180
-#' 
+#'
 #' # Load deaths data of the 23rd cycle
 #' data("sunspots_deaths")
 #' sp_dea_23 <- subset(sunspots_deaths, cycle == 23)
-#' 
+#'
 #' # Transform to Cartesian coordinates
 #' sp_dea_23$X_dea <-
 #'   cbind(cos(sp_dea_23$phi) * cos(sp_dea_23$theta),
@@ -169,7 +169,7 @@
 #'         sin(sp_dea_23$phi))
 #'
 #' # Match births and deaths, and exclude single-day observations
-#' sp_23 <- dplyr::full_join(sp_bir_23, sp_dea_23, by = "NOAA", 
+#' sp_23 <- dplyr::full_join(sp_bir_23, sp_dea_23, by = "NOAA",
 #'                           suffix = c("_bir", "_dea"))
 #' sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
 #'

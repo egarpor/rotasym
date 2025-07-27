@@ -34,7 +34,7 @@ check_unit_norm <- function(x, warnings = TRUE) {
     if (warnings) {
 
       warning(paste(name_x,
-                  "does not have unit-norm rows, normalized internally."))
+                    "does not have unit-norm rows, normalized internally."))
 
     }
 
@@ -46,7 +46,7 @@ check_unit_norm <- function(x, warnings = TRUE) {
       if (warnings) {
 
         warning(paste("Observation(s)", paste(zeros, collapse = ", "), "of",
-                    name_x, "are zero, excluded internally."))
+                      name_x, "are zero, excluded internally."))
 
       }
 

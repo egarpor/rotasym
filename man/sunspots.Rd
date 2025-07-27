@@ -72,7 +72,7 @@ The data has been preprocessed using the following pipeline:
   \item Filter for sunspot groups.
   \item Relabel the NOAA identifier for the sunspot group for records
   before 1974, prefixing the "GPR" string. Otherwise, very different groups
-  of sunspots from the two catalogues may share the same identifier.
+  of sunspots from the two catalogs may share the same identifier.
   \item Keep only the first row of each NOAA instance, the first-ever
   observation of each sunspot group.
 }
@@ -174,7 +174,7 @@ sp_dea_23$X_dea <-
         sin(sp_dea_23$phi))
 
 # Match births and deaths, and exclude single-day observations
-sp_23 <- dplyr::full_join(sp_bir_23, sp_dea_23, by = "NOAA", 
+sp_23 <- dplyr::full_join(sp_bir_23, sp_dea_23, by = "NOAA",
                           suffix = c("_bir", "_dea"))
 sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
 
