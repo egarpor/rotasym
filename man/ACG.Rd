@@ -72,16 +72,19 @@ n <- 1e3
 x <- r_ACG(n = n, Lambda = Lambda)
 col <- viridisLite::viridis(n)
 r <- runif(n, 0.95, 1.05) # Radius perturbation to improve visualization
-plot(r * x, pch = 16, col = col[rank(d_ACG(x = x, Lambda = Lambda))])
+dens <- d_ACG(x = x, Lambda = Lambda)
+plot(r * x, pch = 16, col = col[rank(dens)])
 
 # Simulation and density evaluation for p = 3
 Lambda <- rbind(c(5, 1, 0.5),
                 c(1, 2, 1),
                 c(0.5, 1, 1))
 x <- r_ACG(n = n, Lambda = Lambda)
-if (requireNamespace("rgl")) {
-  rgl::plot3d(x, col = col[rank(d_ACG(x = x, Lambda = Lambda))], size = 5)
-}
+dens <- d_ACG(x = x, Lambda = Lambda)
+scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+                             zlim = c(-1, 1), color = col[rank(dens)],
+                             pch = 16, xlab = "", ylab = "", zlab = "",
+                             angle = 20)
 }
 \references{
 Tyler, D. E. (1987). Statistical analysis for the angular central Gaussian

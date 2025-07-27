@@ -23,7 +23,7 @@ Depends:
     Rcpp
 Suggests:
     dplyr,
-    rgl,
+    scatterplot3d,
     testthat (>= 3.0.0),
     viridisLite
 LinkingTo: Rcpp, RcppArmadillo

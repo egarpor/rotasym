@@ -12,9 +12,9 @@ dir.create("rawdata")
 years <- 1872:2018
 for (year in years) {
 
-  catalogue <- ifelse(year >= 1974, "DPD", "GPR")
-  file_year <- paste0(catalogue, year, ".txt")
-  url_year <- paste0("http://fenyi.solarobs.epss.hun-ren.hu/ftp/pub/", catalogue,
+  catalog <- ifelse(year >= 1974, "DPD", "GPR")
+  file_year <- paste0(catalog, year, ".txt")
+  url_year <- paste0("http://fenyi.solarobs.epss.hun-ren.hu/ftp/pub/", catalog,
                      "/data/", file_year)
   download.file(url = url_year, destfile = paste0("rawdata/", file_year))
 

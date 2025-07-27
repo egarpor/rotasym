@@ -150,9 +150,10 @@ kappa_U <- 2
 x <- r_tang_norm(n = n, theta = theta, r_V = r_V, r_U = r_U)
 col <- viridisLite::viridis(n)
 dens <- d_tang_norm(x = x, theta = theta, g_scaled = g_scaled, d_U = d_U)
-if (requireNamespace("rgl")) {
-  rgl::plot3d(x, col = col[rank(dens)], size = 5)
-}
+scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+                             zlim = c(-1, 1), color = col[rank(dens)],
+                             pch = 16, xlab = "", ylab = "", zlab = "",
+                             angle = 20)
 
 ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
 ## Beta(1/2, (p + 1)/2) distribution.
@@ -184,9 +185,10 @@ col <- viridisLite::viridis(n)
 dens <- d_tang_norm(x = x, theta = theta, d_V = d_V, d_U = d_unif_sphere)
 # dens <- d_tang_norm(x = x, theta = theta, g_scaled = g_scaled,
 #                     d_U = d_unif_sphere) # The same
-if (requireNamespace("rgl")) {
-  rgl::plot3d(x, col = col[rank(dens)], size = 5)
-}
+scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
+                             zlim = c(-1, 1), color = col[rank(dens)],
+                             pch = 16, xlab = "", ylab = "", zlab = "",
+                             angle = 20)
 }
 \references{
 García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
