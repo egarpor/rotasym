@@ -164,34 +164,29 @@ test_rotasym(data = sunspots_22$X, type = "hyb", theta = c(0, 0, 1))
 # More analyses in ?sunspots_births
 example("sunspots_births")
 #> 
-#> snspt_> # Load data
+#> snspt_> # Load births data of the 23rd cycle
 #> snspt_> data("sunspots_births")
 #> 
+#> snspt_> sp_bir_23 <- subset(sunspots_births, cycle == 23)
+#> 
 #> snspt_> # Transform to Cartesian coordinates
-#> snspt_> sunspots_births$X <-
-#> snspt_+   cbind(cos(sunspots_births$phi) * cos(sunspots_births$theta),
-#> snspt_+         cos(sunspots_births$phi) * sin(sunspots_births$theta),
-#> snspt_+         sin(sunspots_births$phi))
+#> snspt_> sp_bir_23$X_bir <-
+#> snspt_+   cbind(cos(sp_bir_23$phi) * cos(sp_bir_23$theta),
+#> snspt_+         cos(sp_bir_23$phi) * sin(sp_bir_23$theta),
+#> snspt_+         sin(sp_bir_23$phi))
 #> 
-#> snspt_> # Plot data associated to the 23rd cycle
-#> snspt_> sunspots_23 <- subset(sunspots_births, cycle == 23)
-#> 
-#> snspt_> n <- nrow(sunspots_23$X)
+#> snspt_> # Plot births
+#> snspt_> n <- nrow(sp_bir_23)
 #> 
 #> snspt_> if (requireNamespace("rgl")) {
 #> snspt_+   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
 #> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
 #> snspt_+               lit = FALSE)
-#> snspt_+ }
-#> 
-#> snspt_> n_cols <- 100
-#> 
-#> snspt_> cuts <- cut(x = sunspots_23$date, include.lowest = TRUE,
-#> snspt_+             breaks = quantile(sunspots_23$date,
-#> snspt_+                              probs = seq(0, 1, l = n_cols + 1)))
-#> 
-#> snspt_> if (requireNamespace("rgl")) {
-#> snspt_+   rgl::points3d(sunspots_23$X, col = viridisLite::viridis(n_cols)[cuts])
+#> snspt_+   n_cols <- 100
+#> snspt_+   cuts <- cut(x = sp_bir_23$date, include.lowest = TRUE,
+#> snspt_+               breaks = quantile(sp_bir_23$date,
+#> snspt_+                                 probs = seq(0, 1, l = n_cols + 1)))
+#> snspt_+   rgl::points3d(sp_bir_23$X_bir, col = viridisLite::viridis(n_cols)[cuts])
 #> snspt_+ }
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
@@ -199,7 +194,7 @@ example("sunspots_births")
 #> snspt_> # equator as the solar cycle advances (yellow color)
 #> snspt_> 
 #> snspt_> # Estimation of the density of the cosines
-#> snspt_> V <- cosines(X = sunspots_23$X, theta = c(0, 0, 1))
+#> snspt_> V <- cosines(X = sp_bir_23$X_bir, theta = c(0, 0, 1))
 #> 
 #> snspt_> h <- bw.SJ(x = V, method = "dpi")
 #> 
@@ -221,9 +216,9 @@ example("sunspots_births")
 #> snspt_+        lwd = 2, col = c(1, viridisLite::viridis(12)[c(3, 8)]))
 #> 
 #> snspt_> # Density for the observations within the initial 25% of the cycle
-#> snspt_> part1 <- sunspots_23$date < quantile(sunspots_23$date, 0.25)
+#> snspt_> part1 <- sp_bir_23$date < quantile(sp_bir_23$date, 0.25)
 #> 
-#> snspt_> V1 <- cosines(X = sunspots_23$X[part1, ], theta = c(0, 0, 1))
+#> snspt_> V1 <- cosines(X = sp_bir_23$X[part1, ], theta = c(0, 0, 1))
 #> 
 #> snspt_> h1 <- bw.SJ(x = V1, method = "dpi")
 #> 
@@ -231,9 +226,9 @@ example("sunspots_births")
 #> snspt_+       col = viridisLite::viridis(12)[3], lwd = 2)
 #> 
 #> snspt_> # Density for the observations within the final 25% of the cycle
-#> snspt_> part2 <- sunspots_23$date > quantile(sunspots_23$date, 0.75)
+#> snspt_> part2 <- sp_bir_23$date > quantile(sp_bir_23$date, 0.75)
 #> 
-#> snspt_> V2 <- cosines(X = sunspots_23$X[part2, ], theta = c(0, 0, 1))
+#> snspt_> V2 <- cosines(X = sp_bir_23$X[part2, ], theta = c(0, 0, 1))
 #> 
 #> snspt_> h2 <- bw.SJ(x = V2, method = "dpi")
 #> 
@@ -271,6 +266,38 @@ example("sunspots_births")
 #> 
 #> snspt_> 90 - acos(modes) / pi * 180
 #> [1] -13.69322  16.49001
+#> 
+#> snspt_> # Load deaths data of the 23rd cycle
+#> snspt_> data("sunspots_deaths")
+#> 
+#> snspt_> sp_dea_23 <- subset(sunspots_deaths, cycle == 23)
+#> 
+#> snspt_> # Transform to Cartesian coordinates
+#> snspt_> sp_dea_23$X_dea <-
+#> snspt_+   cbind(cos(sp_dea_23$phi) * cos(sp_dea_23$theta),
+#> snspt_+         cos(sp_dea_23$phi) * sin(sp_dea_23$theta),
+#> snspt_+         sin(sp_dea_23$phi))
+#> 
+#> snspt_> # Match births and deaths, and exclude single-day observations
+#> snspt_> sp_23 <- dplyr::full_join(sp_bir_23, sp_dea_23, by = "NOAA",
+#> snspt_+                           suffix = c("_bir", "_dea"))
+#> 
+#> snspt_> sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
+#> 
+#> snspt_> # Plot births and deaths associated to the 23rd cycle, and color according
+#> snspt_> # to movement direction of sunspots
+#> snspt_> if (requireNamespace("rgl")) {
+#> snspt_+   rgl::plot3d(0, 0, 0, xlim = c(-1, 1), ylim = c(-1, 1), zlim = c(-1, 1),
+#> snspt_+               radius = 1, type = "s", col = "lightblue", alpha = 0.25,
+#> snspt_+               lit = FALSE)
+#> snspt_+   rgl::points3d(sp_23$X_bir, size = 1)
+#> snspt_+   rgl::points3d(sp_23$X_dea, size = 1)
+#> snspt_+   for (i in seq_len(nrow(sp_23))) {
+#> snspt_+     rgl::lines3d(rbind(sp_23$X_bir[i, ], sp_23$X_dea[i, ]),
+#> snspt_+                  col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
+#> snspt_+                                (2 * pi) < pi, 2, 3))
+#> snspt_+   }
+#> snspt_+ }
 ```
 
 <img src="README/README-sunspots_births-1.png" style="display: block; margin: auto;" />
