@@ -23,7 +23,7 @@ for rotational symmetry against new classes of hyperspherical distributions.
 Useful links:
 \itemize{
   \item \url{https://github.com/egarpor/rotasym}
-  \item Report bugs at \url{https://github.com/egarpor/rotasym}
+  \item Report bugs at \url{https://github.com/egarpor/rotasym/issues}
 }
 
 }
