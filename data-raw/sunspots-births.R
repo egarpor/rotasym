@@ -59,11 +59,10 @@ names(sun_s) <- c("code", "year", "month", "day", "hour_UT", "minute_UT",
                   "position_angle", "dist_center_sun_disc")
 
 # Remove spaces and cast to factors
-levels(sun_g$NOAA) <- gsub(pattern = " ", replacement = "",
-                           x = levels(sun_g$NOAA))
-levels(sun_s$NOAA) <- gsub(pattern = " ", replacement = "",
-                           x = levels(sun_s$NOAA))
-# Change variable types
+sun_g$NOAA <- as.factor(gsub(pattern = " ", replacement = "", x = sun_g$NOAA))
+sun_s$NOAA <- as.factor(gsub(pattern = " ", replacement = "", x = sun_s$NOAA))
+
+# Change character variables to numeric
 numeric_vars <- c(2:7, 9:18)
 sun_g[, numeric_vars] <- apply(sun_g[, numeric_vars], 2, as.numeric)
 sun_s[, numeric_vars] <- apply(sun_s[, numeric_vars], 2, as.numeric)
@@ -95,6 +94,7 @@ solar_cycle <- function(num_cycle, data) {
 
 # Add cycles
 sun_g$cycle <- NA
+sun_s$cycle <- NA
 for (s in 1:(nrow(cycles) - 1)) {
 
   sun_g$cycle[solar_cycle(num_cycle = s, data = sun_g)] <- s
@@ -117,52 +117,94 @@ library(lubridate)
 
 # Load data in case it was not
 load("sun_g.RData")
+load("sun_s.RData")
 
 # Remove records with NAs in the angles
-not_na <- complete.cases(sun_g$w_mean_helio_lat_B, sun_g$w_mean_helio_long_L)
-sun_g_birth <- sun_g[not_na, ]
+sun_g_bd <- sun_g[complete.cases(sun_g$w_mean_helio_lat_B,
+                                 sun_g$w_mean_helio_long_L), ]
+sun_s_bd <- sun_s[complete.cases(sun_s$helio_lat_B,
+                                 sun_s$helio_long_L), ]
 
 # Add year date with day precision
-sun_g_birth$date <-
-  ymd_hms(paste(paste(sun_g_birth$year, sun_g_birth$month,
-                      sun_g_birth$day, sep = "-"),
-              paste(sun_g_birth$hour_UT, sun_g_birth$minute_UT,
-                    sun_g_birth$second_UT, sep = ":")))
+sun_g_bd$date <-
+  ymd_hms(paste(paste(sun_g_bd$year, sun_g_bd$month,
+                      sun_g_bd$day, sep = "-"),
+              paste(sun_g_bd$hour_UT, sun_g_bd$minute_UT,
+                    sun_g_bd$second_UT, sep = ":")))
+sun_s_bd$date <-
+  ymd_hms(paste(paste(sun_s_bd$year, sun_s_bd$month,
+                      sun_s_bd$day, sep = "-"),
+                paste(sun_s_bd$hour_UT, sun_s_bd$minute_UT,
+                      sun_s_bd$second_UT, sep = ":")))
 
 # Remove records with NAs in the date
-sun_g_birth <- sun_g_birth[!is.na(sun_g_birth$date), ]
+sun_g_bd <- sun_g_bd[!is.na(sun_g_bd$date), ]
+sun_s_bd <- sun_s_bd[!is.na(sun_s_bd$date), ]
 
 # Take only the "births" of the sunspots -- the first recorded observation
 # for each NOAA sunspot group number. Warning: NOAA numbers can be repeated
 # without corresponding to the same sunspot group (e.g., NOAA 8073 appears
 # in 1917 and 1997):
-# plot(sun_g_birth$date, as.integer(as.character(sun_g_birth$NOAA)))
+# plot(sun_g_bd$date, as.integer(as.character(sun_g_bd$NOAA)))
 # It seems that in 1974 the NOAA counter was restarted (probably
 # because of the change in the data source -- DPD was employed from 1974
-# onwards; GPR before 1974)
+# onward; GPR before 1974)
 
 # Append to the NOAAA field from GPR the prefix "GPR" to distinguish from the
 # DPD observations
-sun_g_birth$NOAA <- as.character(sun_g_birth$NOAA)
-sun_g_birth$NOAA[sun_g_birth$year < 1974] <-
-  paste0("GPR", sun_g_birth$NOAA[sun_g_birth$year < 1974])
-sun_g_birth$NOAA <- as.factor(sun_g_birth$NOAA)
+sun_g_bd$NOAA <- as.character(x = sun_g_bd$NOAA)
+sun_g_bd$NOAA[sun_g_bd$year < 1974] <-
+  paste0("GPR", sun_g_bd$NOAA[sun_g_bd$year < 1974])
+sun_g_bd$NOAA <- as.factor(sun_g_bd$NOAA)
+sun_s_bd$NOAA <- as.character(x = sun_s_bd$NOAA)
+sun_s_bd$NOAA[sun_s_bd$year < 1974] <-
+  paste0("GPR", sun_s_bd$NOAA[sun_s_bd$year < 1974])
+sun_s_bd$NOAA <- as.factor(sun_s_bd$NOAA)
 
-# Skip repeated data safely
-sun_g_birth <- sun_g_birth[!duplicated(sun_g_birth$NOAA), ]
+# Skip repeated data safely to have only the births and deaths for groups of
+# sunspots. Cannot track the birth/death of individual sunspots because the spot
+# number field is assigned arbitrarily between one day and the next, so it is
+# not tracking individual sunspots (cf. "The numbering of spots was made
+# arbitrarily on each series of observation, thus, the number of a specific
+# spot usually changes from one day to the next." from
+# http://fenyi.solarobs.epss.hun-ren.hu/ftp/pub/DPD/README.txt). Hence the first
+# appearance of sunspot number 3 might be related to the third time the sunspot
+# number 1 was observed. Also, the last observation of sunspot number 6 might be
+# happen before the last observation of sunspot number 5, but sunspot number 6
+# would be assigned label 5 when the sunspot number 5 is not observed anymore.
+# In the sunspot number field there never is a series of records with gaps, like
+# "1, 5, 6" indicating that spots 2, 3, 4 died; rather, the record would be
+# "1, 2, 3" due to relabeling.
+births_g <- sun_g_bd[!duplicated(sun_g_bd$NOAA), ]
+deaths_g <- sun_g_bd[!rev(duplicated(rev(sun_g_bd$NOAA))), ]
 
 # Compute (theta, phi) angles simpler to interpret
-sun_g_birth$theta <- sun_g_birth$w_mean_helio_long_L / 360 * 2 * pi
-sun_g_birth$phi <- sun_g_birth$w_mean_helio_lat_B / 180 * pi
+births_g$theta <- births_g$w_mean_helio_long_L / 360 * 2 * pi
+births_g$phi <- births_g$w_mean_helio_lat_B / 180 * pi
+deaths_g$theta <- deaths_g$w_mean_helio_long_L / 360 * 2 * pi
+deaths_g$phi <- deaths_g$w_mean_helio_lat_B / 180 * pi
+
+# Save larger datasets
+save("births_g", file = "births_g.rda", compress = "bzip2")
+save("deaths_g", file = "deaths_g.rda", compress = "bzip2")
 
 # Save a smaller object with the most important information, the one included
 # in rotasym
 
 # Sunspots
-sunspots_births <- subset(sun_g_birth,
-                          select = c("date", "cycle", "total_corr_whole_area",
+sunspots_births <- subset(births_g,
+                          select = c("NOAA", "date", "cycle",
+                                     "total_corr_whole_area",
                                      "w_mean_dist_center_sun_disc",
                                      "theta", "phi"))
-names(sunspots_births)[3:4] <- c("total_area", "dist_sun_disc")
+sunspots_deaths <- subset(deaths_g,
+                          select = c("NOAA", "date", "cycle", 
+                                     "total_corr_whole_area",
+                                     "w_mean_dist_center_sun_disc",
+                                     "theta", "phi"))
+names(sunspots_births)[4:5] <- names(sunspots_deaths)[4:5] <-
+  c("total_area", "dist_sun_disc")
 save(list = "sunspots_births", file = "sunspots_births.rda",
+     compress = "bzip2")
+save(list = "sunspots_deaths", file = "sunspots_deaths.rda",
      compress = "bzip2")

@@ -1,0 +1,190 @@
+EXPLANATIONS TO THE TABLES OF DEBRECEN PHOTOHELIOGRAPHIC DATA SUNSPOT CATALOGUE
+
+The tables contain three kinds of rows; they are explained separately.
+
+
+Rows beginning with character "d" (day):
+
+Column Character Fmt    Description
+
+ 1       1       A1     Data code: d   
+         2       A1     Blank
+ 2       3-6     I4     Year
+         7       A1     Blank
+ 3       8-9     I2     Month
+        10       A1     Blank
+ 4      11-12    I2     Day of month
+        13       A1     Blank
+ 5      14-15    I2     Hour UT
+        16       A1     Blank
+ 6      17-18    I2     Minute UT
+        19       A1     Blank
+ 7      20-21    I2     Second UT
+        22       A1     Blank
+ 8      23-26    A4     Origin of the observation:
+                          ABAS: Abastumani (Abastumani Astrophysical Observatory, Georgia) 
+                          BOUL: Boulder (Boulder Observatory, USA)
+                          CATA: Catania (INAF-Catania Astrophysical Observatory, Italy)
+                          DEBR: Debrecen (Heliophysical Observatory of the Hungarian Academy of Sciences, Hungary)
+                          EBRO: Ebro (Ebro Observatory, Spain)
+                          GYUL: Gyula (Gyula Observing Station of the Heliophysical Observatory, Hungary) 
+                          HELWS: Helwan (Helwan Observatory, Egypt)
+                          HERS: Herstmonceux (Royal Greenwich Observatory, Herstmonceux, UK)
+                          HOLL: Holloman (USAF network, USA)
+                          KANZ: Kanzelhoehe (Kanzelhoehe Solar Observatory, Austria)
+                          KIEV: Kiev (Kiev University Observatory, Ukraine)
+                          KISL: Kislovodsk (Kislovodsk Solar Observing Station of Pulkovo Observatory, Russia)
+                          KODA: Kodaikanal (Kodaikanal Solar Observatory, India) 
+                          MITA: Mitaka/Tokyo (National Astronomical Observatory of Japan, Japan)
+                          MLSO: Mauna Loa (PSPT, Mauna Loa Solar Observatory, USA).
+                          MWSIL: Mount WSilson (Mount WSilson Observatory, USA).
+                          RAME: Ramey (USAF network, USA)
+                          ROME: Rome (INAF-OAR Astronomical Observatory of Rome, Italy) 
+                          SFER: San Fernando (San Fernando Observatory, USA)
+                          SHMI: SDO/HMI (Solar Dynamics Observatory/Helioseismic and Magnetic Imager, NASA)
+                          SOHO: SOHO/MDI (Solar and Heliospheric Observatory is a mission of international cooperation between ESA and NASA)
+                          SVTO: San Vito (USAF network, Italy)
+                          TASH: Tashkent (Ulugh Beg Astronomical Institute of the Uzbek Academy of Sciences, Uzbekistan )
+                          UCCL: Uccle (USET data/image, Royal Observatory of Belgium, Belgium) 
+                          USSU: Ussuriysk (Ussuriysk Astrophysical Observatory, Russia) 
+
+        27-35    A9     Blank
+ 9      36-40    I5     Daily sum of projected U umbra area in millionths of the solar disc
+                        The U area is measured in those cases when the software identifies one or more darker parts within a less dark 
+                        part framed by the photosphere-spot border. 
+                        The measurement is exclusively based on the intensity information of the processed white-light image, which 
+                        does not allow to investigate whether the darker part is an umbra and the less dark part is a penumbra physically.
+        41       A1     Blank
+10      42-46    I5     Daily sum of projected WS whole spot area in millionths of the solar disc
+                        Each solar feature is classified as a "spot" which is darker than the photosphere.
+                        The WS area means "whole spot" area. The WS area is the total area occupied by features darker than the photosphere, 
+                        including umbrae, penumbrae, and pores. 
+                        This method of determination of umbra and whole spot area results in similar umbra and whole spot area published by GPR to ensure the homogeneity.
+        47       A1     Blank
+11      48-52    I5     Daily sum of corrected U umbra area in millionths of the solar hemisphere
+        53       A1     Blank
+12      54-58    I5     Daily sum of corrected WS whole spot area in millionths of the solar hemisphere
+                        If every area data is 0, this means observation with no spots.
+        59       A1     Blank
+13      60-72    F13.5  Julian Date (by convention .50000 represents 0000 UT)
+        73       A1     Blank
+14      74-79    F6.2   P (position angle of the northern extremity of the axis of 
+                        rotation, measured eastwards from the north point of the disk)
+                        at the time of the ground-based observation, 
+                        or position angle of the solar north pole in the SOHO/MDI image,
+                        or 0.00 if there are no spots in the SOHO/MDI image.
+        80-81    A2     Blank
+15      82-86    F5.2   B0 (heliographic latitude of the central point of the disk on the observation,
+                        or 0.00 if there are no spots in the SOHO/MDI image)
+
+
+
+Rows beginning with character "g" (group)
+
+Column Character Fmt    Description
+
+ 1       1       A1     Data code: g   
+         2       A1     Blank
+ 2       3-6     I4     Year
+         7       A1     Blank
+ 3       8-9     I2     Month
+        10       A1     Blank
+ 4      11-12    I2     Day of month
+        13       A1     Blank
+ 5      14-15    I2     Hour UT
+        16       A1     Blank
+ 6      17-18    I2     Minute UT
+        19       A1     Blank
+ 7      20-21    I2     Second UT
+        22       A1     Blank
+ 8      23-28    A6     NOAA sunspot group number if it exists and it has not been revised. If no NOAA number was assigned for the
+                        group, a NOAA number was given with an additional letter (e.g. "m", "n", etc.). Please notice that the intention 
+                        to separate the nearby sunspot groups in the best way possible sometimes causes deviations from the original NOAA numbering. 
+        29-35    A7     Blank
+ 9      36-40    I5     Total projected U umbra area of the group in millionths of the solar disc
+        41       A1     Blank
+10      42-46    I5     Total projected WS whole spot area area of the group in millionths of the solar disc.
+        47       A1     Blank
+11      48-52    I5     Total corrected U umbra area of the group in millionths of the solar hemisphere
+        53       A1     Blank
+12      54-58    I5     Total corrected WS whole spot area of the group in millionths of the solar hemisphere
+        59       A1     Blank
+
+   The following entries refer to the position of the given sunspot group, which is the mean position 
+of its spots weighted by the corrected whole spot area of the single spots. 
+If the projected whole spot area is 0 and the corrected area is 0, the weight is 0.2.
+If the projected whole spot area is 1 and the corrected area is 0, the weight is 0.4.
+In the case of several umbrae within the same penumbra the mean weighted umbra position was calculated 
+within their common penumbra prior to the calculation of group mean position. 
+If the projected U area is 0 and the corrected area is 0 of an umbra within the common penumbra, the weight is 0.2.
+If the projected U area is 1 and the corrected area is 0 of an umbra within the common penumbra, the weight is 0.4.
+
+13      60-65    F6.2   Heliographic latitude B; positive: North, negative: South
+        66       A1     Blank
+14      67-72    F6.2   Heliographic longitude L
+        73       A1     Blank
+15      74-79    F6.2   Longitudinal distance from the Sun's central meridian (LCM)
+        80       A1     Blank
+16      81-86    F6.2   Position angle
+        87       A1     Blank
+17      88-93    F6.4   Distance from the centre of Sun's disc measured in units of the solar radius
+
+If all the total areas are equal to zero and all the position data are equal to 999999,
+it means an intermittent phase of the group.
+
+
+Rows beginning with character "s" (spot)
+
+Column Character Fmt    Description
+
+ 1       1       A1     Data code: s   
+         2       A1     Blank
+ 2       3-6     I4     Year
+         7       A1     Blank
+ 3       8-9     I2     Month
+        10       A1     Blank
+ 4      11-12    I2     Day of month
+        13       A1     Blank
+ 5      14-15    I2     Hour UT
+        16       A1     Blank
+ 6      17-18    I2     Minute UT
+        19       A1     Blank
+ 7      20-21    I2     Second UT
+        22       A1     Blank
+ 8      23-28    A7     NOAA sunspot group number
+        29       A1     Blank
+ 9      30-34    I3     No. of spot within the group
+        35       A1     Blank
+10      36-40    I5     Projected U umbra area in millionths of the solar disc,
+                        negative values indicate that the umbra consists of fragmented
+                        regions which cannot be separated without losing umbra area.
+                        In this way several spots (intensity minima in the umbra) have a
+                        common umbra, e.g. -2 means that the given spot shares an umbra
+                        with spot No.2, and the common U value is indicated at spot No.2.
+        41       A1     Blank
+11      42-46    I5     Projected WS whole spot area in millionths of the solar
+                        disc, negative values indicate that several umbrae have a common
+                        penumbra, e.g. -7 means that the given umbra shares a penumbra
+                        with umbra No.7, and the WS value is indicated at No.7.
+        47       A1     Blank
+12      48-52    I5     Corrected U umbra area in millionths of the solar hemisphere, 
+                        for negative values see Column 24-28.
+        53       A1     Blank
+13      54-58    I5     Corrected WS whole spot area in millionths of the solar hemisphere, 
+                        for negative values see Column 29-33.
+        59       A1     Blank
+14      60-65    F6.2   Heliographic latitude B; positive: North, negative: South
+        66       A1     Blank
+15      67-72    F6.2   Heliographic longitude L
+        73       A1     Blank
+16      74-79    F6.2   Longitudinal distance from the Sun's central meridian (LCM)
+        80       A1     Blank
+17      81-86    F6.2   Position angle
+        87       A1     Blank
+18      88-93    F6.4   Distance from the centre of Sun's disc measured in units of the solar radius
+
+The position data of a spot refer to the position of the centroid of the umbra if an umbra is identified within a spot. 
+(If there are several umbrae in a common penumbra, each umbra has a separate "s" row with its position data.
+In this case, the area-weighted positions of the whole spot can be calculated from the position data of these umbrae 
+by weighting with the umbral area.)
+Otherwise, the position of the centroid of the whole spot is measured.
