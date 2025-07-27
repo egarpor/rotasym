@@ -36,10 +36,10 @@ sunspots_deaths
 }
 \description{
 Processed version of the
-\href{http://fenyi.solarobs.epss.hun-ren.hu/DPD}{
+\href{http://fenyi.solarobs.epss.hun-ren.hu/DPD/}{
 Debrecen Photoheliographic Data (DPD)} sunspot catalog and the
 revised version of the
-\href{http://fenyi.solarobs.epss.hun-ren.hu/GPR}{
+\href{http://fenyi.solarobs.epss.hun-ren.hu/GPR/}{
 Greenwich Photoheliographic Results (GPR)} sunspot catalog. The two
 sources contain the records of sunspots appeared during 1872--2018 (GPR for
 1872--1976; DPD for 1974--2018).
