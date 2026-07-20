@@ -120,6 +120,25 @@ test_that("test_rotasym warns for loc/hyb with estimated theta but not vMF", {
 
 })
 
+test_that("hybrid tests with Fisher's method have 4 degrees of freedom", {
+
+  set.seed(40)
+  n <- 100
+  p <- 5
+  theta <- c(1, rep(0, p - 1))
+  X <- r_vMF(n = n, mu = theta, kappa = 1)
+
+  for (ty in c("hyb", "hyb_vMF")) {
+
+    tt <- test_rotasym(X, theta = theta, type = ty, Fisher = TRUE)
+    expect_equal(unname(tt$parameter), 4)
+    expect_gte(unname(tt$p.value), 0)
+    expect_lte(unname(tt$p.value), 1)
+
+  }
+
+})
+
 test_that("test_rotasym errors on an unknown type", {
 
   set.seed(15)

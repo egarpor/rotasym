@@ -64,5 +64,6 @@ test_that("r_g_vMF returns the requested length for both loop-check paths", {
   expect_error(r_g_vMF(n = 0, p = 3, kappa = 1))
   expect_error(r_g_vMF(n = 1, p = 0, kappa = 1))
   expect_error(r_g_vMF(n = 1, p = 3, kappa = -1))
+  expect_error(r_g_vMF(n = 1, p = 2, kappa = 2e15))
 
 })

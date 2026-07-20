@@ -69,3 +69,24 @@ test_that("signs reuse a supplied Gamma consistently", {
                signs(X = X, theta = theta))
 
 })
+
+test_that("signs and cosines can check (and normalize) non-unit X", {
+
+  theta <- c(0, 1)
+  X_non_unit <- rbind(c(2, 0), c(0, 3))
+
+  expect_warning(signs(X = X_non_unit, theta = theta, check_X = TRUE),
+                 "unit-norm")
+  expect_warning(cosines(X = X_non_unit, theta = theta, check_X = TRUE),
+                 "unit-norm")
+
+  # After internal normalization the results match those of pre-normalized X
+  X_unit <- X_non_unit / sqrt(rowSums(X_non_unit^2))
+  expect_equal(
+    suppressWarnings(signs(X = X_non_unit, theta = theta, check_X = TRUE)),
+    signs(X = X_unit, theta = theta))
+  expect_equal(
+    suppressWarnings(cosines(X = X_non_unit, theta = theta, check_X = TRUE)),
+    cosines(X = X_unit, theta = theta))
+
+})
