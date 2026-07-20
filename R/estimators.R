@@ -60,6 +60,7 @@
 #' theta_PCA <- spherical_loc_PCA(data)
 #' sqrt(sum((theta - theta_mean)^2))
 #' sqrt(sum((theta - theta_PCA)^2)) # Better suited in this case
+#' @seealso \code{\link{test_rotasym}}.
 #' @name estimators
 
 

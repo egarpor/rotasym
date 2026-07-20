@@ -63,6 +63,8 @@
 #'                              zlim = c(-1, 1), pch = 16, xlab = "", ylab = "",
 #'                              zlab = "", angle = 20)
 #' head(d_unif_sphere(x))
+#' @seealso \code{\link{vMF}}, \code{\link{ACG}},
+#' \code{\link{tang-norm-decomp}}.
 #' @name unif
 
 

@@ -137,7 +137,8 @@ Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
 \doi{10.1080/03610919408813161}
 }
 \seealso{
-\code{\link{tangent-vMF}}.
+\code{\link{tangent-vMF}}, \code{\link{unif}},
+\code{\link{tang-norm-decomp}}.
 }
 \author{
 Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.

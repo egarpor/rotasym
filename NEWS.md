@@ -58,5 +58,19 @@
 # rotasym 1.2.0
 
 * Add new dataset `sunspots_deaths` as companion to `sunspots_births`.
-* Add stop for kappa > 1e15 in `rvMF` and `r_g_vMF` to avoid infinite looping.
+* Add stop for kappa > 1e15 in `r_vMF` and `r_g_vMF` to avoid infinite looping.
 * Replace `rgl` with `scatterplot3d` in examples.
+
+# rotasym 1.3.0
+
+* Fix the user-interrupt check in the C++ `r_g_vMF` sampler: it was tied to the
+  sample size `n` instead of the loop iteration, so `Rcpp::checkUserInterrupt()`
+  was never reached unless `n` was a multiple of 1000. The returned samples are
+  unchanged.
+* Efficiency improvements (output-preserving) in `test_rotasym` (scatter and
+  vMF-location statistics) and `g_vMF`.
+* Documentation fixes: correct the number of variables in the `sunspots_births`
+  / `sunspots_deaths` help page, fix typos, and add `\seealso` cross-references
+  across the distribution, cosines/signs, estimators, and dataset help pages.
+* Add unit tests for `test_rotasym`, `Gamma_theta` / `signs` / `cosines`, and
+  `g_vMF` / `c_vMF`.

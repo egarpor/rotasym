@@ -16,7 +16,7 @@
 #' \emph{deaths} (last observations) of \emph{groups} of sunspots.
 #'
 #' @docType data
-#' @format A data frame with 51303 rows and 6 variables:
+#' @format A data frame with 51303 rows and 7 variables:
 #' \describe{
 #'   \item{NOAA}{NOAA identifier of the group of sunspots, a factor.}
 #'   \item{date}{UTC date, as \code{\link[base:DateTimeClasses]{POSIXct}}, of
@@ -184,6 +184,7 @@
 #'               col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
 #'                             (2 * pi) < pi, 2, 3), type = "l")
 #' }
+#' @seealso \code{\link{test_rotasym}}.
 #' @name sunspots
 
 

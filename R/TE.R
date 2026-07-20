@@ -75,7 +75,7 @@
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
 #'
-#' ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
+#' ## A non-vMF angular function: g(t) = 1 - t^2. It is associated to the
 #' ## Beta(1/2, (p + 1)/2) distribution.
 #'
 #' # Scaled angular function

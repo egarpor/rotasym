@@ -82,6 +82,10 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              zlab = "", angle = 20)
 head(d_unif_sphere(x))
 }
+\seealso{
+\code{\link{vMF}}, \code{\link{ACG}},
+\code{\link{tang-norm-decomp}}.
+}
 \author{
 Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 }

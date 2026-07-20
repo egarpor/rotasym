@@ -63,7 +63,7 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{tangent-elliptical}}.
+#' @seealso \code{\link{tangent-elliptical}}, \code{\link{unif}}.
 #' @name ACG
 
 
