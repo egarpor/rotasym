@@ -31,7 +31,7 @@
 #' \deqn{f_\mathbf{X}(\mathbf{x})=
 #' \omega_{p-1}c_g g(t)(1-t^2)^{(p-3)/2}f_\mathbf{U}(\mathbf{u})}{
 #' f_X(x) = \omega_{p-1} c_g g(t) (1-t^2)^{(p-3)/2} f_U(u)}
-#' where \eqn{t:=\mathbf{x}'\boldsymbol{\theta}}{v := x'\theta},
+#' where \eqn{t:=\mathbf{x}'\boldsymbol{\theta}}{t := x'\theta},
 #' \eqn{\mathbf{u}:=\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}/
 #' ||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}||}{
 #' u := \Gamma_\theta x / ||\Gamma_\theta x||},
@@ -135,7 +135,7 @@
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
 #'
-#' ## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
+#' ## A non-vMF angular function: g(t) = 1 - t^2. It is associated to the
 #' ## Beta(1/2, (p + 1)/2) distribution.
 #'
 #' # Scaled angular function
@@ -252,8 +252,8 @@ r_tang_norm <- function(n, theta, r_U, r_V) {
   # Sample multivariate signs
   U <- r_U(n) %*% t(Gamma_theta(theta = theta))
 
-  # Sample by the tangent-normal decomposition
-  return(V * matrix(theta, nrow = n, ncol = p, byrow = TRUE) +
-           sqrt(1 - V * V) * U)
+  # Sample by the tangent-normal decomposition (tcrossprod(V, theta) is the
+  # outer product with (i, j)-entry V_i * theta_j)
+  return(tcrossprod(V, theta) + sqrt(1 - V * V) * U)
 
 }

@@ -99,7 +99,8 @@
 #' for (p in 3:M) {
 #'   lines(t, g_tilde(t = t, p = p, kappa = kappa), col = col[p])
 #' }
-#' @seealso \code{\link{tangent-vMF}}.
+#' @seealso \code{\link{tangent-vMF}}, \code{\link{unif}},
+#' \code{\link{tang-norm-decomp}}.
 #' @name vMF
 
 
@@ -212,9 +213,10 @@ g_vMF <- function(t, p, kappa, scaled = TRUE, log = FALSE) {
 
   }
 
-  # Scaled angular function
-  g_c <- ifelse(scaled, c_vMF(p = p, kappa = kappa, log = TRUE), 0) +
-    kappa * t
+  # Scaled angular function. Use an if (scaled is a scalar flag) so that the
+  # Bessel-based normalizing constant c_vMF is not evaluated when scaled = FALSE
+  log_c <- if (scaled) c_vMF(p = p, kappa = kappa, log = TRUE) else 0
+  g_c <- log_c + kappa * t
   g_c[abs(t) > 1] <- -Inf
   return(switch(log + 1, exp(g_c), g_c))
 

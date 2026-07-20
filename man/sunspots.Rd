@@ -7,7 +7,7 @@
 \alias{sunspots_deaths}
 \title{Recorded sunspots births/deaths during 1872--2018}
 \format{
-A data frame with 51303 rows and 6 variables:
+A data frame with 51303 rows and 7 variables:
 \describe{
   \item{NOAA}{NOAA identifier of the group of sunspots, a factor.}
   \item{date}{UTC date, as \code{\link[base:DateTimeClasses]{POSIXct}}, of
@@ -199,6 +199,9 @@ Greenwich sunspot data. \emph{Solar Physics}, 291(9--10):3081--3102.
 Győri, L., Ludmány, A., Baranyi, T. (2019) Comparative analysis of Debrecen
 sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical
 Society}, 465(2):1259--1273. \doi{10.1093/mnras/stw2667}
+}
+\seealso{
+\code{\link{test_rotasym}}.
 }
 \author{
 Data processed by Eduardo García-Portugués, Davy Paindaveine, and

@@ -77,7 +77,7 @@ decomposition. Also, the density of \eqn{\mathbf{X}}{X} at
 \deqn{f_\mathbf{X}(\mathbf{x})=
 \omega_{p-1}c_g g(t)(1-t^2)^{(p-3)/2}f_\mathbf{U}(\mathbf{u})}{
 f_X(x) = \omega_{p-1} c_g g(t) (1-t^2)^{(p-3)/2} f_U(u)}
-where \eqn{t:=\mathbf{x}'\boldsymbol{\theta}}{v := x'\theta},
+where \eqn{t:=\mathbf{x}'\boldsymbol{\theta}}{t := x'\theta},
 \eqn{\mathbf{u}:=\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}/
 ||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}||}{
 u := \Gamma_\theta x / ||\Gamma_\theta x||},
@@ -155,7 +155,7 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              pch = 16, xlab = "", ylab = "", zlab = "",
                              angle = 20)
 
-## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
+## A non-vMF angular function: g(t) = 1 - t^2. It is associated to the
 ## Beta(1/2, (p + 1)/2) distribution.
 
 # Scaled angular function

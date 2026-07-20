@@ -333,10 +333,11 @@ test_rotasym <- function(data, theta = spherical_mean,
   # Kind of test
   if (type == "sc") {
 
-    # Test
+    # Test (sum(S^2) equals tr(S S') = tr(tcrossprod(S)) since S is symmetric,
+    # but avoids forming the (p - 1) x (p - 1) product matrix)
     S <- crossprod(U) / n
     statistic <- 0.5 * n * (p * p - 1) *
-      (sum(diag(tcrossprod(S))) - 1 / (p - 1))
+      (sum(S * S) - 1 / (p - 1))
     df <- 0.5 * (p - 2) * (p + 1)
     p_value <- pchisq(q = statistic, df = df, lower.tail = FALSE)
 
@@ -359,13 +360,14 @@ test_rotasym <- function(data, theta = spherical_mean,
     # Delta
     Delta <- colSums((1 - D_pg * V_sqrt) * U) / sqrt(n)
 
-    # Gamma
-    inv_Gamma <- diag((p - 1) / (1 - 2 * D_pg * mean(V_sqrt) +
-                                   D_pg * D_pg * mean(V2)),
-                      nrow = p - 1, ncol = p - 1)
+    # Inverse of Gamma, a scalar multiple of the identity, so the quadratic form
+    # Delta' inv_Gamma Delta reduces to inv_Gamma_diag * sum(Delta^2) (no need to
+    # build the (p - 1) x (p - 1) matrix)
+    inv_Gamma_diag <- (p - 1) / (1 - 2 * D_pg * mean(V_sqrt) +
+                                   D_pg * D_pg * mean(V2))
 
     # Test
-    statistic <- drop(t(Delta) %*% inv_Gamma %*% Delta)
+    statistic <- inv_Gamma_diag * sum(Delta * Delta)
     df <- p - 1
     p_value <- pchisq(q = statistic, df = df, lower.tail = FALSE)
 

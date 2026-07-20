@@ -107,7 +107,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 ## Data application: test for the rotational symmetry of sunspots
 
 The data used in García-Portugués, Paindaveine and Verdebout (2020) is
-available in the object `sunspot_births`, which is created through the
+available in the object `sunspots_births`, which is created through the
 script
 [sunspots.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R).
 The code snippet below reproduces the main results in the paper.

@@ -118,6 +118,7 @@
 #' hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
 #'      xlab = expression(x * "'" * theta))
 #' par(old_par)
+#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{test_rotasym}}.
 #' @export
 #' @name cosines-signs
 
