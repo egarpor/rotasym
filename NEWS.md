@@ -72,5 +72,5 @@
 * Documentation fixes: correct the number of variables in the `sunspots_births`
   / `sunspots_deaths` help page, fix typos, and add `\seealso` cross-references
   across the distribution, cosines/signs, estimators, and dataset help pages.
-* Add unit tests for `test_rotasym`, `Gamma_theta` / `signs` / `cosines`, and
-  `g_vMF` / `c_vMF`.
+* Add a comprehensive unit test suite (testthat) covering all exported
+  functions and the C++ sampler (100% line coverage).
