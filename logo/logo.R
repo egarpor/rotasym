@@ -14,11 +14,23 @@
 # gives a smooth, matplotlib-quality sphere with no dependency on OpenGL.
 #
 # Run from the package root:
-#   Rscript data-raw/hexlogo.R
-# Output: man/figures/logo.png
+#   Rscript logo/logo.R
+# Output: logo/logo.png (master) and man/figures/logo.png (shipped mirror)
 
 library(hexSticker)
 library(viridisLite)
+
+## ---- Shared logo standard (identical across egarpor packages) -------------
+# Aller_Rg is bundled with (and auto-registered by) hexSticker, so no
+# showtext/font_add setup is needed for the sticker() idiom.
+FONT    <- "Aller_Rg"   # typeface for the package name and the GitHub URL
+P_SIZE  <- 31.2         # package-name size (shared across packages)
+U_SIZE  <- 9.0          # GitHub URL size (large enough to read)
+U_X     <- 1.00         # GitHub URL position: along the lower-right hex edge
+U_Y     <- 0.08
+U_ANGLE <- 30
+H_SIZE  <- 1.5          # hexagon border thickness
+DPI     <- 600
 
 # Plum hex with an orange border (matching the Python badge palette)
 col_fill   <- "#2A1339"  # deep plum background
@@ -123,7 +135,7 @@ R  <- 0.40
 # Orthographic projection of a 3D point (view space) to figure coordinates
 proj <- function(p) cbind(cx + p[, 1] * R, cy + p[, 2] * R)
 
-sphere_png <- file.path("data-raw", "logo_sphere.png")
+sphere_png <- file.path(tempdir(), "logo_sphere.png")
 png(filename = sphere_png, width = W, height = W, bg = "transparent")
 op <- par(mar = c(0, 0, 0, 0))
 plot.new()
@@ -141,16 +153,17 @@ tip <- proj(rbind(1.28 * theta_axis))[1, ]
 dir2 <- c(theta_axis[1], theta_axis[2]); dir2 <- dir2 / sqrt(sum(dir2^2))
 arrowhead(tip, dir2, size = 0.055, col = col_axis)
 
-# theta label in white, just outside the arrow tip
+# theta label in white, upright (standard text), close to the straight arrow
 perp2 <- c(-dir2[2], dir2[1])
-lab <- tip + dir2 * 0.05 + perp2 * 0.065
-text(lab[1], lab[2], expression(theta), col = "#FFFFFF", cex = 6.5, font = 3)
+lab <- tip - dir2 * 0.03 + perp2 * 0.085
+text(lab[1], lab[2], expression(theta), col = "#FFFFFF", cex = 6.0, font = 3)
 
-# (c) a rotation arc encircling the axis just above the visible pole; the
-# arrowhead ends at the leading (upper) end of the sweep, tangent to the ring
+# (c) a rotation arc encircling the axis, set low on the axis so it clears the
+# theta label near the arrow tip; the arrowhead ends at the leading (upper) end
+# of the sweep, tangent to the ring
 b1 <- cross3(theta_axis, c(0, 0, 1)); b1 <- b1 / sqrt(sum(b1^2))
 b2 <- cross3(theta_axis, b1); b2 <- b2 / sqrt(sum(b2^2))
-h <- 1.06; r_arc <- 0.27
+h <- 0.55; r_arc <- 0.38
 avals <- seq(0.55 * pi, 2.35 * pi, length.out = 240)
 ring <- t(sapply(avals, function(a)
   h * theta_axis + r_arc * (cos(a) * b1 + sin(a) * b2)))
@@ -167,17 +180,22 @@ dev.off()
 
 ## 3. Assemble the hex sticker -------------------------------------------------
 
+dir.create("logo", showWarnings = FALSE)
+dir.create("man/figures", recursive = TRUE, showWarnings = FALSE)
+
 sticker(
   subplot = sphere_png,
   s_x = 1, s_y = 1.08, s_width = 0.9, s_height = 0.9,
-  package = "rotasym", p_x = 1, p_y = 0.46, p_size = 16,
-  p_color = col_title, p_family = "sans", p_fontface = "bold",
-  h_fill = col_fill, h_color = col_border, h_size = 1.5, spotlight = FALSE,
-  url = "github.com/egarpor/rotasym", u_size = 3.6, u_y = 0.08,
+  package = "rotasym", p_x = 1, p_y = 0.46, p_size = P_SIZE,
+  p_color = col_title, p_family = FONT,
+  h_fill = col_fill, h_color = col_border, h_size = H_SIZE, spotlight = FALSE,
+  url = "github.com/egarpor/rotasym",
+  u_x = U_X, u_y = U_Y, u_angle = U_ANGLE, u_size = U_SIZE,
   u_color = col_url,
-  dpi = 320,
-  filename = file.path("man", "figures", "logo.png")
+  dpi = DPI,
+  filename = "logo/logo.png"
 )
+file.copy("logo/logo.png", "man/figures/logo.png", overwrite = TRUE)
 
 # Tidy up the intermediate sphere image
 if (file.exists(sphere_png)) file.remove(sphere_png)
