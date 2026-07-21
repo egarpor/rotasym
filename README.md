@@ -8,7 +8,7 @@ status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](htt
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/last-month/rotasym)](https://cran.r-project.org/package=rotasym)
 
-<!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
+<img src="man/figures/logo.png" alt="rotasym hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
 ## Overview
 
