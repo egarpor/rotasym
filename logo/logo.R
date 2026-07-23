@@ -1,10 +1,8 @@
+
 # Hexagonal sticker for the 'rotasym' package: an S^2 globe shaded with a
 # rotationally symmetric density (magma rings about a tilted axis theta), plus a
 # theta axis arrow and a rotation arc. Drawn with a base-graphics orthographic
 # ray-caster, then framed by hexSticker.
-#
-# Run:    Rscript logo/logo.R   (from the package root)
-# Output: logo/logo.png and man/figures/logo.png
 
 library(hexSticker)
 library(viridisLite)
@@ -35,6 +33,7 @@ sphere_raster <- function(theta_axis, band0 = 58 * pi / 180, bandsd = 0.20,
                           npix = 1000, light = c(-0.42, 0.55, 0.72),
                           gamma = 0.9, ambient = 0.42, diffuse = 0.68,
                           pal = magma(256, begin = 0.04)) {
+
   theta_axis <- theta_axis / sqrt(sum(theta_axis^2))
   light <- light / sqrt(sum(light^2))
 
@@ -77,6 +76,7 @@ sphere_raster <- function(theta_axis, band0 = 58 * pi / 180, bandsd = 0.20,
   cols[] <- "#00000000"
   cols[which(inside)] <- rgb(red, green, blue, alpha, maxColorValue = 255)
   matrix(cols, npix, npix)
+
 }
 
 # Compose the globe with the axis arrow and rotation arc
@@ -110,10 +110,12 @@ center_y <- 0.5
 radius <- 0.40
 
 # Orthographic projection of a 3D point (view space) to figure coordinates
-proj <- function(p) cbind(center_x + p[, 1] * radius, center_y + p[, 2] * radius)
+proj <- function(p) cbind(center_x + p[, 1] * radius,
+                          center_y + p[, 2] * radius)
 
 sphere_png <- file.path(tempdir(), "logo_sphere.png")
-png(filename = sphere_png, width = canvas_px, height = canvas_px, bg = "transparent")
+png(filename = sphere_png, width = canvas_px, height = canvas_px,
+    bg = "transparent")
 op <- par(mar = c(0, 0, 0, 0))
 plot.new()
 plot.window(xlim = c(0, 1), ylim = c(0, 1), asp = 1)
@@ -137,7 +139,8 @@ lab <- tip - dir2 * 0.03 + perp2 * 0.085
 text(lab[1], lab[2], expression(theta), col = "#FFFFFF", cex = 6.0, font = 3)
 
 # (c) a rotation arc encircling the axis, set low so it clears the theta label;
-# the arrowhead ends at the leading (upper) end of the sweep, tangent to the ring
+# the arrowhead ends at the leading (upper) end of the sweep,
+# tangent to the ring
 b1 <- cross3(theta_axis, c(0, 0, 1)); b1 <- b1 / sqrt(sum(b1^2))
 b2 <- cross3(theta_axis, b1); b2 <- b2 / sqrt(sum(b2^2))
 h <- 0.55; r_arc <- 0.38
@@ -148,7 +151,8 @@ ring2 <- proj(ring)
 lines(ring2[, 1], ring2[, 2], col = col_axis, lwd = 5.5, lend = 1)
 a1 <- avals[length(avals)]
 tan3 <- -sin(a1) * b1 + cos(a1) * b2
-arrowhead(ring2[nrow(ring2), ], c(tan3[1], tan3[2]), size = 0.048, col = col_axis)
+arrowhead(ring2[nrow(ring2), ], c(tan3[1], tan3[2]), size = 0.048,
+          col = col_axis)
 
 par(op)
 dev.off()
@@ -163,7 +167,8 @@ sticker(
   s_x = 1, s_y = 1.08, s_width = 0.9, s_height = 0.9,
   package = "rotasym", p_x = 1, p_y = 0.46, p_size = name_size,
   p_color = col_title, p_family = font,
-  h_fill = col_fill, h_color = col_border, h_size = hex_border, spotlight = FALSE,
+  h_fill = col_fill, h_color = col_border, h_size = hex_border,
+  spotlight = FALSE,
   url = "github.com/egarpor/rotasym",
   u_x = url_x, u_y = url_y, u_angle = url_angle, u_size = url_size,
   u_color = col_url,
