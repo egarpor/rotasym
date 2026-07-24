@@ -3,47 +3,43 @@
 #' @title Tests of rotational symmetry for hyperspherical data
 #'
 #' @description Tests for assessing the rotational symmetry of a unit-norm
-#' random vector \eqn{\mathbf{X}}{X} in
-#' \eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-#' S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p \ge 2}, about a location
-#' \eqn{\boldsymbol{\theta}\in S^{p-1}}{\theta \in S^{p-1}}, from a
-#' hyperspherical sample \eqn{\mathbf{X}_1,\ldots,\mathbf{X}_n\in S^{p-1}}{
-#' X_1, \ldots, X_n \in S^{p-1}}.
+#' random vector \eqn{\mathbf{X}} in \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
+#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p \ge 2}, about a location
+#' \eqn{\boldsymbol{\theta}\in \mathcal{S}^{p-1}}, from a hyperspherical sample
+#' \eqn{\mathbf{X}_1,\ldots,\mathbf{X}_n\in \mathcal{S}^{p-1}}.
 #'
-#' The vector \eqn{\mathbf{X}}{X} is said to be rotational symmetric about
-#' \eqn{\boldsymbol{\theta}}{\theta} if the distributions of
-#' \eqn{\mathbf{OX}}{OX} and \eqn{\mathbf{X}}{X} coincide, where
-#' \eqn{\mathbf{O}}{O} is any \eqn{p\times p}{p x p} rotation matrix
-#' that fixes \eqn{\boldsymbol{\theta}}{\theta}, \emph{i.e.},
-#' \eqn{\mathbf{O}\boldsymbol{\theta}=\boldsymbol{\theta}}{O\theta = \theta}.
+#' The vector \eqn{\mathbf{X}} is said to be rotational symmetric about
+#' \eqn{\boldsymbol{\theta}} if the distributions of \eqn{\mathbf{OX}} and
+#' \eqn{\mathbf{X}} coincide, where \eqn{\mathbf{O}} is any \eqn{p\times p}
+#' rotation matrix that fixes \eqn{\boldsymbol{\theta}}, \emph{i.e.},
+#' \eqn{\mathbf{O}\boldsymbol{\theta}=\boldsymbol{\theta}}.
 #'
 #' @param data hyperspherical data, a matrix of size \code{c(n, p)} with unit
-#' norm rows. Normalized internally if any row does not have unit norm
-#' (with a \code{warning} message). \code{NA}s are ignored.
+#' norm rows. Normalized internally if any row does not have unit norm (with a
+#' \code{warning} message). \code{NA}s are ignored.
 #' @param theta either a unit norm vector of size \code{p} giving the axis of
-#' rotational symmetry (for the specified-\eqn{\boldsymbol{\theta}}{\theta}
-#' case) or a function that implements an estimator
-#' \eqn{\hat{\boldsymbol{\theta}}}{\hat \theta} of
-#' \eqn{\boldsymbol{\theta}}{\theta} (for the
-#' unspecified-\eqn{\boldsymbol{\theta}}{\theta} case). The default calls
-#' the \code{\link{spherical_mean}} function. See examples.
-#' @param type a character string (case insensitive) indicating the type of
-#' test to conduct:
+#' rotational symmetry (for the specified-\eqn{\boldsymbol{\theta}} case) or a
+#' function that implements an estimator \eqn{\hat{\boldsymbol{\theta}}} of
+#' \eqn{\boldsymbol{\theta}} (for the unspecified-\eqn{\boldsymbol{\theta}}
+#' case). The default calls the \code{\link{spherical_mean}} function. See
+#' examples.
+#' @param type a character string (case insensitive) indicating the type of test
+#' to conduct:
 #' \itemize{
 #' \item \code{"sc"}: "scatter" test based on the statistic
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}{Q_\theta^{sc}}. Evaluates if the
-#' covariance matrix of the multivariate signs is isotropic.
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}. Evaluates if the covariance
+#' matrix of the multivariate signs is isotropic.
 #' \item \code{"loc"}: "location" test based on the statistic
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}}{Q_\theta^{loc}}. Evaluates if
-#' the expectation of the multivariate signs is zero.
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}}. Evaluates if the expectation of
+#' the multivariate signs is zero.
 #' \item \code{"loc_vMF"}: adapted "location" test, based on the statistic
-#' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}{Q_{vMF}^{loc}}.
+#' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}.
 #' \item \code{"hyb"}: "hybrid" test based on the statistics
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}{Q_\theta^{sc}} and
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}}{Q_\theta^{loc}}.
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} and
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}}.
 #' \item \code{"hyb_vMF"} (default): adapted "hybrid" test based on the
-#' statistics \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}{Q_\theta^{sc}} and
-#' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}{Q_{vMF}^{loc}}.
+#' statistics \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} and
+#' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}.
 #' }
 #' See the details below for further explanations of the tests.
 #' @param Fisher if \code{TRUE}, then Fisher's method is employed to aggregate
@@ -65,82 +61,71 @@
 #' \item \code{U}: multivariate signs of \code{data}.
 #' \item \code{V}: cosines of \code{data}.
 #' }
-#' @details
-#' Descriptions of the tests:
+#' @details Descriptions of the tests:
 #' \itemize{
 #' \item The "scatter" test is locally and asymptotically optimal against
 #' \link[=tangent-elliptical]{tangent elliptical} alternatives to rotational
-#' symmetry. However, it is not consistent against
-#' \link[=tangent-vMF]{tangent von Mises--Fisher} (vMF) alternatives.
-#' The asymptotic null distribution of
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}{Q_\theta^{sc}}
-#' is unaffected if \eqn{\boldsymbol{\theta}}{\theta} is estimated, that is,
-#' the asymptotic null distributions of
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}{Q_\theta^{sc}} and
-#' \eqn{Q_{\hat{\boldsymbol{\theta}}}^{\mathrm{sc}}}{Q_{\hat \theta}^{sc}} are
-#' the same.
-#' \item The "location" test is locally and asymptotically most powerful
-#' against vMF alternatives to rotational symmetry. However, it is not
-#' consistent against tangent elliptical alternatives. The asymptotic
-#' null distribution of
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}}{Q_\theta^{loc}}
-#' for known \eqn{\boldsymbol{\theta}}{\theta} (the one implemented in
-#' \code{test_rotasym}) \emph{does change} if \eqn{\boldsymbol{\theta}}{\theta}
-#' is estimated by \eqn{\hat{\boldsymbol{\theta}}}{\hat \theta}. Therefore, if
-#' the test is performed with an estimated \eqn{\boldsymbol{\theta}}{\theta}
-#' (if \code{theta} is a function)
-#' \eqn{Q_{\hat{\boldsymbol{\theta}}}^{\mathrm{loc}}}{Q_{\hat \theta}^{loc}}
-#' will not be properly calibrated. \code{test_rotasym} will give a warning in
-#' such case.
+#' symmetry. However, it is not consistent against \link[=tangent-vMF]{tangent
+#' von Mises--Fisher} (vMF) alternatives. The asymptotic null distribution of
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} is unaffected if
+#' \eqn{\boldsymbol{\theta}} is estimated, that is, the asymptotic null
+#' distributions of \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} and
+#' \eqn{Q_{\hat{\boldsymbol{\theta}}}^{\mathrm{sc}}} are the same.
+#' \item The "location" test is locally and asymptotically most powerful against
+#' vMF alternatives to rotational symmetry. However, it is not consistent
+#' against tangent elliptical alternatives. The asymptotic null distribution of
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}} for known
+#' \eqn{\boldsymbol{\theta}} (the one implemented in \code{test_rotasym})
+#' \emph{does change} if \eqn{\boldsymbol{\theta}} is estimated by
+#' \eqn{\hat{\boldsymbol{\theta}}}. Therefore, if the test is performed with an
+#' estimated \eqn{\boldsymbol{\theta}} (if \code{theta} is a function)
+#' \eqn{Q_{\hat{\boldsymbol{\theta}}}^{\mathrm{loc}}} will not be properly
+#' calibrated. \code{test_rotasym} will give a warning in such case.
 #' \item The "vMF location" test is a modification of the "location" test
 #' designed to make its null asymptotic distribution invariant from the
-#' estimation of \eqn{\boldsymbol{\theta}}{\theta} (as the "scatter" test is).
-#' The test is optimal against tangent vMF alternatives with a \emph{specific},
-#' vMF-based, angular function \code{\link{g_vMF}}. Despite not
-#' being optimal against all tangent vMF alternatives, it is
-#' consistent for all of them. As the location test,
-#' it is not consistent against tangent elliptical alternatives.
-#' \item The "hybrid" test combines (see below how) the "scatter" and
-#' "location" tests. The test is neither optimal against tangent elliptical nor
-#' tangent vMF alternatives, but it is consistent against both. Since it is
-#' based on the "location" test, if computed with an estimator
-#' \eqn{\hat{\boldsymbol{\theta}}}{\hat \theta}, the test statistic will not
-#' be properly calibrated. \code{test_rotasym} will give a warning in such case.
+#' estimation of \eqn{\boldsymbol{\theta}} (as the "scatter" test is). The test
+#' is optimal against tangent vMF alternatives with a \emph{specific},
+#' vMF-based, angular function \code{\link{g_vMF}}. Despite not being optimal
+#' against all tangent vMF alternatives, it is consistent for all of them. As
+#' the location test, it is not consistent against tangent elliptical
+#' alternatives.
+#' \item The "hybrid" test combines (see below how) the "scatter" and "location"
+#' tests. The test is neither optimal against tangent elliptical nor tangent vMF
+#' alternatives, but it is consistent against both. Since it is based on the
+#' "location" test, if computed with an estimator
+#' \eqn{\hat{\boldsymbol{\theta}}}, the test statistic will not be properly
+#' calibrated. \code{test_rotasym} will give a warning in such case.
 #' \item The "vMF hybrid" test is the analogous of the "hybrid" test but
 #' replaces the "location" test by the "vMF location" test.
 #' }
 #'
-#' The combination of the scatter and location tests in the hybrid tests is
-#' done in two different ways:
+#' The combination of the scatter and location tests in the hybrid tests is done
+#' in two different ways:
 #' \itemize{
 #' \item If \code{Fisher = FALSE}, then the scatter and location tests
 #' statistics give the hybrid test statistic
-#' \deqn{Q^{\mathrm{hyb}}:=Q_{\boldsymbol{\theta}}^{\mathrm{sc}}+
-#' Q_{\boldsymbol{\theta}}^{\mathrm{loc}}.}{
-#' Q_\theta^{hyb} := Q_\theta^{sc} + Q_\theta^{loc}.}
+#' \deqn{Q_{\boldsymbol{\theta}}^{\mathrm{hyb}}:=
+#' Q_{\boldsymbol{\theta}}^{\mathrm{sc}}+Q_{\boldsymbol{\theta}}^{\mathrm{loc}}.}
 #' \item If \code{Fisher = TRUE}, then Fisher's method for aggregating
 #' independent tests (the two test statistics are independent under rotational
 #' symmetry) is considered, resulting the hybrid test statistic:
 #' \deqn{Q_{\boldsymbol{\theta}}^{\mathrm{hyb}}
-#' :=-2(\log(p_{\mathrm{sc}})+\log(p_{\mathrm{loc}}))}{
-#' Q_\theta^{hyb} := -2(log(p_{sc}) + log(p_{loc}))}
-#' where \eqn{p_{\mathrm{sc}}}{p_{sc}} and \eqn{p_{\mathrm{loc}}}{p_{loc}} are
-#' the \eqn{p}-values of the scatter and location tests, respectively.
+#' :=-2(\log(p_{\mathrm{sc}})+\log(p_{\mathrm{loc}}))}
+#' where \eqn{p_{\mathrm{sc}}} and \eqn{p_{\mathrm{loc}}} are the \eqn{p}-values
+#' of the scatter and location tests, respectively.
 #' }
-#' The hybrid test statistic \eqn{Q_{\mathrm{vMF}}^{\mathrm{hyb}}}{
-#' Q_{vMF}^{hyb}} follows analogously to
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{hyb}}}{Q_\theta^{hyb}} by replacing
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}}{Q_\theta^{loc}} with
-#' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}{Q_{vMF}^{loc}}.
+#' The hybrid test statistic \eqn{Q_{\mathrm{vMF}}^{\mathrm{hyb}}} follows
+#' analogously to \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{hyb}}} by replacing
+#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{loc}}} with
+#' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}.
 #'
 #' Finally, recall that the tests are designed to test \emph{implications} of
 #' rotational symmetry. Therefore, the tests are not consistent against
 #' \emph{all} types of alternatives to rotational symmetry.
-#' @references
-#' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
-#' for rotational symmetry against new classes of hyperspherical distributions.
-#' \emph{Journal of the American Statistical Association}, 115(532):1873--1887.
-#' \doi{10.1080/01621459.2019.1665527}
+#' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
+#' optimal tests for rotational symmetry against new classes of hyperspherical
+#' distributions. \emph{Journal of the American Statistical Association},
+#' 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 #' @examples
 #' ## Rotational symmetry holds
 #'

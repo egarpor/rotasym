@@ -3,44 +3,37 @@
 #' @title Angular central Gaussian distribution
 #'
 #' @description Density and simulation of the Angular Central Gaussian (ACG)
-#' distribution on
-#' \eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-#' S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 1}. The density at
-#' \eqn{\mathbf{x} \in S^{p-1}}{x \in S^{p-1}}, \eqn{p\ge 2}, is given by
+#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
+#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 1}. The density at
+#' \eqn{\mathbf{x} \in \mathcal{S}^{p-1}}, \eqn{p\ge 2}, is given by
 #' \deqn{c^{\mathrm{ACG}}_{p,\boldsymbol{\Lambda}}
 #' (\mathbf{x}' \boldsymbol{\Lambda}^{-1} \mathbf{x})^{-p/2}
 #' \quad\mathrm{with}\quad c^{\mathrm{ACG}}_{p,\boldsymbol{\Lambda}}:=
-#' 1 / (\omega_p |\boldsymbol{\Lambda}|^{1/2})}{
-#' c^{ACG}_{p,\Lambda} (x' \Lambda^{-1} x)^{-p/2} with
-#' c^{ACG}_{p,\Lambda} := 1 / (\omega_p |\Lambda|^{1/2}).}
-#' where \eqn{\boldsymbol{\Lambda}}{\Lambda} is the shape matrix, a
-#' \eqn{p\times p}{p x p} symmetric and positive definite matrix, and
-#' \eqn{\omega_p} is the surface area of \eqn{S^{p-1}}.
+#' 1 / (\omega_p |\boldsymbol{\Lambda}|^{1/2})}
+#' where \eqn{\boldsymbol{\Lambda}} is the shape matrix, a \eqn{p\times p}
+#' symmetric and positive definite matrix, and \eqn{\omega_p} is the surface
+#' area of \eqn{\mathcal{S}^{p-1}}.
 #'
 #' @inheritParams unif
-#' @param Lambda the shape matrix \eqn{\boldsymbol{\Lambda}}{\Lambda} of the
-#' ACG. A symmetric and positive definite matrix of size \code{c(p, p)}.
-#' @return
-#' Depending on the function:
+#' @param Lambda the shape matrix \eqn{\boldsymbol{\Lambda}} of the ACG. A
+#' symmetric and positive definite matrix of size \code{c(p, p)}.
+#' @return Depending on the function:
 #' \itemize{
 #' \item \code{d_ACG}: a vector of length \code{nx} or \code{1} with the
 #' evaluated density at \code{x}.
 #' \item \code{r_ACG}: a matrix of size \code{c(n, p)} with the random sample.
 #' \item \code{c_ACG}: the normalizing constant.
 #' }
-#' @details
-#' Due to the projection of the ACG, the shape matrix
-#' \eqn{\boldsymbol{\Lambda}}{\Lambda} is only identified up to a constant,
-#' that is, \eqn{\boldsymbol{\Lambda}}{\Lambda} and
-#' \eqn{c\boldsymbol{\Lambda}}{c\Lambda} give the same ACG distribution.
-#' Usually, \eqn{\boldsymbol{\Lambda}}{\Lambda} is normalized to have trace
+#' @details Due to the projection of the ACG, the shape matrix
+#' \eqn{\boldsymbol{\Lambda}} is only identified up to a constant, that is,
+#' \eqn{\boldsymbol{\Lambda}} and \eqn{c\boldsymbol{\Lambda}} give the same ACG
+#' distribution. Usually, \eqn{\boldsymbol{\Lambda}} is normalized to have trace
 #' equal to \eqn{p}.
 #'
 #' \code{c_ACG} is vectorized on \code{p}. If \eqn{p = 1}, then the ACG is the
-#' uniform distribution in the set \eqn{\{-1, 1\}}{{-1, 1}}.
-#' @references
-#' Tyler, D. E. (1987). Statistical analysis for the angular central Gaussian
-#' distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
+#' uniform distribution in the set \eqn{\{-1, 1\}}.
+#' @references Tyler, D. E. (1987). Statistical analysis for the angular central
+#' Gaussian distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
 #' \doi{10.1093/biomet/74.3.579}
 #' @examples
 #' # Simulation and density evaluation for p = 2
