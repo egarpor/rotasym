@@ -128,7 +128,8 @@ in two different ways:
 \item If \code{Fisher = FALSE}, then the scatter and location tests
 statistics give the hybrid test statistic
 \deqn{Q_{\boldsymbol{\theta}}^{\mathrm{hyb}}:=
-Q_{\boldsymbol{\theta}}^{\mathrm{sc}}+Q_{\boldsymbol{\theta}}^{\mathrm{loc}}.}
+Q_{\boldsymbol{\theta}}^{\mathrm{sc}}+
+Q_{\boldsymbol{\theta}}^{\mathrm{loc}}.}
 \item If \code{Fisher = TRUE}, then Fisher's method for aggregating
 independent tests (the two test statistics are independent under rotational
 symmetry) is considered, resulting the hybrid test statistic:
