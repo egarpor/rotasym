@@ -163,8 +163,7 @@ dir.create("logo", showWarnings = FALSE)
 dir.create("man/figures", recursive = TRUE, showWarnings = FALSE)
 
 sticker(
-  subplot = sphere_png,
-  s_x = 1, s_y = 1.08, s_width = 0.9, s_height = 0.9,
+  subplot = sphere_png, s_x = 1, s_y = 1.08, s_width = 0.9, s_height = 0.9,
   package = "rotasym", p_x = 1, p_y = 0.46, p_size = name_size,
   p_color = col_title, p_family = font,
   h_fill = col_fill, h_color = col_border, h_size = hex_border,
@@ -172,8 +171,7 @@ sticker(
   url = "github.com/egarpor/rotasym",
   u_x = url_x, u_y = url_y, u_angle = url_angle, u_size = url_size,
   u_color = col_url,
-  dpi = dpi,
-  filename = "logo/logo.png"
+  dpi = dpi, filename = "logo/logo.png"
 )
 file.copy("logo/logo.png", "man/figures/logo.png", overwrite = TRUE)
 
