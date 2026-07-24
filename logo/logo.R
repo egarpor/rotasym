@@ -81,6 +81,7 @@ sphere_raster <- function(theta_axis, band0 = 58 * pi / 180, bandsd = 0.20,
 
 # Compose the globe with the axis arrow and rotation arc
 
+# 3D cross product
 cross3 <- function(a, b) {
   c(a[2] * b[3] - a[3] * b[2],
     a[3] * b[1] - a[1] * b[3],
@@ -101,9 +102,11 @@ arrowhead <- function(tip, dir, size, col) {
           col = col, border = NA)
 }
 
+# Symmetry axis theta (unit vector)
 theta_axis <- c(0.30, 0.64, 0.71)
 theta_axis <- theta_axis / sqrt(sum(theta_axis^2))
 
+# Canvas size and sphere placement in figure coordinates
 canvas_px <- 1600
 center_x <- 0.5
 center_y <- 0.5
@@ -113,6 +116,7 @@ radius <- 0.40
 proj <- function(p) cbind(center_x + p[, 1] * radius,
                           center_y + p[, 2] * radius)
 
+# Open a transparent PNG and set up the drawing window
 sphere_png <- file.path(tempdir(), "logo_sphere.png")
 png(filename = sphere_png, width = canvas_px, height = canvas_px,
     bg = "transparent")
@@ -154,14 +158,17 @@ tan3 <- -sin(a1) * b1 + cos(a1) * b2
 arrowhead(ring2[nrow(ring2), ], c(tan3[1], tan3[2]), size = 0.048,
           col = col_axis)
 
+# Close the PNG device
 par(op)
 dev.off()
 
 # Assemble the hex sticker
 
+# Output directories
 dir.create("logo", showWarnings = FALSE)
 dir.create("man/figures", recursive = TRUE, showWarnings = FALSE)
 
+# Draw the hex sticker (globe + wordmark + URL) and mirror to man/figures
 sticker(
   subplot = sphere_png, s_x = 1, s_y = 1.08, s_width = 0.9, s_height = 0.9,
   package = "rotasym", p_x = 1, p_y = 0.46, p_size = name_size,
