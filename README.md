@@ -4,6 +4,8 @@
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R build
 status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/rotasym/actions)
+[![R build
+status](https://github.com/egarpor/rotasym/workflows/test-coverage/badge.svg)](https://github.com/egarpor/rotasym/actions)
 [![](https://codecov.io/gh/egarpor/rotasym/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egarpor/rotasym)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym)](https://cran.r-project.org/package=rotasym)
