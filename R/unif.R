@@ -3,9 +3,9 @@
 #' @title Uniform distribution on the hypersphere
 #'
 #' @description Density and simulation of the uniform distribution on
-#' \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in \mathbb{R}^p:||\mathbf{x}||=1\}},
-#' \eqn{p\ge 1}. The density is just the inverse of the surface area of
-#' \eqn{\mathcal{S}^{p-1}}, given by
+#' \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 1}. The density is just the
+#' inverse of the surface area of \eqn{\mathcal{S}^{p-1}}, given by
 #' \deqn{\omega_p:=2\pi^{p/2}/\Gamma(p/2).}
 #'
 #' @param x locations in \eqn{\mathcal{S}^{p-1}} to evaluate the density. Either

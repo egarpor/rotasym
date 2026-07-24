@@ -40,13 +40,13 @@ evaluated density at \code{x}.
 }
 \description{
 Density and simulation of the Angular Central Gaussian (ACG)
-distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-\mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 1}. The density at
-\eqn{\mathbf{x} \in \mathcal{S}^{p-1}}, \eqn{p\ge 2}, is given by
-\deqn{c^{\mathrm{ACG}}_{p,\boldsymbol{\Lambda}}
-(\mathbf{x}' \boldsymbol{\Lambda}^{-1} \mathbf{x})^{-p/2}
-\quad\mathrm{with}\quad c^{\mathrm{ACG}}_{p,\boldsymbol{\Lambda}}:=
-1 / (\omega_p |\boldsymbol{\Lambda}|^{1/2})}
+distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 1}. The density at
+\eqn{\boldsymbol{x} \in \mathcal{S}^{p-1}}, \eqn{p\ge 2}, is given by
+\deqn{c^{\mathrm{ACG}}_{p,\boldsymbol{\Lambda}} (\boldsymbol{x}'
+\boldsymbol{\Lambda}^{-1} \boldsymbol{x})^{-p/2} \quad\mathrm{with}\quad
+c^{\mathrm{ACG}}_{p,\boldsymbol{\Lambda}}:= 1 / (\omega_p
+|\boldsymbol{\Lambda}|^{1/2})}
 where \eqn{\boldsymbol{\Lambda}} is the shape matrix, a \eqn{p\times p}
 symmetric and positive definite matrix, and \eqn{\omega_p} is the surface
 area of \eqn{\mathcal{S}^{p-1}}.

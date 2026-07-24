@@ -58,11 +58,10 @@ from the cosines density associated to the angular function.
 }
 \description{
 Density and simulation of the von Mises--Fisher (vMF)
-distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-\mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 1}. The density at
-\eqn{\mathbf{x} \in \mathcal{S}^{p-1}} is given by
-\deqn{c^{\mathrm{vMF}}_{p,\kappa}
-e^{\kappa\mathbf{x}' \boldsymbol{\mu}}
+distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 1}. The density at
+\eqn{\boldsymbol{x} \in \mathcal{S}^{p-1}} is given by
+\deqn{c^{\mathrm{vMF}}_{p,\kappa} e^{\kappa\boldsymbol{x}' \boldsymbol{\mu}}
 \quad\mathrm{with}\quad c^{\mathrm{vMF}}_{p,\kappa}:=
 \kappa^{(p-2)/2}/((2\pi)^{p/2} I_{(p-2)/2}(\kappa))}
 where \eqn{\boldsymbol{\mu}\in \mathcal{S}^{p-1}} is the directional mean,

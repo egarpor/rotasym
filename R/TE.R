@@ -3,10 +3,10 @@
 #' @title Tangent elliptical distribution
 #'
 #' @description Density and simulation of the Tangent Elliptical (TE)
-#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 2}. The distribution arises by
-#' considering the \link[=tang-norm-decomp]{tangent-normal decomposition} with
-#' multivariate \link[=cosines-signs]{signs} distributed as an
+#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}. The distribution arises
+#' by considering the \link[=tang-norm-decomp]{tangent-normal decomposition}
+#' with multivariate \link[=cosines-signs]{signs} distributed as an
 #' \link[=ACG]{Angular Central Gaussian} distribution.
 #'
 #' @inheritParams tang-norm-decomp
@@ -20,8 +20,8 @@
 #' \item \code{r_TE}: a matrix of size \code{c(n, p)} with the random sample.
 #' }
 #' @details The functions are wrappers for \code{\link{d_tang_norm}} and
-#' \code{\link{r_tang_norm}} with \code{d_U = \link{d_ACG}} and \code{r_U =
-#' \link{r_ACG}}.
+#' \code{\link{r_tang_norm}} with \code{d_U = \link{d_ACG}} and
+#' \code{r_U = \link{r_ACG}}.
 #' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
 #' optimal tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},

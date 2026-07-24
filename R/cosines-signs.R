@@ -4,25 +4,28 @@
 #' given location
 #'
 #' @description Computation of the cosines and multivariate signs of the
-#' hyperspherical sample \eqn{\mathbf{X}_1,\ldots,\mathbf{X}_n\in
-#' \mathcal{S}^{p-1}} about a location \eqn{\boldsymbol{\theta}\in
-#' \mathcal{S}^{p-1}}, for \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-#' \mathbb{R}^p:||\mathbf{x}||=1\}} with \eqn{p\ge 2}. The \emph{cosines} are
-#' defined as
-#' \deqn{V_i:=\mathbf{X}_i'\boldsymbol{\theta},\quad i=1,\ldots,n,}
+#' hyperspherical sample
+#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}} about a
+#' location \eqn{\boldsymbol{\theta}\in \mathcal{S}^{p-1}}, for
+#' \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}} with \eqn{p\ge 2}. The \emph{cosines}
+#' are defined as
+#' \deqn{V_i:=\boldsymbol{X}_i'\boldsymbol{\theta},\quad i=1,\ldots,n,}
 #' whereas the \emph{multivariate signs} are the vectors
-#' \eqn{\mathbf{U}_1,\ldots,\mathbf{U}_n\in \mathcal{S}^{p-2}} defined as
-#' \deqn{\mathbf{U}_i := \boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{X}_i/
-#' ||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{X}_i||,\quad
+#' \eqn{\boldsymbol{U}_1,\ldots,\boldsymbol{U}_n\in \mathcal{S}^{p-2}} defined
+#' as
+#' \deqn{\boldsymbol{U}_i :=
+#' \boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{X}_i/
+#' \|\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{X}_i\|,\quad
 #' i=1,\ldots,n.}
 #' The projection matrix \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is a
 #' \eqn{p\times (p-1)} semi-orthogonal matrix that satisfies
 #' \deqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'
-#' \boldsymbol{\Gamma}_{\boldsymbol{\theta}}=\mathbf{I}_{p-1}
+#' \boldsymbol{\Gamma}_{\boldsymbol{\theta}}=\boldsymbol{I}_{p-1}
 #' \quad\mathrm{and}\quad\boldsymbol{\Gamma}_{\boldsymbol{\theta}}
 #' \boldsymbol{\Gamma}_{\boldsymbol{\theta}}'=
-#' \mathbf{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'.}
-#' where \eqn{\mathbf{I}_p} is the identity matrix of dimension \eqn{p}.
+#' \boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'.}
+#' where \eqn{\boldsymbol{I}_p} is the identity matrix of dimension \eqn{p}.
 #'
 #' @param X hyperspherical data, a matrix of size \code{c(n, p)} with unit-norm
 #' rows. \code{NA}s are allowed.
@@ -34,7 +37,7 @@
 #' Defaults to \code{FALSE} for performance reasons.
 #' @param eig whether \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is to be
 #' found using an eigendecomposition of
-#' \eqn{\mathbf{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} (inefficient).
+#' \eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} (inefficient).
 #' Defaults to \code{FALSE}.
 #' @return Depending on the function:
 #' \itemize{
@@ -48,25 +51,27 @@
 #' @details Note that the projection matrix
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is \emph{not} unique. In
 #' particular, any completion of \eqn{\boldsymbol{\theta}} to an orthonormal
-#' basis \eqn{\{\boldsymbol{\theta},\mathbf{v}_1,\ldots,\mathbf{v}_{p-1}\}}
+#' basis
+#' \eqn{\{\boldsymbol{\theta},\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}}
 #' gives a set of \eqn{p-1} orthonormal \eqn{p}-vectors
-#' \eqn{\{\mathbf{v}_1,\ldots,\mathbf{v}_{p-1}\}} that conform the columns of
-#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}. If \code{eig = FALSE}, this
-#' approach is employed by rotating the canonical completion of
-#' \eqn{\mathbf{e}_1=(1,0,\ldots,0)},
-#' \eqn{\{\mathbf{e}_2,\ldots,\mathbf{e}_p\}}, by the rotation matrix that
-#' rotates \eqn{\mathbf{e}_1} to \eqn{\boldsymbol{\theta}}:
-#' \deqn{\mathbf{H}_{\boldsymbol{\theta}}=
-#' (\boldsymbol{\theta}+\mathbf{e}_1)(\boldsymbol{\theta}+\mathbf{e}_1)'/
-#' (1+\theta_1)-\mathbf{I}_p.} If \code{eig = TRUE}, then a much more expensive
-#' eigendecomposition of \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}
+#' \eqn{\{\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}} that conform the
+#' columns of \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}. If
+#' \code{eig = FALSE}, this approach is employed by rotating the canonical
+#' completion of \eqn{\boldsymbol{e}_1=(1,0,\ldots,0)},
+#' \eqn{\{\boldsymbol{e}_2,\ldots,\boldsymbol{e}_p\}}, by the rotation matrix
+#' that rotates \eqn{\boldsymbol{e}_1} to \eqn{\boldsymbol{\theta}}:
+#' \deqn{\boldsymbol{H}_{\boldsymbol{\theta}}=
+#' (\boldsymbol{\theta}+\boldsymbol{e}_1)
+#' (\boldsymbol{\theta}+\boldsymbol{e}_1)'/(1+\theta_1)-\boldsymbol{I}_p.}
+#' If \code{eig = TRUE}, then a much more expensive eigendecomposition of
+#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}
 #' \boldsymbol{\Gamma}_{\boldsymbol{\theta}}'=
-#' \mathbf{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} is performed for
-#' determining \eqn{\{\mathbf{v}_1,\ldots,\mathbf{v}_{p-1}\}}.
+#' \boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} is performed for
+#' determining \eqn{\{\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}}.
 #'
 #' If \code{signs} and \code{cosines} are called with \code{X} without unit
-#' norms in the rows, then the results will be spurious. Setting \code{check_X =
-#' TRUE} prevents this from happening.
+#' norms in the rows, then the results will be spurious. Setting
+#' \code{check_X = TRUE} prevents this from happening.
 #' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
 #' optimal tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},

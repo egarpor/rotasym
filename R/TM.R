@@ -3,11 +3,11 @@
 #' @title Tangent von Mises--Fisher distribution
 #'
 #' @description Density and simulation of the Tangent von Mises--Fisher (TM)
-#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 2}. The distribution arises by
-#' considering the \link[=tang-norm-decomp]{tangent-normal decomposition} with
-#' multivariate \link[=cosines-signs]{signs} distributed as a \link[=vMF]{von
-#' Mises--Fisher} distribution.
+#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}. The distribution arises
+#' by considering the \link[=tang-norm-decomp]{tangent-normal decomposition}
+#' with multivariate \link[=cosines-signs]{signs} distributed as a
+#' \link[=vMF]{von Mises--Fisher} distribution.
 #'
 #' @inheritParams tang-norm-decomp
 #' @param mu the directional mean \eqn{\boldsymbol{\mu}} of the vMF used in the
@@ -21,8 +21,8 @@
 #' \item \code{r_TM}: a matrix of size \code{c(n, p)} with the random sample.
 #' }
 #' @details The functions are wrappers for \code{\link{d_tang_norm}} and
-#' \code{\link{r_tang_norm}} with \code{d_U = \link{d_vMF}} and \code{r_U =
-#' \link{r_vMF}}.
+#' \code{\link{r_tang_norm}} with \code{d_U = \link{d_vMF}} and
+#' \code{r_U = \link{r_vMF}}.
 #' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
 #' optimal tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},

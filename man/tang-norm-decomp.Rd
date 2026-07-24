@@ -21,18 +21,18 @@ rotational symmetry.}
 \item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
 \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
 
-\item{d_V}{the density \eqn{f_V}. In the form \code{d_V <- function(v, log =
-TRUE) {...}}. See examples.}
+\item{d_V}{the density \eqn{f_V}. In the form
+\code{d_V <- function(v, log = TRUE) {...}}. See examples.}
 
-\item{d_U}{the density \eqn{f_\mathbf{U}}. In the form \code{d_U <-
-function(u, log = TRUE) {...}}. See examples.}
+\item{d_U}{the density \eqn{f_{\boldsymbol{U}}}. In the form
+\code{d_U <- function(u, log = TRUE) {...}}. See examples.}
 
 \item{log}{flag to indicate if the logarithm of the density (or the
 normalizing constant) is to be computed.}
 
 \item{n}{sample size, a positive integer.}
 
-\item{r_U}{a function for simulating \eqn{\mathbf{U}}. Its first argument
+\item{r_U}{a function for simulating \eqn{\boldsymbol{U}}. Its first argument
 must be the sample size. See examples.}
 
 \item{r_V}{a function for simulating \eqn{V}. Its first argument must be the
@@ -49,45 +49,47 @@ sample.
 }
 \description{
 Density and simulation of a distribution on
-\eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in \mathbb{R}^p:||\mathbf{x}||=1\}},
-\eqn{p\ge 2}, obtained by the tangent-normal decomposition. The
-\emph{tangent-normal decomposition} of the random vector \eqn{\mathbf{X}\in
-\mathcal{S}^{p-1}} is
-\deqn{V\boldsymbol{\theta} +
-\sqrt{1 - V^2}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{U}}
-where \eqn{V := \mathbf{X}'\boldsymbol{\theta}} is a random variable in
-\eqn{[-1, 1]} (the \emph{cosines} of \eqn{\mathbf{X}}) and \eqn{\mathbf{U} :=
-\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{X}/
-||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{X}||} is a random vector
-in \eqn{\mathcal{S}^{p-2}} (the \emph{multivariate signs} of
-\eqn{\mathbf{X}}) and \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is the
-\eqn{p\times(p-1)} matrix computed by \code{\link{Gamma_theta}}.
+\eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}, obtained by the
+tangent-normal decomposition. The \emph{tangent-normal decomposition} of the
+random vector \eqn{\boldsymbol{X}\in \mathcal{S}^{p-1}} is
+\deqn{V\boldsymbol{\theta} + \sqrt{1 -
+V^2}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{U}}
+where \eqn{V := \boldsymbol{X}'\boldsymbol{\theta}} is a random variable in
+\eqn{[-1, 1]} (the \emph{cosines} of \eqn{\boldsymbol{X}}) and
+\eqn{\boldsymbol{U} :=
+\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{X}/
+\|\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{X}\|} is a random
+vector in \eqn{\mathcal{S}^{p-2}} (the \emph{multivariate signs} of
+\eqn{\boldsymbol{X}}) and \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is
+the \eqn{p\times(p-1)} matrix computed by \code{\link{Gamma_theta}}.
 
 The tangent-normal decomposition can be employed for constructing
-distributions for \eqn{\mathbf{X}} that arise for certain choices of \eqn{V}
-and \eqn{\mathbf{U}}. If \eqn{V} and \eqn{\mathbf{U}} are \emph{independent},
-then simulation from \eqn{\mathbf{X}} is straightforward using the
-tangent-normal decomposition. Also, the density of \eqn{\mathbf{X}} at
-\eqn{\mathbf{x}\in \mathcal{S}^{p-1}}, \eqn{f_\mathbf{X}(\mathbf{x})}, is
-readily computed as
-\deqn{f_\mathbf{X}(\mathbf{x})=
-\omega_{p-1}c_g g(t)(1-t^2)^{(p-3)/2}f_\mathbf{U}(\mathbf{u})}
-where \eqn{t:=\mathbf{x}'\boldsymbol{\theta}},
-\eqn{\mathbf{u}:=\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}/
-||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}||}, \eqn{f_\mathbf{U}}
-is the density of \eqn{\mathbf{U}}, and \eqn{f_V(v) := \omega_{p-1} c_g g(v)
-(1 - v^2)^{(p-3)/2}} is the density of \eqn{V} for an angular function
-\eqn{g} with normalizing constant \eqn{c_g}. \eqn{\omega_{p-1}} is the
-surface area of \eqn{\mathcal{S}^{p-2}}.
+distributions for \eqn{\boldsymbol{X}} that arise for certain choices of
+\eqn{V} and \eqn{\boldsymbol{U}}. If \eqn{V} and \eqn{\boldsymbol{U}} are
+\emph{independent}, then simulation from \eqn{\boldsymbol{X}} is
+straightforward using the tangent-normal decomposition. Also, the density of
+\eqn{\boldsymbol{X}} at \eqn{\boldsymbol{x}\in \mathcal{S}^{p-1}},
+\eqn{f_{{X}}(\boldsymbol{x})}, is readily computed as
+\deqn{f_{{X}}(\boldsymbol{x})= \omega_{p-1}c_g
+g(t)(1-t^2)^{(p-3)/2}f_{{U}}(\boldsymbol{u})}
+where \eqn{t:=\boldsymbol{x}'\boldsymbol{\theta}},
+\eqn{\boldsymbol{u}:=\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{x}/
+\|\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{x}\|}, \eqn{f_{{U}}}
+is the density of \eqn{\boldsymbol{U}}, and
+\eqn{f_V(v) := \omega_{p-1} c_g g(v) (1 - v^2)^{(p-3)/2}} is the density of
+\eqn{V} for an angular function \eqn{g} with normalizing constant \eqn{c_g}.
+\eqn{\omega_{p-1}} is the surface area of \eqn{\mathcal{S}^{p-2}}.
 }
 \details{
 Either \code{g_scaled} or \code{d_V} can be supplied to
 \code{d_tang_norm} (the rest of the arguments are compulsory). One possible
 choice for \code{g_scaled} is \code{\link{g_vMF}} with \code{scaled = TRUE}.
 Another possible choice is the angular function \eqn{g(t) = 1 - t^2},
-normalized by its normalizing constant \eqn{c_g = (\Gamma(p/2) p) /
-(2\pi^{p/2} (p - 1))} (see examples). This angular function makes \eqn{V^2}
-to be distributed as a \eqn{\mathrm{Beta}(1/2,(p+1)/2)}.
+normalized by its normalizing constant
+\eqn{c_g = (\Gamma(p/2) p) / (2\pi^{p/2} (p - 1))} (see examples). This
+angular function makes \eqn{V^2} to be distributed as a
+\eqn{\mathrm{Beta}(1/2,(p+1)/2)}.
 
 The normalizing constants and densities are computed through log-scales for
 numerical accuracy.
