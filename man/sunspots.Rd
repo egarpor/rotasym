@@ -203,8 +203,4 @@ Society}, 465(2):1259--1273. \doi{10.1093/mnras/stw2667}
 \seealso{
 \code{\link{test_rotasym}}.
 }
-\author{
-Data processed by Eduardo García-Portugués, Davy Paindaveine, and
-Thomas Verdebout from the original sources.
-}
 \keyword{datasets}

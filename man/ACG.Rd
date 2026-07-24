@@ -94,6 +94,3 @@ distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
 \seealso{
 \code{\link{tangent-elliptical}}, \code{\link{unif}}.
 }
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
-}

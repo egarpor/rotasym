@@ -47,9 +47,10 @@
 #' values from the cosines density associated to the angular function.
 #' }
 #' @details
-#' \code{r_g_vMF} implements algorithm VM in Wood (1994). \code{c_vMF} is
-#' vectorized on \code{p} and \code{kappa}.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
+#' \code{r_g_vMF} implements algorithm VM in Wood (1994), except for
+#' \eqn{p = 3}, where the cosines density is the truncated exponential
+#' \eqn{\propto e^{\kappa t}} and is simulated exactly by inverse transform.
+#' \code{c_vMF} is vectorized on \code{p} and \code{kappa}.
 #' @references
 #' Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
 #' \emph{Commun. Stat. Simulat.}, 23(1):157--164.
@@ -213,8 +214,7 @@ g_vMF <- function(t, p, kappa, scaled = TRUE, log = FALSE) {
 
   }
 
-  # Scaled angular function. Use an if (scaled is a scalar flag) so that the
-  # Bessel-based normalizing constant c_vMF is not evaluated when scaled = FALSE
+  # Scaled angular function
   log_c <- if (scaled) c_vMF(p = p, kappa = kappa, log = TRUE) else 0
   g_c <- log_c + kappa * t
   g_c[abs(t) > 1] <- -Inf
@@ -245,6 +245,16 @@ r_g_vMF <- function(n, p, kappa) {
   } else if (kappa > 1e15) {
 
     stop("kappa is too large")
+
+  }
+
+  # For p = 3 the cosines density reduces to the truncated exponential
+  # proportional to exp(kappa * t) on [-1, 1], which is sampled exactly by
+  # inverse transform. expm1() / log1p() keep the draw accurate for small kappa.
+  if (p == 3 && kappa > 0) {
+
+    U <- runif(n)
+    return(cbind(1 + log1p(-(1 - U) * (-expm1(-2 * kappa))) / kappa))
 
   }
 

@@ -26,7 +26,4 @@ check_unit_norm(1:3, warnings = FALSE)
 check_unit_norm(rbind(c(0, 0, 0), c(0, 0, 1), 1:3, c(NA, 0, 1)),
                 warnings = FALSE)
 }
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
-}
 \keyword{internal}
