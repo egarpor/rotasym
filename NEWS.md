@@ -67,5 +67,6 @@
 * Sample the `p = 3` in `r_vMF` exactly by inverse transform instead of acceptance-rejection, for a notable speedup.
 * Efficiency improvements in `test_rotasym` (scatter and vMF-location statistics) and `g_vMF`.
 * Documentation fixes: correct the number of variables in the `sunspots_births` / `sunspots_deaths` help page, fix typos, and add cross-references with see also.
-* Add comprehensive unit tests.
+* Add full test coverage.
 * Add a package hex sticker logo.
+* Clearer equations in the documentation.
