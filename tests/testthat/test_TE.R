@@ -14,14 +14,15 @@ test_that("TE density integrates to one and agrees with its sampler", {
 
   expect_distribution(
     d = function(x, log = FALSE) {
-      d_TE(x = x, theta = theta, g_scaled = g_scaled, Lambda = Lambda, log = log)
+      d_TE(x = x, theta = theta, g_scaled = g_scaled, Lambda = Lambda,
+           log = log)
     },
     r = function(n) r_TE(n = n, theta = theta, r_V = r_V, Lambda = Lambda),
     p = p, seed = 70)
 
 })
 
-test_that("TE edge cases: theta and Lambda dimension coherence", {
+test_that("TE edge cases", {
 
   set.seed(73)
   X <- r_TE(n = 10, theta = theta, r_V = r_V, Lambda = Lambda)

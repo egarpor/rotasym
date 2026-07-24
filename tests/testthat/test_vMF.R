@@ -7,7 +7,8 @@ kappa <- 2
 test_that("vMF density integrates to one and agrees with its sampler", {
 
   expect_distribution(
-    d = function(x, log = FALSE) d_vMF(x = x, mu = mu, kappa = kappa, log = log),
+    d = function(x, log = FALSE) d_vMF(x = x, mu = mu, kappa = kappa,
+                 log = log),
     r = function(n) r_vMF(n = n, mu = mu, kappa = kappa),
     p = p, seed = 30,
     kernel = function(x) exp(kappa * as.numeric(x %*% mu)),
@@ -15,7 +16,7 @@ test_that("vMF density integrates to one and agrees with its sampler", {
 
 })
 
-test_that("vMF edge cases: kappa guards, degenerate p = 1, dimension checks", {
+test_that("vMF edge cases", {
 
   # kappa guards and the uniform (kappa = 0) / Wood (large kappa) branches
   expect_error(r_vMF(n = 1, mu = c(0, 1), kappa = -1))
