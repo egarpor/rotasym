@@ -12,8 +12,8 @@
 #' The vector \eqn{\boldsymbol{X}} is said to be rotational symmetric about
 #' \eqn{\boldsymbol{\theta}} if the distributions of \eqn{\boldsymbol{OX}} and
 #' \eqn{\boldsymbol{X}} coincide, where \eqn{\boldsymbol{O}} is any
-#' \eqn{p\times p} rotation matrix that fixes \eqn{\boldsymbol{\theta}},
-#' i.e., \eqn{\boldsymbol{O}\boldsymbol{\theta}=\boldsymbol{\theta}}.
+#' \eqn{p\times p} rotation matrix that fixes \eqn{\boldsymbol{\theta}}, i.e.,
+#' \eqn{\boldsymbol{O}\boldsymbol{\theta}=\boldsymbol{\theta}}.
 #'
 #' @param data hyperspherical data, a matrix of size \code{c(n, p)} with unit
 #' norm rows. Normalized internally if any row does not have unit norm (with a

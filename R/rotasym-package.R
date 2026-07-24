@@ -4,7 +4,7 @@
 #'
 #' @description Implementation of the tests for rotational symmetry on the
 #' hypersphere proposed in García-Portugués, Paindaveine and Verdebout (2020)
-#' <doi:10.1080/01621459.2019.1665527>. The package implements the proposed
+#' \doi{10.1080/01621459.2019.1665527}. The package implements the proposed
 #' distributions on the hypersphere based on the tangent-normal decomposition.
 #' It also allows for the replication of the data application considered in the
 #' paper.
