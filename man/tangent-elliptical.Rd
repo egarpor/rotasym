@@ -22,8 +22,8 @@ rotational symmetry.}
 \item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
 \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
 
-\item{d_V}{the density \eqn{f_V}. In the form \code{d_V <- function(v, log =
-TRUE) {...}}. See examples.}
+\item{d_V}{the density \eqn{f_V}. In the form
+\code{d_V <- function(v, log = TRUE) {...}}. See examples.}
 
 \item{Lambda}{the shape matrix \eqn{\boldsymbol{\Lambda}} of the ACG used in
 the multivariate signs. A symmetric and positive definite matrix of size
@@ -47,16 +47,16 @@ evaluated density at \code{x}.
 }
 \description{
 Density and simulation of the Tangent Elliptical (TE)
-distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-\mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 2}. The distribution arises by
-considering the \link[=tang-norm-decomp]{tangent-normal decomposition} with
-multivariate \link[=cosines-signs]{signs} distributed as an
+distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}. The distribution arises
+by considering the \link[=tang-norm-decomp]{tangent-normal decomposition}
+with multivariate \link[=cosines-signs]{signs} distributed as an
 \link[=ACG]{Angular Central Gaussian} distribution.
 }
 \details{
 The functions are wrappers for \code{\link{d_tang_norm}} and
-\code{\link{r_tang_norm}} with \code{d_U = \link{d_ACG}} and \code{r_U =
-\link{r_ACG}}.
+\code{\link{r_tang_norm}} with \code{d_U = \link{d_ACG}} and
+\code{r_U = \link{r_ACG}}.
 }
 \examples{
 ## Simulation and density evaluation for p = 2

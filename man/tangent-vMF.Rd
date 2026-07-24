@@ -22,8 +22,8 @@ rotational symmetry.}
 \item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
 \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
 
-\item{d_V}{the density \eqn{f_V}. In the form \code{d_V <- function(v, log =
-TRUE) {...}}. See examples.}
+\item{d_V}{the density \eqn{f_V}. In the form
+\code{d_V <- function(v, log = TRUE) {...}}. See examples.}
 
 \item{mu}{the directional mean \eqn{\boldsymbol{\mu}} of the vMF used in the
 multivariate signs. A unit-norm vector of length \code{p - 1}.}
@@ -49,16 +49,16 @@ evaluated density at \code{x}.
 }
 \description{
 Density and simulation of the Tangent von Mises--Fisher (TM)
-distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-\mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 2}. The distribution arises by
-considering the \link[=tang-norm-decomp]{tangent-normal decomposition} with
-multivariate \link[=cosines-signs]{signs} distributed as a \link[=vMF]{von
-Mises--Fisher} distribution.
+distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}. The distribution arises
+by considering the \link[=tang-norm-decomp]{tangent-normal decomposition}
+with multivariate \link[=cosines-signs]{signs} distributed as a
+\link[=vMF]{von Mises--Fisher} distribution.
 }
 \details{
 The functions are wrappers for \code{\link{d_tang_norm}} and
-\code{\link{r_tang_norm}} with \code{d_U = \link{d_vMF}} and \code{r_U =
-\link{r_vMF}}.
+\code{\link{r_tang_norm}} with \code{d_U = \link{d_vMF}} and
+\code{r_U = \link{r_vMF}}.
 }
 \examples{
 ## Simulation and density evaluation for p = 2

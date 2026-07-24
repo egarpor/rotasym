@@ -4,26 +4,27 @@
 #'
 #' @description Estimation of the axis of rotational symmetry
 #' \eqn{\boldsymbol{\theta}} of a rotational symmetric unit-norm random vector
-#' \eqn{\mathbf{X}} in \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p \ge 2}, from a hyperspherical sample
-#' \eqn{\mathbf{X}_1,\ldots,\mathbf{X}_n\in \mathcal{S}^{p-1}}.
+#' \eqn{\boldsymbol{X}} in \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p \ge 2}, from a hyperspherical
+#' sample \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}}.
 #' @inheritParams test_rotasym
 #' @return A vector of length \code{p} with an estimate for
 #' \eqn{\boldsymbol{\theta}}.
 #' @details The \code{spherical_mean} estimator computes the sample mean of
-#' \eqn{\mathbf{X}_1,\ldots,\mathbf{X}_n} and normalizes it by its norm (if the
-#' norm is different from zero). It estimates consistently
+#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm
+#' (if the norm is different from zero). It estimates consistently
 #' \eqn{\boldsymbol{\theta}} for rotational symmetric models based on
 #' \link[=tang-norm-decomp]{angular functions} \eqn{g} that are monotone
 #' increasing.
 #'
 #' The estimator in \code{spherical_loc_PCA} is based on the fact that, under
-#' rotational symmetry, the expectation of \eqn{\mathbf{X}\mathbf{X}'} is
-#' \eqn{a\boldsymbol{\theta}\boldsymbol{\theta}' + b(\mathbf{I}_p -
-#' \boldsymbol{\theta}\boldsymbol{\theta}')} for certain constants \eqn{a,b \ge
-#' 0}. Therefore, \eqn{\boldsymbol{\theta}} is the eigenvector with unique
-#' multiplicity of the expectation of \eqn{\mathbf{X}\mathbf{X}'}. Its use is
-#' recommended if the rotationally symmetric data is not unimodal.
+#' rotational symmetry, the expectation of \eqn{\boldsymbol{X}\boldsymbol{X}'}
+#' is \eqn{a\boldsymbol{\theta}\boldsymbol{\theta}' + b(\boldsymbol{I}_p -
+#' \boldsymbol{\theta}\boldsymbol{\theta}')} for certain constants
+#' \eqn{a,b \ge 0}. Therefore, \eqn{\boldsymbol{\theta}} is the eigenvector with
+#' unique multiplicity of the expectation of
+#' \eqn{\boldsymbol{X}\boldsymbol{X}'}. Its use is recommended if the
+#' rotationally symmetric data is not unimodal.
 #' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
 #' optimal tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},

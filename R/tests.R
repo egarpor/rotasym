@@ -3,16 +3,17 @@
 #' @title Tests of rotational symmetry for hyperspherical data
 #'
 #' @description Tests for assessing the rotational symmetry of a unit-norm
-#' random vector \eqn{\mathbf{X}} in \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
-#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p \ge 2}, about a location
+#' random vector \eqn{\boldsymbol{X}} in
+#' \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p \ge 2}, about a location
 #' \eqn{\boldsymbol{\theta}\in \mathcal{S}^{p-1}}, from a hyperspherical sample
-#' \eqn{\mathbf{X}_1,\ldots,\mathbf{X}_n\in \mathcal{S}^{p-1}}.
+#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}}.
 #'
-#' The vector \eqn{\mathbf{X}} is said to be rotational symmetric about
-#' \eqn{\boldsymbol{\theta}} if the distributions of \eqn{\mathbf{OX}} and
-#' \eqn{\mathbf{X}} coincide, where \eqn{\mathbf{O}} is any \eqn{p\times p}
-#' rotation matrix that fixes \eqn{\boldsymbol{\theta}}, \emph{i.e.},
-#' \eqn{\mathbf{O}\boldsymbol{\theta}=\boldsymbol{\theta}}.
+#' The vector \eqn{\boldsymbol{X}} is said to be rotational symmetric about
+#' \eqn{\boldsymbol{\theta}} if the distributions of \eqn{\boldsymbol{OX}} and
+#' \eqn{\boldsymbol{X}} coincide, where \eqn{\boldsymbol{O}} is any
+#' \eqn{p\times p} rotation matrix that fixes \eqn{\boldsymbol{\theta}},
+#' i.e., \eqn{\boldsymbol{O}\boldsymbol{\theta}=\boldsymbol{\theta}}.
 #'
 #' @param data hyperspherical data, a matrix of size \code{c(n, p)} with unit
 #' norm rows. Normalized internally if any row does not have unit norm (with a
@@ -65,12 +66,12 @@
 #' \itemize{
 #' \item The "scatter" test is locally and asymptotically optimal against
 #' \link[=tangent-elliptical]{tangent elliptical} alternatives to rotational
-#' symmetry. However, it is not consistent against \link[=tangent-vMF]{tangent
-#' von Mises--Fisher} (vMF) alternatives. The asymptotic null distribution of
-#' \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} is unaffected if
-#' \eqn{\boldsymbol{\theta}} is estimated, that is, the asymptotic null
-#' distributions of \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} and
-#' \eqn{Q_{\hat{\boldsymbol{\theta}}}^{\mathrm{sc}}} are the same.
+#' symmetry. However, it is not consistent against
+#' \link[=tangent-vMF]{tangent von Mises--Fisher} (vMF) alternatives. The
+#' asymptotic null distribution of \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}
+#' is unaffected if \eqn{\boldsymbol{\theta}} is estimated, that is, the
+#' asymptotic null distributions of \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}}
+#' and \eqn{Q_{\hat{\boldsymbol{\theta}}}^{\mathrm{sc}}} are the same.
 #' \item The "location" test is locally and asymptotically most powerful against
 #' vMF alternatives to rotational symmetry. However, it is not consistent
 #' against tangent elliptical alternatives. The asymptotic null distribution of
