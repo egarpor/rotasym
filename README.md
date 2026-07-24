@@ -4,6 +4,7 @@
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R build
 status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/rotasym/actions)
+[![](https://codecov.io/gh/egarpor/rotasym/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egarpor/rotasym)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/last-month/rotasym)](https://cran.r-project.org/package=rotasym)
@@ -291,7 +292,7 @@ example("sunspots_births")
 #> snspt_+ }
 ```
 
-<img src="README/README-sunspots_births-1.png" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-2.png" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-3.png" style="display: block; margin: auto;" />
+<img src="README/README-sunspots_births-1.png" alt="" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-2.png" alt="" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-3.png" alt="" style="display: block; margin: auto;" />
 
 ## References
 
