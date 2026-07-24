@@ -31,7 +31,6 @@
 #' \eqn{\boldsymbol{\theta}}{\theta} is the eigenvector with unique
 #' multiplicity of the expectation of \eqn{\mathbf{X}\mathbf{X}'}{XX'}. Its
 #' use is recommended if the rotationally symmetric data is not unimodal.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
 #' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.

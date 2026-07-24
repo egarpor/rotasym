@@ -64,8 +64,6 @@
 #' \href{https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R}{
 #' \code{sunspots.R}}
 #' @source \url{http://fenyi.solarobs.epss.hun-ren.hu}
-#' @author Data processed by Eduardo García-Portugués, Davy Paindaveine, and
-#' Thomas Verdebout from the original sources.
 #' @references
 #' Baranyi, T., Győri, L., Ludmány, A. (2016) On-line tools for solar data
 #' compiled at the Debrecen observatory and their extensions with the

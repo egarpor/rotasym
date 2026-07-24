@@ -40,9 +40,7 @@ arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
 
     }
 
-    // Check for user interruptions once every 1000 iterations. The counter
-    // "iter" tracks loop passes (not accepted draws), so the check fires even
-    // when the acceptance-rejection loop is stuck rejecting proposals.
+    // Check for user interruptions once every 1000 iterations
     if ((++iter % 1000) == 0) {
 
       Rcpp::checkUserInterrupt();

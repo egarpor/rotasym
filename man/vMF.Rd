@@ -82,8 +82,10 @@ g(v) (1 - v^2)^{(p-3)/2}}{
 where \eqn{\omega_{p-1}} is the surface area of \eqn{S^{p-2}}.
 }
 \details{
-\code{r_g_vMF} implements algorithm VM in Wood (1994). \code{c_vMF} is
-vectorized on \code{p} and \code{kappa}.
+\code{r_g_vMF} implements algorithm VM in Wood (1994), except for
+\eqn{p = 3}, where the cosines density is the truncated exponential
+\eqn{\propto e^{\kappa t}} and is simulated exactly by inverse transform.
+\code{c_vMF} is vectorized on \code{p} and \code{kappa}.
 }
 \examples{
 # Simulation and density evaluation for p = 2
@@ -139,7 +141,4 @@ Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
 \seealso{
 \code{\link{tangent-vMF}}, \code{\link{unif}},
 \code{\link{tang-norm-decomp}}.
-}
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 }

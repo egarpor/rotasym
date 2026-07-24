@@ -38,7 +38,6 @@
 #'
 #' \code{c_ACG} is vectorized on \code{p}. If \eqn{p = 1}, then the ACG is the
 #' uniform distribution in the set \eqn{\{-1, 1\}}{{-1, 1}}.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
 #' Tyler, D. E. (1987). Statistical analysis for the angular central Gaussian
 #' distribution on the sphere. \emph{Biometrika}, 74(3):579--589.

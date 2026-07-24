@@ -84,7 +84,6 @@
 #' If \code{signs} and \code{cosines} are called with \code{X} without unit
 #' norms in the rows, then the results will be spurious. Setting
 #' \code{check_X = TRUE} prevents this from happening.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
 #' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.

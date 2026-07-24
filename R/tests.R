@@ -136,7 +136,6 @@
 #' Finally, recall that the tests are designed to test \emph{implications} of
 #' rotational symmetry. Therefore, the tests are not consistent against
 #' \emph{all} types of alternatives to rotational symmetry.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
 #' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.
@@ -334,7 +333,7 @@ test_rotasym <- function(data, theta = spherical_mean,
   if (type == "sc") {
 
     # Test (sum(S^2) equals tr(S S') = tr(tcrossprod(S)) since S is symmetric,
-    # but avoids forming the (p - 1) x (p - 1) product matrix)
+    # and avoids forming the (p - 1) x (p - 1) product matrix)
     S <- crossprod(U) / n
     statistic <- 0.5 * n * (p * p - 1) *
       (sum(S * S) - 1 / (p - 1))
@@ -361,8 +360,8 @@ test_rotasym <- function(data, theta = spherical_mean,
     Delta <- colSums((1 - D_pg * V_sqrt) * U) / sqrt(n)
 
     # Inverse of Gamma, a scalar multiple of the identity, so the quadratic form
-    # Delta' inv_Gamma Delta reduces to inv_Gamma_diag * sum(Delta^2) (no need to
-    # build the (p - 1) x (p - 1) matrix)
+    # Delta' inv_Gamma Delta reduces to inv_Gamma_diag * sum(Delta^2) (so no
+    # need to build the (p - 1) x (p - 1) matrix)
     inv_Gamma_diag <- (p - 1) / (1 - 2 * D_pg * mean(V_sqrt) +
                                    D_pg * D_pg * mean(V2))
 

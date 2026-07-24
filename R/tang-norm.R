@@ -73,7 +73,6 @@
 #'
 #' The normalizing constants and densities are computed through log-scales for
 #' numerical accuracy.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
 #' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.
@@ -92,13 +91,14 @@
 #'
 #' # The vMF scaled angular function
 #' g_scaled <- function(t, log) {
-#'   g_vMF(t, p = p - 1, kappa = kappa_V, scaled = TRUE, log = log)
+#'   g_vMF(t, p = p, kappa = kappa_V, scaled = TRUE, log = log)
 #' }
 #'
 #' # Cosine density for the vMF distribution
 #' d_V <- function(v, log) {
-#'  log_dens <- g_scaled(v, log = log) + (p - 3)/2 * log(1 - v^2)
-#'  switch(log + 1, exp(log_dens), log_dens)
+#'   log_dens <- w_p(p = p - 1, log = TRUE) + g_scaled(t = v, log = TRUE) +
+#'     0.5 * (p - 3) * log(1 - v^2)
+#'   switch(log + 1, exp(log_dens), log_dens)
 #' }
 #'
 #' # Multivariate signs density based on a vMF

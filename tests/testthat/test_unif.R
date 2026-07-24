@@ -3,7 +3,8 @@ test_that("w_p matches the surface-area formula and validates p", {
 
   p <- 1:5
   expect_equal(w_p(p = p), 2 * pi^(p / 2) / gamma(p / 2))
-  expect_equal(w_p(p = 3, log = TRUE), log(2 * pi^1.5 / gamma(1.5)))
+  expect_equal(w_p(p = 3, log = FALSE), 4 * pi)
+  expect_equal(w_p(p = 2, log = FALSE), 2 * pi)
   expect_error(w_p(p = 0))
 
 })

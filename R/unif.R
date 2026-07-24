@@ -29,7 +29,6 @@
 #' @details
 #' If \eqn{p = 1}, then \eqn{S^{0} = \{-1, 1\}} and the "surface area" is
 #' \eqn{2}. The function \code{w_p} is vectorized on \code{p}.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @examples
 #' ## Area of S^{p - 1}
 #'

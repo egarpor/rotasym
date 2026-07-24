@@ -81,6 +81,3 @@ for rotational symmetry against new classes of hyperspherical distributions.
 \seealso{
 \code{\link{test_rotasym}}.
 }
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
-}

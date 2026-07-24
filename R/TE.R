@@ -26,7 +26,6 @@
 #' The functions are wrappers for \code{\link{d_tang_norm}} and
 #' \code{\link{r_tang_norm}} with \code{d_U = \link{d_ACG}} and
 #' \code{r_U = \link{r_ACG}}.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 #' @references
 #' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
 #' for rotational symmetry against new classes of hyperspherical distributions.
@@ -46,7 +45,7 @@
 #' # Required functions
 #' r_V <- function(n) r_g_vMF(n = n, p = p, kappa = kappa_V)
 #' g_scaled <- function(t, log) {
-#'   g_vMF(t, p = p - 1, kappa = kappa_V, scaled = TRUE, log = log)
+#'   g_vMF(t, p = p, kappa = kappa_V, scaled = TRUE, log = log)
 #' }
 #'
 #' # Sample and color according to density

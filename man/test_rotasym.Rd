@@ -293,6 +293,3 @@ for rotational symmetry against new classes of hyperspherical distributions.
 \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
 \code{\link{spherical_mean}}.
 }
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
-}

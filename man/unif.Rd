@@ -86,6 +86,3 @@ head(d_unif_sphere(x))
 \code{\link{vMF}}, \code{\link{ACG}},
 \code{\link{tang-norm-decomp}}.
 }
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
-}

@@ -76,7 +76,7 @@ kappa_V <- 2
 # Required functions
 r_V <- function(n) r_g_vMF(n = n, p = p, kappa = kappa_V)
 g_scaled <- function(t, log) {
-  g_vMF(t, p = p - 1, kappa = kappa_V, scaled = TRUE, log = log)
+  g_vMF(t, p = p, kappa = kappa_V, scaled = TRUE, log = log)
 }
 
 # Sample and color according to density
@@ -143,7 +143,4 @@ for rotational symmetry against new classes of hyperspherical distributions.
 \seealso{
 \code{\link{tang-norm-decomp}},
 \code{\link{tangent-elliptical}}, \code{\link{vMF}}.
-}
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 }
