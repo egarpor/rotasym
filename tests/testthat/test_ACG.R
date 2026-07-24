@@ -15,7 +15,7 @@ test_that("ACG density integrates to one and agrees with its sampler", {
 
 })
 
-test_that("ACG edge cases: Lambda validity, dimension checks, degenerate p = 1", {
+test_that("ACG edge cases", {
 
   # Non-symmetric and symmetric-but-not-positive-definite Lambda
   expect_error(c_ACG(p = 2, Lambda = rbind(c(1, 2), c(0, 1))))

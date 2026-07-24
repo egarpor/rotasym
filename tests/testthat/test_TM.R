@@ -24,7 +24,7 @@ test_that("TM density integrates to one and agrees with its sampler", {
 
 })
 
-test_that("TM edge cases: theta and mu dimension coherence", {
+test_that("TM edge cases", {
 
   set.seed(83)
   X <- r_TM(n = 10, theta = theta, r_V = r_V, mu = mu, kappa = kappa_U)
