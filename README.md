@@ -1,14 +1,15 @@
-# rotasym
+# rotasym <img src="man/figures/logo.png" align="right" height="175" alt="rotasym hexlogo"/>
 
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R build
 status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/rotasym/actions)
+[![R build
+status](https://github.com/egarpor/rotasym/workflows/test-coverage/badge.svg)](https://github.com/egarpor/rotasym/actions)
+[![](https://codecov.io/gh/egarpor/rotasym/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egarpor/rotasym)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/last-month/rotasym)](https://cran.r-project.org/package=rotasym)
-
-<!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
 ## Overview
 
@@ -20,24 +21,16 @@ to replicate the data application presented.
 
 ## Installation
 
-Get the released version from CRAN:
-
 ``` r
-# Install the package
+# Install it from CRAN
 install.packages("rotasym")
-
-# Load package
 library(rotasym)
 ```
 
-Alternatively, get the latest version from GitHub:
-
 ``` r
-# Install the package
-library(devtools)
-install_github("egarpor/rotasym")
-
-# Load package
+# Alternatively, from GitHub
+library(pak)
+pak("egarpor/rotasym")
 library(rotasym)
 ```
 
@@ -107,7 +100,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 ## Data application: test for the rotational symmetry of sunspots
 
 The data used in García-Portugués, Paindaveine and Verdebout (2020) is
-available in the object `sunspot_births`, which is created through the
+available in the object `sunspots_births`, which is created through the
 script
 [sunspots.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R).
 The code snippet below reproduces the main results in the paper.
@@ -301,7 +294,7 @@ example("sunspots_births")
 #> snspt_+ }
 ```
 
-<img src="README/README-sunspots_births-1.png" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-2.png" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-3.png" style="display: block; margin: auto;" />
+<img src="README/README-sunspots_births-1.png" alt="" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-2.png" alt="" style="display: block; margin: auto;" /><img src="README/README-sunspots_births-3.png" alt="" style="display: block; margin: auto;" />
 
 ## References
 

@@ -11,20 +11,20 @@ d_tang_norm(x, theta, g_scaled, d_V, d_U, log = FALSE)
 r_tang_norm(n, theta, r_U, r_V)
 }
 \arguments{
-\item{x}{locations in \eqn{S^{p-1}} to evaluate the density. Either a
-matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
+\item{x}{locations in \eqn{\mathcal{S}^{p-1}} to evaluate the density. Either
+a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 internally if required (with a \code{warning} message).}
 
 \item{theta}{a unit norm vector of size \code{p} giving the axis of
 rotational symmetry.}
 
-\item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the
-form \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
+\item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
+\cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
 
 \item{d_V}{the density \eqn{f_V}. In the form
 \code{d_V <- function(v, log = TRUE) {...}}. See examples.}
 
-\item{d_U}{the density \eqn{f_\mathbf{U}}{f_U}. In the form
+\item{d_U}{the density \eqn{f_{\boldsymbol{U}}}. In the form
 \code{d_U <- function(u, log = TRUE) {...}}. See examples.}
 
 \item{log}{flag to indicate if the logarithm of the density (or the
@@ -32,69 +32,64 @@ normalizing constant) is to be computed.}
 
 \item{n}{sample size, a positive integer.}
 
-\item{r_U}{a function for simulating \eqn{\mathbf{U}}{U}. Its first argument
+\item{r_U}{a function for simulating \eqn{\boldsymbol{U}}. Its first argument
 must be the sample size. See examples.}
 
-\item{r_V}{a function for simulating \eqn{V}. Its first argument must be
-the sample size. See examples.}
+\item{r_V}{a function for simulating \eqn{V}. Its first argument must be the
+sample size. See examples.}
 }
 \value{
 Depending on the function:
 \itemize{
-\item \code{d_tang_norm}: a vector of length \code{nx} or \code{1}
-with the evaluated density at \code{x}.
-\item \code{r_tang_norm}: a matrix of size \code{c(n, p)} with the
-random sample.
+\item \code{d_tang_norm}: a vector of length \code{nx} or \code{1} with the
+evaluated density at \code{x}.
+\item \code{r_tang_norm}: a matrix of size \code{c(n, p)} with the random
+sample.
 }
 }
 \description{
 Density and simulation of a distribution on
-\eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 2}, obtained by the
-tangent-normal decomposition. The \emph{tangent-normal decomposition} of
-the random vector \eqn{\mathbf{X}\in S^{p-1}}{X \in S^{p-1}} is
-\deqn{V\boldsymbol{\theta} +
-\sqrt{1 - V^2}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{U}}{
-V \theta + \sqrt(1 - V^2) \Gamma_\theta U}
-where \eqn{V := \mathbf{X}'\boldsymbol{\theta}}{V := X'\theta} is a
-random variable in \eqn{[-1, 1]} (the \emph{cosines} of
-\eqn{\mathbf{X}}{X}) and
-\eqn{\mathbf{U} := \boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{X}/
-||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{X}||}{
-U := \Gamma_\theta X / ||\Gamma_\theta X||} is a random vector in
-\eqn{S^{p-2}} (the \emph{multivariate signs} of \eqn{\mathbf{X}}{X})
-and \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}{\Gamma_\theta} is the
-\eqn{p\times(p-1)}{p x (p-1)} matrix computed by \code{\link{Gamma_theta}}.
+\eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}, obtained by the
+tangent-normal decomposition. The \emph{tangent-normal decomposition} of the
+random vector \eqn{\boldsymbol{X}\in \mathcal{S}^{p-1}} is
+\deqn{V\boldsymbol{\theta} + \sqrt{1 -
+V^2}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{U}}
+where \eqn{V := \boldsymbol{X}'\boldsymbol{\theta}} is a random variable in
+\eqn{[-1, 1]} (the \emph{cosines} of \eqn{\boldsymbol{X}}) and
+\eqn{\boldsymbol{U} :=
+\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{X}/
+\|\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{X}\|} is a random
+vector in \eqn{\mathcal{S}^{p-2}} (the \emph{multivariate signs} of
+\eqn{\boldsymbol{X}}) and \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is
+the \eqn{p\times(p-1)} matrix computed by \code{\link{Gamma_theta}}.
 
 The tangent-normal decomposition can be employed for constructing
-distributions for \eqn{\mathbf{X}}{X} that arise for certain choices of
-\eqn{V} and \eqn{\mathbf{U}}{U}. If \eqn{V} and
-\eqn{\mathbf{U}}{U} are \emph{independent}, then simulation from
-\eqn{\mathbf{X}}{X} is straightforward using the tangent-normal
-decomposition. Also, the density of \eqn{\mathbf{X}}{X} at
-\eqn{\mathbf{x}\in S^{p-1}}{x \in S^{p-1}},
-\eqn{f_\mathbf{X}(\mathbf{x})}{f_X(x)}, is readily computed as
-\deqn{f_\mathbf{X}(\mathbf{x})=
-\omega_{p-1}c_g g(t)(1-t^2)^{(p-3)/2}f_\mathbf{U}(\mathbf{u})}{
-f_X(x) = \omega_{p-1} c_g g(t) (1-t^2)^{(p-3)/2} f_U(u)}
-where \eqn{t:=\mathbf{x}'\boldsymbol{\theta}}{v := x'\theta},
-\eqn{\mathbf{u}:=\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}/
-||\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\mathbf{x}||}{
-u := \Gamma_\theta x / ||\Gamma_\theta x||},
-\eqn{f_\mathbf{U}}{f_U} is the density of \eqn{\mathbf{U}}{U},
-and \eqn{f_V(v) := \omega_{p-1} c_g g(v) (1 - v^2)^{(p-3)/2}} is the density
-of \eqn{V} for an angular function \eqn{g} with normalizing constant
-\eqn{c_g}. \eqn{\omega_{p-1}} is the surface area of \eqn{S^{p-2}}.
+distributions for \eqn{\boldsymbol{X}} that arise for certain choices of
+\eqn{V} and \eqn{\boldsymbol{U}}. If \eqn{V} and \eqn{\boldsymbol{U}} are
+\emph{independent}, then simulation from \eqn{\boldsymbol{X}} is
+straightforward using the tangent-normal decomposition. Also, the density of
+\eqn{\boldsymbol{X}} at \eqn{\boldsymbol{x}\in \mathcal{S}^{p-1}},
+\eqn{f_{{X}}(\boldsymbol{x})}, is readily computed as
+\deqn{f_{{X}}(\boldsymbol{x})= \omega_{p-1}c_g
+g(t)(1-t^2)^{(p-3)/2}f_{{U}}(\boldsymbol{u})}
+where \eqn{t:=\boldsymbol{x}'\boldsymbol{\theta}},
+\eqn{\boldsymbol{u}:=\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{x}/
+\|\boldsymbol{\Gamma}_{\boldsymbol{\theta}}\boldsymbol{x}\|}, \eqn{f_{{U}}}
+is the density of \eqn{\boldsymbol{U}}, and
+\eqn{f_V(v) := \omega_{p-1} c_g g(v) (1 - v^2)^{(p-3)/2}} is the density of
+\eqn{V} for an angular function \eqn{g} with normalizing constant \eqn{c_g}.
+\eqn{\omega_{p-1}} is the surface area of \eqn{\mathcal{S}^{p-2}}.
 }
 \details{
-Either \code{g_scaled} or \code{d_V} can be supplied to \code{d_tang_norm}
-(the rest of the arguments are compulsory). One possible choice for
-\code{g_scaled} is \code{\link{g_vMF}} with \code{scaled = TRUE}. Another
-possible choice is the angular function \eqn{g(t) = 1 - t^2}, normalized by
-its normalizing constant
-\eqn{c_g = (\Gamma(p/2) p) / (2\pi^{p/2} (p - 1))} (see examples).
-This angular function makes \eqn{V^2} to be distributed as a
-\eqn{\mathrm{Beta}(1/2,(p+1)/2)}{Beta(1/2, (p+1)/2)}.
+Either \code{g_scaled} or \code{d_V} can be supplied to
+\code{d_tang_norm} (the rest of the arguments are compulsory). One possible
+choice for \code{g_scaled} is \code{\link{g_vMF}} with \code{scaled = TRUE}.
+Another possible choice is the angular function \eqn{g(t) = 1 - t^2},
+normalized by its normalizing constant
+\eqn{c_g = (\Gamma(p/2) p) / (2\pi^{p/2} (p - 1))} (see examples). This
+angular function makes \eqn{V^2} to be distributed as a
+\eqn{\mathrm{Beta}(1/2,(p+1)/2)}.
 
 The normalizing constants and densities are computed through log-scales for
 numerical accuracy.
@@ -112,13 +107,14 @@ kappa_U <- 0.1
 
 # The vMF scaled angular function
 g_scaled <- function(t, log) {
-  g_vMF(t, p = p - 1, kappa = kappa_V, scaled = TRUE, log = log)
+  g_vMF(t, p = p, kappa = kappa_V, scaled = TRUE, log = log)
 }
 
 # Cosine density for the vMF distribution
 d_V <- function(v, log) {
- log_dens <- g_scaled(v, log = log) + (p - 3)/2 * log(1 - v^2)
- switch(log + 1, exp(log_dens), log_dens)
+  log_dens <- w_p(p = p - 1, log = TRUE) + g_scaled(t = v, log = TRUE) +
+    0.5 * (p - 3) * log(1 - v^2)
+  switch(log + 1, exp(log_dens), log_dens)
 }
 
 # Multivariate signs density based on a vMF
@@ -155,7 +151,7 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              pch = 16, xlab = "", ylab = "", zlab = "",
                              angle = 20)
 
-## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
+## A non-vMF angular function: g(t) = 1 - t^2. It is associated to the
 ## Beta(1/2, (p + 1)/2) distribution.
 
 # Scaled angular function
@@ -191,16 +187,13 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              angle = 20)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
-for rotational symmetry against new classes of hyperspherical distributions.
-\emph{Journal of the American Statistical Association}, 115(532):1873--1887.
-\doi{10.1080/01621459.2019.1665527}
+García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
+optimal tests for rotational symmetry against new classes of hyperspherical
+distributions. \emph{Journal of the American Statistical Association},
+115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 }
 \seealso{
 \code{\link{Gamma_theta}}, \code{\link{signs}},
 \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
 \code{\link{vMF}}.
-}
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
 }

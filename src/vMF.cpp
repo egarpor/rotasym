@@ -21,6 +21,7 @@ arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
 
   // Steps 1, 2
   arma::uword counter = 0;
+  arma::uword iter = 0;
   arma::vec W = arma::zeros(n);
   double a = 0.5 * q;
   while (counter < n) {
@@ -39,10 +40,8 @@ arma::vec r_g_vMF_Cpp(arma::uword n, arma::uword p, double kappa) {
 
     }
 
-    // Check for user interruptions 1 out of 1000 times
-    double test = n * 0.001;
-    test -= floor(test);
-    if (test == 0) {
+    // Check for user interruptions once every 1000 iterations
+    if ((++iter % 1000) == 0) {
 
       Rcpp::checkUserInterrupt();
 
