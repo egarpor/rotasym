@@ -3,39 +3,31 @@
 #' @title von Mises--Fisher distribution
 #'
 #' @description Density and simulation of the von Mises--Fisher (vMF)
-#' distribution on
-#' \eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-#' S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 1}. The density at
-#' \eqn{\mathbf{x} \in S^{p-1}}{x \in S^{p-1}} is given by
-#' \deqn{c^{\mathrm{vMF}}_{p,\kappa}
-#' e^{\kappa\mathbf{x}' \boldsymbol{\mu}}
+#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 1}. The density at
+#' \eqn{\boldsymbol{x} \in \mathcal{S}^{p-1}} is given by
+#' \deqn{c^{\mathrm{vMF}}_{p,\kappa} e^{\kappa\boldsymbol{x}' \boldsymbol{\mu}}
 #' \quad\mathrm{with}\quad c^{\mathrm{vMF}}_{p,\kappa}:=
-#' \kappa^{(p-2)/2}/((2\pi)^{p/2} I_{(p-2)/2}(\kappa))}{
-#' c^{vMF}_{p,\kappa} e^{\kappa x' \mu} with
-#' c^{vMF}_{p,\kappa} :=
 #' \kappa^{(p-2)/2}/((2\pi)^{p/2} I_{(p-2)/2}(\kappa))}
-#' where \eqn{\boldsymbol{\mu}\in S^{p-1}}{\mu \in S^{p-1}} is the directional
-#' mean, \eqn{\kappa\ge 0} is the concentration parameter about
-#' \eqn{\boldsymbol{\mu}}{\mu}, and \eqn{I_\nu} is the order-\eqn{\nu}
-#' modified Bessel function of the first kind.
+#' where \eqn{\boldsymbol{\mu}\in \mathcal{S}^{p-1}} is the directional mean,
+#' \eqn{\kappa\ge 0} is the concentration parameter about
+#' \eqn{\boldsymbol{\mu}}, and \eqn{I_\nu} is the order-\eqn{\nu} modified
+#' Bessel function of the first kind.
 #'
-#' The angular function of the vMF is \eqn{g(t) := e^{\kappa t}}. The
-#' associated \emph{cosines} density is
-#' \eqn{\tilde g(v):= \omega_{p-1} c^{\mathrm{vMF}}_{p,\kappa}
-#' g(v) (1 - v^2)^{(p-3)/2}}{
-#' \tilde g(v):= \omega_{p-1} c^{vMF}_{p,\kappa} g(v)(1 - v^2)^{(p-3)/2}},
-#' where \eqn{\omega_{p-1}} is the surface area of \eqn{S^{p-2}}.
+#' The angular function of the vMF is \eqn{g(t) := e^{\kappa t}}. The associated
+#' \emph{cosines} density is \eqn{\tilde g(v):= \omega_{p-1}
+#' c^{\mathrm{vMF}}_{p,\kappa} g(v) (1 - v^2)^{(p-3)/2}}, where
+#' \eqn{\omega_{p-1}} is the surface area of \eqn{\mathcal{S}^{p-2}}.
 #'
 #' @inheritParams unif
-#' @param mu the directional mean \eqn{\boldsymbol{\mu}}{\mu} of the vMF.
-#' A unit-norm vector of length \code{p}.
-#' @param kappa concentration parameter \eqn{\kappa} of the vMF.
-#' A nonnegative scalar. Can be a vector for \code{c_vMF}.
+#' @param mu the directional mean \eqn{\boldsymbol{\mu}} of the vMF. A unit-norm
+#' vector of length \code{p}.
+#' @param kappa concentration parameter \eqn{\kappa} of the vMF. A nonnegative
+#' scalar. Can be a vector for \code{c_vMF}.
 #' @param t a vector with values in \eqn{[-1, 1]}.
 #' @param scaled whether to scale the angular function by the von Mises--Fisher
 #' normalizing constant. Defaults to \code{TRUE}.
-#' @return
-#' Depending on the function:
+#' @return Depending on the function:
 #' \itemize{
 #' \item \code{d_vMF}: a vector of length \code{nx} or \code{1} with the
 #' evaluated density at \code{x}.
@@ -43,16 +35,15 @@
 #' \item \code{c_vMF}: the normalizing constant.
 #' \item \code{g_vMF}: a vector of size \code{length(t)} with the evaluated
 #' angular function.
-#' \item \code{r_g_vMF}: a vector of length \code{n} containing simulated
-#' values from the cosines density associated to the angular function.
+#' \item \code{r_g_vMF}: a vector of length \code{n} containing simulated values
+#' from the cosines density associated to the angular function.
 #' }
-#' @details
-#' \code{r_g_vMF} implements algorithm VM in Wood (1994). \code{c_vMF} is
-#' vectorized on \code{p} and \code{kappa}.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
-#' @references
-#' Wood, A. T. A. (1994) Simulation of the von Mises Fisher distribution.
-#' \emph{Commun. Stat. Simulat.}, 23(1):157--164.
+#' @details \code{r_g_vMF} implements algorithm VM in Wood (1994), except for
+#' \eqn{p = 3}, where the cosines density is the truncated exponential
+#' \eqn{\propto e^{\kappa t}} and is simulated exactly by inverse transform.
+#' \code{c_vMF} is vectorized on \code{p} and \code{kappa}.
+#' @references Wood, A. T. A. (1994) Simulation of the von Mises Fisher
+#' distribution. \emph{Commun. Stat. Simulat.}, 23(1):157--164.
 #' \doi{10.1080/03610919408813161}
 #' @examples
 #' # Simulation and density evaluation for p = 2
@@ -99,7 +90,8 @@
 #' for (p in 3:M) {
 #'   lines(t, g_tilde(t = t, p = p, kappa = kappa), col = col[p])
 #' }
-#' @seealso \code{\link{tangent-vMF}}.
+#' @seealso \code{\link{tangent-vMF}}, \code{\link{unif}},
+#' \code{\link{tang-norm-decomp}}.
 #' @name vMF
 
 
@@ -213,8 +205,8 @@ g_vMF <- function(t, p, kappa, scaled = TRUE, log = FALSE) {
   }
 
   # Scaled angular function
-  g_c <- ifelse(scaled, c_vMF(p = p, kappa = kappa, log = TRUE), 0) +
-    kappa * t
+  log_c <- if (scaled) c_vMF(p = p, kappa = kappa, log = TRUE) else 0
+  g_c <- log_c + kappa * t
   g_c[abs(t) > 1] <- -Inf
   return(switch(log + 1, exp(g_c), g_c))
 
@@ -243,6 +235,16 @@ r_g_vMF <- function(n, p, kappa) {
   } else if (kappa > 1e15) {
 
     stop("kappa is too large")
+
+  }
+
+  # For p = 3 the cosines density reduces to the truncated exponential
+  # proportional to exp(kappa * t) on [-1, 1], which is sampled exactly by
+  # inverse transform. expm1() / log1p() keep the draw accurate for small kappa.
+  if (p == 3 && kappa > 0) {
+
+    U <- runif(n)
+    return(cbind(1 + log1p(-(1 - U) * (-expm1(-2 * kappa))) / kappa))
 
   }
 

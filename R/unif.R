@@ -3,33 +3,29 @@
 #' @title Uniform distribution on the hypersphere
 #'
 #' @description Density and simulation of the uniform distribution on
-#' \eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-#' S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 1}. The density is just the
-#' inverse of the surface area of \eqn{S^{p-1}}, given by
-#' \deqn{\omega_p:=2\pi^{p/2}/\Gamma(p/2).}{
-#' \omega_p := 2\pi^{p/2} / \Gamma(p/2).}
+#' \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 1}. The density is just the
+#' inverse of the surface area of \eqn{\mathcal{S}^{p-1}}, given by
+#' \deqn{\omega_p:=2\pi^{p/2}/\Gamma(p/2).}
 #'
-#' @param x locations in \eqn{S^{p-1}} to evaluate the density. Either a
-#' matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
+#' @param x locations in \eqn{\mathcal{S}^{p-1}} to evaluate the density. Either
+#' a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 #' internally if required (with a \code{warning} message).
 #' @param n sample size, a positive integer.
-#' @param p dimension of the ambient space \eqn{R^p} that contains
-#' \eqn{S^{p-1}}. A positive integer.
+#' @param p dimension of the ambient space \eqn{\mathbb{R}^p} that contains
+#' \eqn{\mathcal{S}^{p-1}}. A positive integer.
 #' @param log flag to indicate if the logarithm of the density (or the
 #' normalizing constant) is to be computed.
-#' @return
-#' Depending on the function:
+#' @return Depending on the function:
 #' \itemize{
-#' \item \code{d_unif_sphere}: a vector of length \code{nx} or \code{1} with
-#' the evaluated density at \code{x}.
-#' \item \code{r_unif_sphere}: a matrix of size \code{c(n, p)} with the
-#' random sample.
-#' \item \code{w_p}: the surface area of \eqn{S^{p-1}}.
+#' \item \code{d_unif_sphere}: a vector of length \code{nx} or \code{1} with the
+#' evaluated density at \code{x}.
+#' \item \code{r_unif_sphere}: a matrix of size \code{c(n, p)} with the random
+#' sample.
+#' \item \code{w_p}: the surface area of \eqn{\mathcal{S}^{p-1}}.
 #' }
-#' @details
-#' If \eqn{p = 1}, then \eqn{S^{0} = \{-1, 1\}} and the "surface area" is
-#' \eqn{2}. The function \code{w_p} is vectorized on \code{p}.
-#' @author Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
+#' @details If \eqn{p = 1}, then \eqn{\mathcal{S}^{0} = \{-1, 1\}} and the
+#' "surface area" is \eqn{2}. The function \code{w_p} is vectorized on \code{p}.
 #' @examples
 #' ## Area of S^{p - 1}
 #'
@@ -63,6 +59,8 @@
 #'                              zlim = c(-1, 1), pch = 16, xlab = "", ylab = "",
 #'                              zlab = "", angle = 20)
 #' head(d_unif_sphere(x))
+#' @seealso \code{\link{vMF}}, \code{\link{ACG}},
+#' \code{\link{tang-norm-decomp}}.
 #' @name unif
 
 

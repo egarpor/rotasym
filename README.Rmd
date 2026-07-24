@@ -4,28 +4,27 @@ output:
     variant: gfm
 ---
 
-```{r, echo = FALSE}
+```{r, setup, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE, comment = "#>", fig.path = "README/README-",
   message = FALSE, warning = FALSE, fig.asp = 1, fig.align = 'center'
 )
 ```
 
-rotasym
-=======
+# rotasym <img src="man/figures/logo.png" align="right" height="175" alt="rotasym hexlogo"/>
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, badges, echo = FALSE, results = 'asis'}
 cat(
   badger::badge_license(license = "GPLv3", color = "blue",
                         url = "https://www.gnu.org/licenses/gpl-3.0"),
   badger::badge_github_actions(action = "R-CMD-check"),
+  badger::badge_github_actions(action = "test-coverage"),
+  badger::badge_codecov(),
   badger::badge_cran_release(color = "green"),
   badger::badge_cran_download(pkg = NULL, type = "grand-total"),
   badger::badge_cran_download(pkg = NULL, type = "last-month")
 )
 ```
-
-<!-- <img src="" alt="rotasym  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 
 ## Overview
 
@@ -33,24 +32,16 @@ Software companion for the paper "*On optimal tests for rotational symmetry agai
 
 ## Installation
 
-Get the released version from CRAN:
-
 ```{r, install-CRAN, eval = FALSE}
-# Install the package
+# Install it from CRAN
 install.packages("rotasym")
-
-# Load package
 library(rotasym)
 ```
 
-Alternatively, get the latest version from GitHub:
-
 ```{r, install-GitHub, eval = FALSE}
-# Install the package
-library(devtools)
-install_github("egarpor/rotasym")
-
-# Load package
+# Alternatively, from GitHub
+library(pak)
+pak("egarpor/rotasym")
 library(rotasym)
 ```
 
@@ -92,7 +83,7 @@ test_rotasym(data = data_0, type = "hyb_vMF")
 
 ## Data application: test for the rotational symmetry of sunspots
 
-The data used in García-Portugués, Paindaveine and Verdebout (2020) is available in the object `sunspot_births`, which is created through the script [sunspots.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R). The code snippet below reproduces the main results in the paper.
+The data used in García-Portugués, Paindaveine and Verdebout (2020) is available in the object `sunspots_births`, which is created through the script [sunspots.R](https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R). The code snippet below reproduces the main results in the paper.
 
 ```{r, sunspots_births, fig.show = 'hold'}
 # Load data

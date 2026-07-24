@@ -12,21 +12,21 @@ d_TM(x, theta, g_scaled, d_V, mu, kappa, log = FALSE)
 r_TM(n, theta, r_V, mu, kappa)
 }
 \arguments{
-\item{x}{locations in \eqn{S^{p-1}} to evaluate the density. Either a
-matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
+\item{x}{locations in \eqn{\mathcal{S}^{p-1}} to evaluate the density. Either
+a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 internally if required (with a \code{warning} message).}
 
 \item{theta}{a unit norm vector of size \code{p} giving the axis of
 rotational symmetry.}
 
-\item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the
-form \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
+\item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
+\cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}
 
 \item{d_V}{the density \eqn{f_V}. In the form
 \code{d_V <- function(v, log = TRUE) {...}}. See examples.}
 
-\item{mu}{the directional mean \eqn{\boldsymbol{\mu}}{\mu} of the vMF
-used in the multivariate signs. A unit-norm vector of length \code{p - 1}.}
+\item{mu}{the directional mean \eqn{\boldsymbol{\mu}} of the vMF used in the
+multivariate signs. A unit-norm vector of length \code{p - 1}.}
 
 \item{kappa}{concentration parameter \eqn{\kappa} of the vMF used in the
 multivariate signs. A nonnegative scalar.}
@@ -36,8 +36,8 @@ normalizing constant) is to be computed.}
 
 \item{n}{sample size, a positive integer.}
 
-\item{r_V}{a function for simulating \eqn{V}. Its first argument must be
-the sample size. See examples.}
+\item{r_V}{a function for simulating \eqn{V}. Its first argument must be the
+sample size. See examples.}
 }
 \value{
 Depending on the function:
@@ -49,12 +49,10 @@ evaluated density at \code{x}.
 }
 \description{
 Density and simulation of the Tangent von Mises--Fisher (TM)
-distribution on
-\eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 2}. The distribution arises
-by considering the
-\link[=tang-norm-decomp]{tangent-normal decomposition} with
-multivariate \link[=cosines-signs]{signs} distributed as a
+distribution on \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+\mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p\ge 2}. The distribution arises
+by considering the \link[=tang-norm-decomp]{tangent-normal decomposition}
+with multivariate \link[=cosines-signs]{signs} distributed as a
 \link[=vMF]{von Mises--Fisher} distribution.
 }
 \details{
@@ -76,11 +74,11 @@ kappa_V <- 2
 # Required functions
 r_V <- function(n) r_g_vMF(n = n, p = p, kappa = kappa_V)
 g_scaled <- function(t, log) {
-  g_vMF(t, p = p - 1, kappa = kappa_V, scaled = TRUE, log = log)
+  g_vMF(t, p = p, kappa = kappa_V, scaled = TRUE, log = log)
 }
 
 # Sample and color according to density
-x <- r_TM(n = n, theta = theta, r_V = r_V, mu = 1, kappa = kappa)
+x <- r_TM(n = n, theta = theta, r_V = r_V, mu = mu, kappa = kappa)
 col <- viridisLite::viridis(n)
 r <- runif(n, 0.95, 1.05) # Radius perturbation to improve visualization
 dens <- d_TM(x = x, theta = theta, g_scaled = g_scaled, mu = mu,
@@ -107,7 +105,7 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              pch = 16, xlab = "", ylab = "", zlab = "",
                              angle = 20)
 
-## A non-vMF angular function: g(t) = 1 - t^2. It is sssociated to the
+## A non-vMF angular function: g(t) = 1 - t^2. It is associated to the
 ## Beta(1/2, (p + 1)/2) distribution.
 
 # Scaled angular function
@@ -135,15 +133,12 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              angle = 20)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
-for rotational symmetry against new classes of hyperspherical distributions.
-\emph{Journal of the American Statistical Association}, 115(532):1873--1887.
-\doi{10.1080/01621459.2019.1665527}
+García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
+optimal tests for rotational symmetry against new classes of hyperspherical
+distributions. \emph{Journal of the American Statistical Association},
+115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 }
 \seealso{
-\code{\link{tang-norm-decomp}},
-\code{\link{tangent-elliptical}}, \code{\link{vMF}}.
-}
-\author{
-Eduardo García-Portugués, Davy Paindaveine, and Thomas Verdebout.
+\code{\link{tang-norm-decomp}}, \code{\link{tangent-elliptical}},
+\code{\link{vMF}}.
 }

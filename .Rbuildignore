@@ -4,8 +4,11 @@
 ^README.*$
 ^TODO$
 ^data-raw$
+^logo$
 ^CRAN-RELEASE$
 ^cran-comments\.md$
 ^LICENSE\.md$
 ^\.github$
 ^CRAN-SUBMISSION$
+^rotasym\.code-workspace$
+^codecov\.yml$
