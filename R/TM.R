@@ -3,35 +3,30 @@
 #' @title Tangent von Mises--Fisher distribution
 #'
 #' @description Density and simulation of the Tangent von Mises--Fisher (TM)
-#' distribution on
-#' \eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-#' S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 2}. The distribution arises
-#' by considering the
-#' \link[=tang-norm-decomp]{tangent-normal decomposition} with
-#' multivariate \link[=cosines-signs]{signs} distributed as a
-#' \link[=vMF]{von Mises--Fisher} distribution.
+#' distribution on \eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in
+#' \mathbb{R}^p:||\mathbf{x}||=1\}}, \eqn{p\ge 2}. The distribution arises by
+#' considering the \link[=tang-norm-decomp]{tangent-normal decomposition} with
+#' multivariate \link[=cosines-signs]{signs} distributed as a \link[=vMF]{von
+#' Mises--Fisher} distribution.
 #'
 #' @inheritParams tang-norm-decomp
-#' @param mu the directional mean \eqn{\boldsymbol{\mu}}{\mu} of the vMF
-#' used in the multivariate signs. A unit-norm vector of length \code{p - 1}.
+#' @param mu the directional mean \eqn{\boldsymbol{\mu}} of the vMF used in the
+#' multivariate signs. A unit-norm vector of length \code{p - 1}.
 #' @param kappa concentration parameter \eqn{\kappa} of the vMF used in the
 #' multivariate signs. A nonnegative scalar.
-#' @return
-#' Depending on the function:
+#' @return Depending on the function:
 #' \itemize{
 #' \item \code{d_TM}: a vector of length \code{nx} or \code{1} with the
 #' evaluated density at \code{x}.
 #' \item \code{r_TM}: a matrix of size \code{c(n, p)} with the random sample.
 #' }
-#' @details
-#' The functions are wrappers for \code{\link{d_tang_norm}} and
-#' \code{\link{r_tang_norm}} with \code{d_U = \link{d_vMF}} and
-#' \code{r_U = \link{r_vMF}}.
-#' @references
-#' García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On optimal tests
-#' for rotational symmetry against new classes of hyperspherical distributions.
-#' \emph{Journal of the American Statistical Association}, 115(532):1873--1887.
-#' \doi{10.1080/01621459.2019.1665527}
+#' @details The functions are wrappers for \code{\link{d_tang_norm}} and
+#' \code{\link{r_tang_norm}} with \code{d_U = \link{d_vMF}} and \code{r_U =
+#' \link{r_vMF}}.
+#' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
+#' optimal tests for rotational symmetry against new classes of hyperspherical
+#' distributions. \emph{Journal of the American Statistical Association},
+#' 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 #' @examples
 #' ## Simulation and density evaluation for p = 2
 #'
@@ -103,8 +98,8 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{tang-norm-decomp}},
-#' \code{\link{tangent-elliptical}}, \code{\link{vMF}}.
+#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{tangent-elliptical}},
+#' \code{\link{vMF}}.
 #' @name tangent-vMF
 #' @aliases TM
 

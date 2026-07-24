@@ -14,8 +14,8 @@ r_unif_sphere(n, p)
 w_p(p, log = FALSE)
 }
 \arguments{
-\item{x}{locations in \eqn{S^{p-1}} to evaluate the density. Either a
-matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
+\item{x}{locations in \eqn{\mathcal{S}^{p-1}} to evaluate the density. Either
+a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 internally if required (with a \code{warning} message).}
 
 \item{log}{flag to indicate if the logarithm of the density (or the
@@ -23,30 +23,29 @@ normalizing constant) is to be computed.}
 
 \item{n}{sample size, a positive integer.}
 
-\item{p}{dimension of the ambient space \eqn{R^p} that contains
-\eqn{S^{p-1}}. A positive integer.}
+\item{p}{dimension of the ambient space \eqn{\mathbb{R}^p} that contains
+\eqn{\mathcal{S}^{p-1}}. A positive integer.}
 }
 \value{
 Depending on the function:
 \itemize{
-\item \code{d_unif_sphere}: a vector of length \code{nx} or \code{1} with
-the evaluated density at \code{x}.
-\item \code{r_unif_sphere}: a matrix of size \code{c(n, p)} with the
-random sample.
-\item \code{w_p}: the surface area of \eqn{S^{p-1}}.
+\item \code{d_unif_sphere}: a vector of length \code{nx} or \code{1} with the
+evaluated density at \code{x}.
+\item \code{r_unif_sphere}: a matrix of size \code{c(n, p)} with the random
+sample.
+\item \code{w_p}: the surface area of \eqn{\mathcal{S}^{p-1}}.
 }
 }
 \description{
 Density and simulation of the uniform distribution on
-\eqn{S^{p-1}:=\{\mathbf{x}\in R^p:||\mathbf{x}||=1\}}{
-S^{p-1} := \{x \in R^p : ||x|| = 1\}}, \eqn{p\ge 1}. The density is just the
-inverse of the surface area of \eqn{S^{p-1}}, given by
-\deqn{\omega_p:=2\pi^{p/2}/\Gamma(p/2).}{
-\omega_p := 2\pi^{p/2} / \Gamma(p/2).}
+\eqn{\mathcal{S}^{p-1}:=\{\mathbf{x}\in \mathbb{R}^p:||\mathbf{x}||=1\}},
+\eqn{p\ge 1}. The density is just the inverse of the surface area of
+\eqn{\mathcal{S}^{p-1}}, given by
+\deqn{\omega_p:=2\pi^{p/2}/\Gamma(p/2).}
 }
 \details{
-If \eqn{p = 1}, then \eqn{S^{0} = \{-1, 1\}} and the "surface area" is
-\eqn{2}. The function \code{w_p} is vectorized on \code{p}.
+If \eqn{p = 1}, then \eqn{\mathcal{S}^{0} = \{-1, 1\}} and the
+"surface area" is \eqn{2}. The function \code{w_p} is vectorized on \code{p}.
 }
 \examples{
 ## Area of S^{p - 1}

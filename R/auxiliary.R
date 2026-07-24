@@ -6,8 +6,8 @@
 #'
 #' @param x observations claimed to have unit norms. Either a matrix of size
 #' \code{c(nx, p)} or a vector of length \code{p}.
-#' @param warnings whether to show warnings if the normalization of
-#' \code{x} happened.
+#' @param warnings whether to show warnings if the normalization of \code{x}
+#' happened.
 #' @return A curated version of \code{x} with unit-norm observations and
 #' possible zeros excluded.
 #' @examples
