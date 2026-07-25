@@ -70,3 +70,8 @@
 * Add full test coverage.
 * Add a package hex sticker logo.
 * Clearer equations in the documentation.
+
+# rotasym 1.3.1
+
+* Return a column matrix, instead of a vector, in `r_vMF` with `p = 1` and `kappa > 0`.
+* More extensive unit tests across dimensions.
