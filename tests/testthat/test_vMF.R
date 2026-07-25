@@ -20,6 +20,20 @@ test_that("vMF density integrates to one and agrees with its sampler", {
 
 })
 
+test_that("vMF projection along the axis follows the cosines distribution", {
+
+  for (p in p_dims[p_dims > 1]) {
+
+    mu <- c(1, rep(0, p - 1))
+    expect_cosines_ks(
+      d = function(x) d_vMF(x = x, mu = mu, kappa = kappa),
+      r = function(n) r_vMF(n = n, mu = mu, kappa = kappa),
+      p = p, seed = 205 + p)
+
+  }
+
+})
+
 test_that("vMF edge cases", {
 
   expect_error(r_vMF(n = 1, mu = c(0, 1), kappa = -1))

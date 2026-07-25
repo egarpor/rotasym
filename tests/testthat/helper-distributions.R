@@ -4,8 +4,8 @@
 p_dims <- c(1, 2, 3, 4, 5, 10)
 p_dims_tang <- p_dims[p_dims >= 2]
 
-# Shared Monte Carlo harness for the distribution tests. Verifies that
-# density integrates to one, the normalizing constant is correct, and the
+# Monte Carlo harness for the distribution tests. Verifies that density
+# integrates to one, the normalizing constant is correct, and the
 # match of density and sampler through E_f[1 / f(X)] = 1 if X ~ f.
 expect_distribution <- function(d, r, p, seed, kernel = NULL, const = NULL,
                                 M = 1e4, tol = 0.1) {
@@ -72,5 +72,35 @@ expect_distribution <- function(d, r, p, seed, kernel = NULL, const = NULL,
   expect_equal(as.numeric(d(X[1, ])),
                as.numeric(d(X[1, , drop = FALSE])),
                info = lab("vector vs. matrix input"))
+
+}
+
+# Kolmogorov-Smirnov test for the distribution of the cosines X'mu
+expect_cosines_ks <- function(d, r, p, seed, n = 1e3, alpha = 0.01,
+                              rel_tol = 1e-8) {
+
+  # Tag the expectations with the dimension, as in expect_distribution()
+  lab <- function(what) paste0("p = ", p, ": ", what)
+
+  # Density of the angle theta = acos(X'mu), free of endpoint singularities
+  d_theta <- function(theta) {
+    x <- cbind(cos(theta), sin(theta),
+               matrix(0, nrow = length(theta), ncol = p - 2))
+    w_p(p = p - 1) * d(x) * sin(theta)^(p - 2)
+  }
+
+  # Cdf of the cosines by numerical integration
+  p_V <- function(t) {
+    sapply(t, function(t_i) {
+      integrate(f = d_theta, lower = acos(pmin(1, pmax(-1, t_i))), upper = pi,
+                rel.tol = rel_tol)$value
+    })
+  }
+
+  # The sampled cosines follow that cdf
+  set.seed(seed)
+  X <- r(n)
+  expect_gt(ks.test(x = X[, 1], y = p_V)$p.value, alpha,
+            label = lab("ks.test on the cosines"))
 
 }
