@@ -180,8 +180,9 @@ r_vMF <- function(n, mu, kappa) {
 
     } else {
 
-      samp <- sample(x = c(-1, 1), size = n, replace = TRUE,
-                     prob = d_vMF(x = cbind(c(-1, 1)), mu = mu, kappa = kappa))
+      samp <- cbind(sample(x = c(-1, 1), size = n, replace = TRUE,
+                           prob = d_vMF(x = cbind(c(-1, 1)), mu = mu,
+                                        kappa = kappa)))
 
     }
 
