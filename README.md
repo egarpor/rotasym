@@ -13,8 +13,8 @@ status](https://github.com/egarpor/rotasym/workflows/test-coverage/badge.svg)](h
 
 ## Overview
 
-Software companion for the paper “*On optimal tests for rotational
-symmetry against new classes of hyperspherical distributions*”
+Software companion for the paper *On optimal tests for rotational
+symmetry against new classes of hyperspherical distributions*
 (García-Portugués, Paindaveine and Verdebout, 2020). It implements the
 proposed tests for rotational symmetry of hyperspherical data and allows
 to replicate the data application presented.
