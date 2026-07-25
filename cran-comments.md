@@ -15,4 +15,6 @@ W  checking whether package ‘rotasym’ can be installed (4s)
 
 ## Comments
 
+Submitted after fixing flaky test in polykde that were raising errors in reverse dependencies checks.
+
 Warning is benign and does not show up in the check_win_devel() checks
