@@ -52,8 +52,8 @@ evaluated density at \code{x}.
 \item \code{c_vMF}: the normalizing constant.
 \item \code{g_vMF}: a vector of size \code{length(t)} with the evaluated
 angular function.
-\item \code{r_g_vMF}: a vector of length \code{n} containing simulated values
-from the cosines density associated to the angular function.
+\item \code{r_g_vMF}: a matrix of size \code{c(n, 1)} containing
+simulated values from the cosines density associated to the angular function.
 }
 }
 \description{
