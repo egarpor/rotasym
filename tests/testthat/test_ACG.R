@@ -19,6 +19,21 @@ test_that("ACG density integrates to one and agrees with its sampler", {
 
 })
 
+test_that("ACG projection along the axis follows the cosines distribution", {
+
+  for (p in p_dims[p_dims > 1]) {
+
+    Lambda <- diag(c((1 + kappa) / (p + kappa), rep(1 / (p + kappa), p - 1)),
+                   nrow = p, ncol = p)
+    expect_cosines_ks(
+      d = function(x) d_ACG(x = x, Lambda = Lambda),
+      r = function(n) r_ACG(n = n, Lambda = Lambda),
+      p = p, seed = 215 + p)
+
+  }
+
+})
+
 test_that("ACG edge cases", {
 
   expect_error(c_ACG(p = 2, Lambda = rbind(c(1, 2), c(0, 1))))
