@@ -56,3 +56,25 @@ test_that("tang_norm edge cases", {
                            d_U = d_unif_sphere))
 
 })
+
+test_that("r_tang_norm agrees with the explicit Gamma_theta construction", {
+
+  thetas <- list(c(1, 0, 0),
+                 c(-1, 0, 0),                  # theta[1] == -1 branch
+                 c(-1, 1, 0, 0) / sqrt(2),
+                 c(2, -1, 0.5, 1) / sqrt(6.25))
+  for (theta in thetas) {
+
+    p <- length(theta)
+    r_V <- function(n) r_g_vMF(n = n, p = p, kappa = kappa_V)
+    r_U <- function(n) r_unif_sphere(n = n, p = p - 1)
+    set.seed(987202226)
+    X <- r_tang_norm(n = 10, theta = theta, r_U = r_U, r_V = r_V)
+    set.seed(987202226)
+    V <- drop(r_V(10))
+    U <- r_U(10) %*% t(Gamma_theta(theta = theta))
+    expect_equal(X, tcrossprod(V, theta) + sqrt(1 - V^2) * U)
+
+  }
+
+})

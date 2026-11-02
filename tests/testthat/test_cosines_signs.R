@@ -59,14 +59,19 @@ test_that("cosines equal the inner product X %*% theta", {
 test_that("signs reuse a supplied Gamma consistently", {
 
   set.seed(8)
-  p <- 3
   n <- 20
-  theta <- c(1, 1, 0) / sqrt(2)
-  X <- r_unif_sphere(n = n, p = p)
-  G <- Gamma_theta(theta = theta)
+  thetas <- list(c(1, 1, 0) / sqrt(2),
+                 c(-1, 0, 0),                  # theta[1] == -1 branch
+                 c(-1, 1, 0, 0) / sqrt(2),
+                 c(2, -1, 0.5, 1) / sqrt(6.25))
+  for (theta in thetas) {
 
-  expect_equal(signs(X = X, theta = theta, Gamma = G),
-               signs(X = X, theta = theta))
+    X <- r_unif_sphere(n = n, p = length(theta))
+    G <- Gamma_theta(theta = theta)
+    expect_equal(signs(X = X, theta = theta, Gamma = G),
+                 signs(X = X, theta = theta))
+
+  }
 
 })
 

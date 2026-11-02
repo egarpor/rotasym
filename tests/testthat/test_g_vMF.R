@@ -45,6 +45,13 @@ test_that("c_vMF is vectorized over kappa and handles kappa = 0", {
 
 })
 
+test_that("c_vMF is finite for large kappa and p", {
+
+  expect_true(all(is.finite(c_vMF(p = c(3, 3, 500), kappa = c(1e6, 1e7, 1),
+                                  log = TRUE))))
+
+})
+
 test_that("Edge cases r_g_vMF", {
 
   expect_error(r_g_vMF(n = 0, p = 3, kappa = 1))

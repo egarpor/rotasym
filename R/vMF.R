@@ -41,7 +41,9 @@
 #' @details \code{r_g_vMF} implements algorithm VM in Wood (1994), except for
 #' \eqn{p = 3}, where the cosines density is the truncated exponential
 #' \eqn{\propto e^{\kappa t}} and is simulated exactly by inverse transform.
-#' \code{c_vMF} is vectorized on \code{p} and \code{kappa}.
+#' \code{c_vMF} is vectorized on \code{p} and \code{kappa}, and is computed with
+#' \code{\link[DirStats]{log_c_vmf}}, which is stable for large \code{p} and
+#' \code{kappa}.
 #' @references Wood, A. T. A. (1994) Simulation of the von Mises Fisher
 #' distribution. \emph{Commun. Stat. Simulat.}, 23(1):157--164.
 #' \doi{10.1080/03610919408813161}
@@ -136,10 +138,10 @@ c_vMF <- function(p, kappa, log = FALSE) {
 
   }
 
-  # Log-constant
-  log_c_vMF <- (0.5 * (p - 2)) * log(kappa) - (0.5 * p) * log(2 * pi) -
-    kappa - log(besselI(nu = 0.5 * (p - 2), x = kappa, expon.scaled = TRUE))
-  log_c_vMF[kappa == 0] <- -w_p(p = p, log = TRUE)
+  # Log-constant, stable for large p and kappa. spline = FALSE keeps the
+  # besselI() values wherever these are finite, and is the fastest option for
+  # the scalar kappa used by d_vMF() and g_vMF()
+  log_c_vMF <- DirStats::log_c_vmf(q = p - 1, kappa = kappa, spline = FALSE)
   return(switch(log + 1, exp(log_c_vMF), log_c_vMF))
 
 }

@@ -1,8 +1,8 @@
 Package: rotasym
 Type: Package
 Title: Tests for Rotational Symmetry on the Hypersphere
-Version: 1.3.1
-Date: 2026-07-25
+Version: 1.4.0
+Date: 2026-10-22
 Authors@R: c(
     person(given = "Eduardo", family = "García-Portugués",
            role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es",
@@ -21,6 +21,8 @@ LazyData: true
 Depends:
     R (>= 3.5.0),
     Rcpp
+Imports:
+    DirStats (>= 1.0.0)
 Suggests:
     dplyr,
     scatterplot3d,
