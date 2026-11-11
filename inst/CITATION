@@ -13,10 +13,11 @@ bibentry(
   year         = year,
   note         = note,
   url          = "https://CRAN.R-project.org/package=rotasym",
+  doi          = "10.32614/CRAN.package.rotasym",
   textVersion  =
   paste(paste0("García-Portugués, E., Paindaveine, D., and Verdebout, T. (", year, ")."),
         "rotasym: Tests for Rotational Symmetry on the Hypersphere.",
-        paste0(note, "."), "https://CRAN.R-project.org/package=rotasym")
+        paste0(note, "."), "https://doi.org/10.32614/CRAN.package.rotasym")
 )
 
 bibentry(
@@ -30,7 +31,7 @@ bibentry(
   volume       = "115",
   number       = "532",
   pages        = "1873--1887",
-  url          = "https://doi.org/10.1080/01621459.2019.1665527",
+  doi          = "10.1080/01621459.2019.1665527",
   textVersion  =
   paste("García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020).",
         "On optimal tests for rotational symmetry against new classes of hyperspherical distributions.",
