@@ -242,10 +242,23 @@ r_tang_norm <- function(n, theta, r_U, r_V) {
   V <- drop(r_V(n))
 
   # Sample multivariate signs
-  U <- r_U(n) %*% t(Gamma_theta(theta = theta))
+  U <- matrix(r_U(n), nrow = n)
+
+  # U Gamma_theta' without forming Gamma_theta, which takes O(p^2) memory:
+  # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1, gives
+  # U Gamma_theta' = (U w_{-1} / w_1) w' - (0, U), and
+  # Gamma_theta = -I_p[, -1] if theta = -e_1 (w = 0)
+  w <- theta
+  w[1] <- w[1] + 1
+  U_Gamma <- -cbind(0, U)
+  if (w[1] != 0) {
+
+    U_Gamma <- U_Gamma + tcrossprod(drop(U %*% w[-1]) / w[1], w)
+
+  }
 
   # Sample by the tangent-normal decomposition (tcrossprod(V, theta) is the
   # outer product with (i, j)-entry V_i * theta_j)
-  return(tcrossprod(V, theta) + sqrt(1 - V * V) * U)
+  return(tcrossprod(V, theta) + sqrt(1 - V * V) * U_Gamma)
 
 }

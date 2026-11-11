@@ -32,7 +32,7 @@
 #' @param theta a unit-norm vector of length \code{p}. Normalized internally if
 #' it does not have unit norm (with a \code{warning} message).
 #' @param Gamma output from \code{Gamma_theta(theta = theta)}. If \code{NULL}
-#' (default), it is computed internally.
+#' (default), it is applied internally.
 #' @param check_X whether to check the unit norms on the rows of \code{X}.
 #' Defaults to \code{FALSE} for performance reasons.
 #' @param eig whether \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is to be
@@ -113,13 +113,6 @@
 #' @export
 signs <- function(X, theta, Gamma = NULL, check_X = FALSE) {
 
-  # Reuse Gamma?
-  if (is.null(Gamma)) {
-
-    Gamma <- Gamma_theta(theta = theta)
-
-  }
-
   # Check unit norms of X
   if (check_X) {
 
@@ -127,8 +120,30 @@ signs <- function(X, theta, Gamma = NULL, check_X = FALSE) {
 
   }
 
+  # Reuse Gamma?
+  if (is.null(Gamma)) {
+
+    # X Gamma_theta without forming Gamma_theta, which takes O(p^2) memory:
+    # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1, gives
+    # X Gamma_theta = (X w / w_1) w_{-1}' - X[, -1], and
+    # Gamma_theta = -I_p[, -1] if theta = -e_1 (w = 0)
+    theta <- check_unit_norm(x = theta, warnings = TRUE)
+    w <- theta
+    w[1] <- w[1] + 1
+    U <- -X[, -1, drop = FALSE]
+    if (w[1] != 0) {
+
+      U <- U + tcrossprod(drop(X %*% w) / w[1], w[-1])
+
+    }
+
+  } else {
+
+    U <- X %*% Gamma
+
+  }
+
   # Compute signs
-  U <- X %*% Gamma
   return(U / sqrt(rowSums(U * U, na.rm = TRUE)))
 
 }

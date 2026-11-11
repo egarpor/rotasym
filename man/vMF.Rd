@@ -78,7 +78,9 @@ c^{\mathrm{vMF}}_{p,\kappa} g(v) (1 - v^2)^{(p-3)/2}}, where
 \code{r_g_vMF} implements algorithm VM in Wood (1994), except for
 \eqn{p = 3}, where the cosines density is the truncated exponential
 \eqn{\propto e^{\kappa t}} and is simulated exactly by inverse transform.
-\code{c_vMF} is vectorized on \code{p} and \code{kappa}.
+\code{c_vMF} is vectorized on \code{p} and \code{kappa}, and is computed with
+\code{\link[DirStats]{log_c_vmf}}, which is stable for large \code{p} and
+\code{kappa}.
 }
 \examples{
 # Simulation and density evaluation for p = 2

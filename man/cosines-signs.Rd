@@ -22,7 +22,8 @@ rows. \code{NA}s are allowed.}
 it does not have unit norm (with a \code{warning} message).}
 
 \item{Gamma}{output from \code{Gamma_theta(theta = theta)}. If \code{NULL}
-(default), it is computed internally.}
+(default), it is applied internally without forming the
+\eqn{p\times(p-1)} matrix.}
 
 \item{check_X}{whether to check the unit norms on the rows of \code{X}.
 Defaults to \code{FALSE} for performance reasons.}
