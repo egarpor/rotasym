@@ -5,7 +5,8 @@ test_that("Gamma_theta is semi-orthogonal (analytic and eigen branches)", {
                  c(0, 1, 0),
                  c(0, 0, 1),
                  c(1, 1, 1) / sqrt(3),
-                 c(-1, 0, 0),                  # theta[1] == -1 branch
+                 c(-1, 0, 0),
+                 c(-cos(1e-7), sin(1e-7), 0),
                  c(-1, 1, 0, 0) / sqrt(2),
                  c(2, -1, 0.5, 1) / sqrt(6.25))
   for (theta in thetas) {
@@ -59,14 +60,24 @@ test_that("cosines equal the inner product X %*% theta", {
 test_that("signs reuse a supplied Gamma consistently", {
 
   set.seed(8)
-  p <- 3
   n <- 20
-  theta <- c(1, 1, 0) / sqrt(2)
-  X <- r_unif_sphere(n = n, p = p)
-  G <- Gamma_theta(theta = theta)
+  thetas <- list(c(-1, 0, 0),
+                 c(1, 1, 0) / sqrt(2),
+                 c(-1, 1, 0, 0) / sqrt(2),
+                 c(2, -1, 0.5, 1) / sqrt(6.25))
+  for (theta in thetas) {
 
-  expect_equal(signs(X = X, theta = theta, Gamma = G),
-               signs(X = X, theta = theta))
+    p <- length(theta)
+    X <- r_unif_sphere(n = n, p = p)
+    X[1, 1] <- NA
+    dimnames(X) <- list(seq_len(n), paste0("x", seq_len(p)))
+    G <- Gamma_theta(theta = theta)
+    expect_equal(signs(X = X, theta = theta, Gamma = G),
+                 signs(X = X, theta = theta))
+    expect_equal(signs(X = X[2, ], theta = theta, Gamma = G),
+                 signs(X = X[2, ], theta = theta))
+
+  }
 
 })
 
@@ -88,5 +99,35 @@ test_that("signs and cosines can check (and normalize) non-unit X", {
   expect_equal(
     suppressWarnings(cosines(X = X_non_unit, theta = theta, check_X = TRUE)),
     cosines(X = X_unit, theta = theta))
+
+})
+
+test_that("signs handles edge cases", {
+
+  expect_error(signs(X = rbind(rep(0.5, 4)), theta = c(-1, 0, 0)))
+  expect_error(signs(X = rbind(rep(0.5, 4)), theta = c(1, 0, 0)))
+
+})
+
+test_that("prod_Gamma_theta agrees with the products by Gamma_theta", {
+
+  set.seed(987202226)
+  thetas <- list(c(-1, 0, 0),
+                 c(1, 1, 0) / sqrt(2),
+                 c(-1, 1, 0, 0) / sqrt(2),
+                 c(2, -1, 0.5, 1) / sqrt(6.25))
+  for (theta in thetas) {
+
+    p <- length(theta)
+    G <- Gamma_theta(theta = theta)
+    X <- matrix(rnorm(5 * p), nrow = 5, ncol = p)
+    Y <- matrix(rnorm(5 * (p - 1)), nrow = 5, ncol = p - 1)
+    expect_equal(prod_Gamma_theta(X = X, theta = theta), X %*% G)
+    expect_equal(prod_Gamma_theta(X = Y, theta = theta, transpose = TRUE),
+                 Y %*% t(G))
+    expect_equal(prod_Gamma_theta(X = X[1, ], theta = theta),
+                 X[1, , drop = FALSE] %*% G)
+
+  }
 
 })

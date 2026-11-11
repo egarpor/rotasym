@@ -28,17 +28,24 @@
 #' where \eqn{\boldsymbol{I}_p} is the identity matrix of dimension \eqn{p}.
 #'
 #' @param X hyperspherical data, a matrix of size \code{c(n, p)} with unit-norm
-#' rows. \code{NA}s are allowed.
+#' rows. \code{NA}s are allowed. For \code{prod_Gamma_theta}, any matrix of
+#' size \code{c(n, p)}, or \code{c(n, p - 1)} if \code{transpose = TRUE}. A
+#' vector is a single observation.
 #' @param theta a unit-norm vector of length \code{p}. Normalized internally if
 #' it does not have unit norm (with a \code{warning} message).
 #' @param Gamma output from \code{Gamma_theta(theta = theta)}. If \code{NULL}
-#' (default), it is applied internally.
+#' (default), the product with \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}
+#' is computed without forming the \eqn{p\times (p-1)} matrix.
 #' @param check_X whether to check the unit norms on the rows of \code{X}.
 #' Defaults to \code{FALSE} for performance reasons.
 #' @param eig whether \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is to be
 #' found using an eigendecomposition of
 #' \eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} (inefficient).
 #' Defaults to \code{FALSE}.
+#' @param transpose multiply by
+#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'} instead of by
+#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}? Defaults to
+#' \code{FALSE}.
 #' @return Depending on the function:
 #' \itemize{
 #' \item \code{cosines}: a vector of length \code{n} with the cosines of
@@ -47,6 +54,9 @@
 #' signs of \code{X}.
 #' \item \code{Gamma_theta}: a projection matrix
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of size \code{c(p, p - 1)}.
+#' \item \code{prod_Gamma_theta}: a matrix of size \code{c(n, p - 1)} with
+#' \code{X \%*\% Gamma_theta(theta = theta)}, or of size \code{c(n, p)} with
+#' \code{X \%*\% t(Gamma_theta(theta = theta))} if \code{transpose = TRUE}.
 #' }
 #' @details Note that the projection matrix
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is \emph{not} unique. In
@@ -69,6 +79,11 @@
 #' \boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} is performed for
 #' determining \eqn{\{\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}}.
 #'
+#' \code{prod_Gamma_theta} computes the products with the
+#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of \code{eig = FALSE}
+#' without forming it, so it takes \eqn{O(np)} memory instead of
+#' \eqn{O(p^2)}.
+#'
 #' If \code{signs} and \code{cosines} are called with \code{X} without unit
 #' norms in the rows, then the results will be spurious. Setting
 #' \code{check_X = TRUE} prevents this from happening.
@@ -80,6 +95,10 @@
 #' # Gamma_theta
 #' theta <- c(0, 1)
 #' Gamma_theta(theta = theta)
+#'
+#' # prod_Gamma_theta gives the same products without forming Gamma_theta
+#' X <- r_unif_sphere(n = 5, p = 2)
+#' prod_Gamma_theta(X = X, theta = theta) - X %*% Gamma_theta(theta = theta)
 #'
 #' # Signs and cosines for p = 2
 #' L <- rbind(c(1, 0.5),
@@ -123,19 +142,7 @@ signs <- function(X, theta, Gamma = NULL, check_X = FALSE) {
   # Reuse Gamma?
   if (is.null(Gamma)) {
 
-    # X Gamma_theta without forming Gamma_theta, which takes O(p^2) memory:
-    # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1, gives
-    # X Gamma_theta = (X w / w_1) w_{-1}' - X[, -1], and
-    # Gamma_theta = -I_p[, -1] if theta = -e_1 (w = 0)
-    theta <- check_unit_norm(x = theta, warnings = TRUE)
-    w <- theta
-    w[1] <- w[1] + 1
-    U <- -X[, -1, drop = FALSE]
-    if (w[1] != 0) {
-
-      U <- U + tcrossprod(drop(X %*% w) / w[1], w[-1])
-
-    }
+    U <- prod_Gamma_theta(X = X, theta = theta)
 
   } else {
 
@@ -189,21 +196,56 @@ Gamma_theta <- function(theta, eig = FALSE) {
 
   } else {
 
-    # Check for theta[1] == -1 for avoid dividing by 0
-    if (theta[1] != -1) {
-
-      theta[1] <- theta[1] + 1
-      Gamma <- (tcrossprod(theta) / theta[1] - I)[, -1, drop = FALSE]
-
-    } else {
-
-      Gamma <- -I[, -1, drop = FALSE]
-
-    }
+    Gamma <- prod_Gamma_theta(X = I, theta = theta)
 
   }
 
   # Return semi-orthogonal matrix
   return(Gamma)
+
+}
+
+
+#' @rdname cosines-signs
+#' @export
+prod_Gamma_theta <- function(X, theta, transpose = FALSE) {
+
+  # Check unit norm of theta
+  theta <- check_unit_norm(x = theta, warnings = TRUE)
+
+  # A vector is a single observation
+  if (is.null(dim(X))) {
+
+    X <- matrix(X, nrow = 1)
+
+  }
+
+  # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1. For theta_1 < 0,
+  # w_1 = 1 + theta_1 = ||theta_{-1}||^2 / (1 - theta_1) avoids the
+  # cancellation that breaks orthogonality for theta near -e_1.
+  w <- theta
+  w[1] <- switch((theta[1] < 0) + 1, 1 + theta[1],
+                 sum(theta[-1]^2) / (1 - theta[1]))
+
+  # a = w / w_1, except for theta = -e_1, where w = 0 and
+  # Gamma_theta = -I_p[, -1].
+  a <- switch((w[1] == 0) + 1, w / w[1], w)
+
+  # X Gamma_theta = (X w) a_{-1}' - X[, -1] and
+  # X Gamma_theta' = (X w_{-1}) a' - (0, X).
+  if (transpose) {
+
+    XG <- tcrossprod(drop(X %*% w[-1]), a) - cbind(0, X)
+
+  } else {
+
+    XG <- tcrossprod(drop(X %*% w), a[-1]) - X[, -1, drop = FALSE]
+
+  }
+
+  # Same dimnames as X %*% Gamma_theta
+  XG <- unname(XG)
+  rownames(XG) <- rownames(X)
+  return(XG)
 
 }

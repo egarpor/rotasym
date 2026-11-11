@@ -96,8 +96,8 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{tangent-vMF}},
-#' \code{\link{ACG}}.
+#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{ACG}},
+#' \code{\link{test_rotasym}}.
 #' @name tangent-elliptical
 #' @aliases TE
 

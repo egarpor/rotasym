@@ -161,9 +161,8 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{Gamma_theta}}, \code{\link{signs}},
-#' \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
-#' \code{\link{vMF}}.
+#' @seealso \code{\link{cosines-signs}}, \code{\link{tangent-elliptical}},
+#' \code{\link{tangent-vMF}}.
 #' @name tang-norm-decomp
 
 
@@ -241,24 +240,17 @@ r_tang_norm <- function(n, theta, r_U, r_V) {
   # Sample cosines
   V <- drop(r_V(n))
 
-  # Sample multivariate signs
-  U <- matrix(r_U(n), nrow = n)
+  # Sample multivariate signs (a vector is a sample with p = 2 or n = 1)
+  U <- r_U(n)
+  if (is.null(dim(U))) {
 
-  # U Gamma_theta' without forming Gamma_theta, which takes O(p^2) memory:
-  # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1, gives
-  # U Gamma_theta' = (U w_{-1} / w_1) w' - (0, U), and
-  # Gamma_theta = -I_p[, -1] if theta = -e_1 (w = 0)
-  w <- theta
-  w[1] <- w[1] + 1
-  U_Gamma <- -cbind(0, U)
-  if (w[1] != 0) {
-
-    U_Gamma <- U_Gamma + tcrossprod(drop(U %*% w[-1]) / w[1], w)
+    U <- matrix(U, ncol = p - 1)
 
   }
 
   # Sample by the tangent-normal decomposition (tcrossprod(V, theta) is the
   # outer product with (i, j)-entry V_i * theta_j)
-  return(tcrossprod(V, theta) + sqrt(1 - V * V) * U_Gamma)
+  return(tcrossprod(V, theta) + sqrt(1 - V * V) *
+           prod_Gamma_theta(X = U, theta = theta, transpose = TRUE))
 
 }

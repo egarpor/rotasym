@@ -136,6 +136,6 @@ distributions. \emph{Journal of the American Statistical Association},
 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 }
 \seealso{
-\code{\link{tang-norm-decomp}}, \code{\link{tangent-vMF}},
-\code{\link{ACG}}.
+\code{\link{tang-norm-decomp}}, \code{\link{ACG}},
+\code{\link{test_rotasym}}.
 }

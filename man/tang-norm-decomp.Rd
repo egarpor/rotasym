@@ -193,7 +193,6 @@ distributions. \emph{Journal of the American Statistical Association},
 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 }
 \seealso{
-\code{\link{Gamma_theta}}, \code{\link{signs}},
-\code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
-\code{\link{vMF}}.
+\code{\link{cosines-signs}}, \code{\link{tangent-elliptical}},
+\code{\link{tangent-vMF}}.
 }

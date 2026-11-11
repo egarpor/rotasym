@@ -177,7 +177,7 @@
 #'               col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
 #'                             (2 * pi) < pi, 2, 3), type = "l")
 #' }
-#' @seealso \code{\link{test_rotasym}}.
+#' @seealso \code{\link{test_rotasym}}, \code{\link{cosines-signs}}.
 #' @name sunspots
 
 

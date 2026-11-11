@@ -259,7 +259,7 @@
 #' test_rotasym(data = sunspots_22$X, type = "hyb_vMF",
 #'              theta = spherical_loc_PCA)
 #' @seealso \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
-#' \code{\link{spherical_mean}}.
+#' \code{\link{estimators}}.
 #' @export
 test_rotasym <- function(data, theta = spherical_mean,
                          type = c("sc", "loc", "loc_vMF", "hyb", "hyb_vMF")[5],

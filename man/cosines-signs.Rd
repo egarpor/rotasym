@@ -5,6 +5,7 @@
 \alias{signs}
 \alias{cosines}
 \alias{Gamma_theta}
+\alias{prod_Gamma_theta}
 \title{Cosines and multivariate signs of a hyperspherical sample about a
 given location}
 \usage{
@@ -13,17 +14,21 @@ signs(X, theta, Gamma = NULL, check_X = FALSE)
 cosines(X, theta, check_X = FALSE)
 
 Gamma_theta(theta, eig = FALSE)
+
+prod_Gamma_theta(X, theta, transpose = FALSE)
 }
 \arguments{
 \item{X}{hyperspherical data, a matrix of size \code{c(n, p)} with unit-norm
-rows. \code{NA}s are allowed.}
+rows. \code{NA}s are allowed. For \code{prod_Gamma_theta}, any matrix of
+size \code{c(n, p)}, or \code{c(n, p - 1)} if \code{transpose = TRUE}. A
+vector is a single observation.}
 
 \item{theta}{a unit-norm vector of length \code{p}. Normalized internally if
 it does not have unit norm (with a \code{warning} message).}
 
 \item{Gamma}{output from \code{Gamma_theta(theta = theta)}. If \code{NULL}
-(default), it is applied internally without forming the
-\eqn{p\times(p-1)} matrix.}
+(default), the product with \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}
+is computed without forming the \eqn{p\times (p-1)} matrix.}
 
 \item{check_X}{whether to check the unit norms on the rows of \code{X}.
 Defaults to \code{FALSE} for performance reasons.}
@@ -32,6 +37,11 @@ Defaults to \code{FALSE} for performance reasons.}
 found using an eigendecomposition of
 \eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} (inefficient).
 Defaults to \code{FALSE}.}
+
+\item{transpose}{multiply by
+\eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'} instead of by
+\eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}? Defaults to
+\code{FALSE}.}
 }
 \value{
 Depending on the function:
@@ -42,6 +52,9 @@ Depending on the function:
 signs of \code{X}.
 \item \code{Gamma_theta}: a projection matrix
 \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of size \code{c(p, p - 1)}.
+\item \code{prod_Gamma_theta}: a matrix of size \code{c(n, p - 1)} with
+\code{X \%*\% Gamma_theta(theta = theta)}, or of size \code{c(n, p)} with
+\code{X \%*\% t(Gamma_theta(theta = theta))} if \code{transpose = TRUE}.
 }
 }
 \description{
@@ -91,6 +104,11 @@ If \code{eig = TRUE}, then a much more expensive eigendecomposition of
 \boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} is performed for
 determining \eqn{\{\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}}.
 
+\code{prod_Gamma_theta} computes the products with the
+\eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of \code{eig = FALSE}
+without forming it, so it takes \eqn{O(np)} memory instead of
+\eqn{O(p^2)}.
+
 If \code{signs} and \code{cosines} are called with \code{X} without unit
 norms in the rows, then the results will be spurious. Setting
 \code{check_X = TRUE} prevents this from happening.
@@ -99,6 +117,10 @@ norms in the rows, then the results will be spurious. Setting
 # Gamma_theta
 theta <- c(0, 1)
 Gamma_theta(theta = theta)
+
+# prod_Gamma_theta gives the same products without forming Gamma_theta
+X <- r_unif_sphere(n = 5, p = 2)
+prod_Gamma_theta(X = X, theta = theta) - X \%*\% Gamma_theta(theta = theta)
 
 # Signs and cosines for p = 2
 L <- rbind(c(1, 0.5),

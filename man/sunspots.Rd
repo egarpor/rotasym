@@ -198,6 +198,6 @@ sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical Society},
 465(2):1259--1273. \doi{10.1093/mnras/stw2667}
 }
 \seealso{
-\code{\link{test_rotasym}}.
+\code{\link{test_rotasym}}, \code{\link{cosines-signs}}.
 }
 \keyword{datasets}

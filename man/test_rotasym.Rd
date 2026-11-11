@@ -286,5 +286,5 @@ distributions. \emph{Journal of the American Statistical Association},
 }
 \seealso{
 \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
-\code{\link{spherical_mean}}.
+\code{\link{estimators}}.
 }

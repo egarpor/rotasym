@@ -98,8 +98,8 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{tangent-elliptical}},
-#' \code{\link{vMF}}.
+#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{vMF}},
+#' \code{\link{test_rotasym}}.
 #' @name tangent-vMF
 #' @aliases TM
 

@@ -138,8 +138,11 @@ c_vMF <- function(p, kappa, log = FALSE) {
 
   }
 
-  # Log-constant, stable for large p and kappa
-  log_c_vMF <- DirStats::log_c_vmf(q = p - 1, kappa = kappa)
+  # Recycle p and kappa, as DirStats::log_c_vmf() only recycles scalars
+  n <- max(length(p), length(kappa))
+  p <- rep_len(p, n)
+  kappa <- rep_len(kappa, n)
+  log_c_vMF <- DirStats::log_c_vmf(q = p - 1, kappa = kappa, spline = FALSE)
   return(switch(log + 1, exp(log_c_vMF), log_c_vMF))
 
 }
