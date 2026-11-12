@@ -79,7 +79,7 @@
 # rotasym 1.4.0
 
 * Update `c_vMF()` to use `DirStats::log_c_vmf()`, which is stable for large `p` and `kappa`.
-* Add `DirStats` to `Imports`.
+* Add `DirStats` to `Imports`, with a minimum version 1.0.0.
 * Add `prod_Gamma_theta()` to multiply by `Gamma_theta()` or its transpose without forming it, so `signs()` and `r_tang_norm()` save the O(p^2) memory of `Gamma_theta()`.
 * Fix the loss of orthogonality of `Gamma_theta()` for `theta` close to `-e_1`.
 * Fix `d_vMF()`, `d_TM()`, and `d_tang_norm()` returning a one-column matrix instead of a vector.
