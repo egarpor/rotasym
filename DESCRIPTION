@@ -7,8 +7,10 @@ Authors@R: c(
     person(given = "Eduardo", family = "García-Portugués",
            role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es",
            comment = c(ORCID = "0000-0002-9224-4111")),
-    person(given = "Davy", family = "Paindaveine", role = "aut"),
-    person(given = "Thomas", family = "Verdebout", role = "aut")
+    person(given = "Davy", family = "Paindaveine", role = "aut",
+           comment = c(ORCID = "0000-0002-6758-4261")),
+    person(given = "Thomas", family = "Verdebout", role = "aut",
+           comment = c(ORCID = "0000-0002-3277-9587"))
     )
 Description: Implementation of the tests for rotational symmetry on the
     hypersphere proposed in García-Portugués, Paindaveine and Verdebout (2020)
@@ -34,3 +36,4 @@ URL: https://github.com/egarpor/rotasym
 BugReports: https://github.com/egarpor/rotasym/issues
 Encoding: UTF-8
 RoxygenNote: 7.3.3
+Config/testthat/edition: 3
