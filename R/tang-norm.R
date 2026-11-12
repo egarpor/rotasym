@@ -36,7 +36,7 @@
 #' \eqn{\omega_{p-1}} is the surface area of \eqn{\mathcal{S}^{p-2}}.
 #'
 #' @inheritParams unif
-#' @param theta a unit norm vector of size \code{p} giving the axis of
+#' @param theta a unit-norm vector of length \code{p} giving the axis of
 #' rotational symmetry.
 #' @param g_scaled the \emph{scaled} angular density \eqn{c_g g}. In the form
 #' \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.
@@ -66,10 +66,13 @@
 #'
 #' The normalizing constants and densities are computed through log-scales for
 #' numerical accuracy.
-#' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
-#' optimal tests for rotational symmetry against new classes of hyperspherical
+#' @references
+#' García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal
+#' tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},
 #' 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
+#' @seealso \code{\link{cosines-signs}}, \code{\link{tangent-elliptical}},
+#' \code{\link{tangent-vMF}}.
 #' @examples
 #' ## Simulation and density evaluation for p = 2
 #'
@@ -161,8 +164,6 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{cosines-signs}}, \code{\link{tangent-elliptical}},
-#' \code{\link{tangent-vMF}}.
 #' @name tang-norm-decomp
 
 
@@ -216,7 +217,7 @@ d_tang_norm <- function(x, theta, g_scaled, d_V, d_U, log = FALSE) {
   }
 
   # Density by the tangent-normal decomposition
-  log_dens <- log_d_V_theta_x + d_U(u_theta_x, log = TRUE)
+  log_dens <- drop(log_d_V_theta_x + d_U(u_theta_x, log = TRUE))
   return(switch(log + 1, exp(log_dens), log_dens))
 
 }
@@ -249,7 +250,7 @@ r_tang_norm <- function(n, theta, r_U, r_V) {
   }
 
   # Sample by the tangent-normal decomposition (tcrossprod(V, theta) is the
-  # outer product with (i, j)-entry V_i * theta_j)
+  # outer product with (i, j)-entry V_i * theta_j).
   return(tcrossprod(V, theta) + sqrt(1 - V * V) *
            prod_Gamma_theta(X = U, theta = theta, transpose = TRUE))
 

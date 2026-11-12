@@ -24,16 +24,18 @@
 #' vector of length \code{p}.
 #' @param kappa concentration parameter \eqn{\kappa} of the vMF. A nonnegative
 #' scalar. Can be a vector for \code{c_vMF}.
+#' @param log compute the logarithm of the density, the normalizing constant, or
+#' the angular function? Defaults to \code{FALSE}.
 #' @param t a vector with values in \eqn{[-1, 1]}.
-#' @param scaled whether to scale the angular function by the von Mises--Fisher
-#' normalizing constant. Defaults to \code{TRUE}.
+#' @param scaled scale the angular function by the von Mises--Fisher
+#' normalizing constant? Defaults to \code{TRUE}.
 #' @return Depending on the function:
 #' \itemize{
 #' \item \code{d_vMF}: a vector of length \code{nx} or \code{1} with the
 #' evaluated density at \code{x}.
 #' \item \code{r_vMF}: a matrix of size \code{c(n, p)} with the random sample.
 #' \item \code{c_vMF}: the normalizing constant.
-#' \item \code{g_vMF}: a vector of size \code{length(t)} with the evaluated
+#' \item \code{g_vMF}: a vector of length \code{length(t)} with the evaluated
 #' angular function.
 #' \item \code{r_g_vMF}: a matrix of size \code{c(n, 1)} containing
 #' simulated values from the cosines density associated to the angular function.
@@ -44,9 +46,12 @@
 #' \code{c_vMF} is vectorized on \code{p} and \code{kappa}, and is computed with
 #' \code{\link[DirStats]{log_c_vmf}}, which is stable for large \code{p} and
 #' \code{kappa}.
-#' @references Wood, A. T. A. (1994) Simulation of the von Mises Fisher
-#' distribution. \emph{Commun. Stat. Simulat.}, 23(1):157--164.
-#' \doi{10.1080/03610919408813161}
+#' @references
+#' Wood, A. T. A. (1994). Simulation of the von Mises Fisher distribution.
+#' \emph{Communications in Statistics -- Simulation and Computation},
+#' 23(1):157--164. \doi{10.1080/03610919408813161}
+#' @seealso \code{\link{tangent-vMF}}, \code{\link{unif}},
+#' \code{\link{tang-norm-decomp}}.
 #' @examples
 #' # Simulation and density evaluation for p = 2
 #' mu <- c(0, 1)
@@ -92,8 +97,6 @@
 #' for (p in 3:M) {
 #'   lines(t, g_tilde(t = t, p = p, kappa = kappa), col = col[p])
 #' }
-#' @seealso \code{\link{tangent-vMF}}, \code{\link{unif}},
-#' \code{\link{tang-norm-decomp}}.
 #' @name vMF
 
 
@@ -121,7 +124,7 @@ d_vMF <- function(x, mu, kappa, log = FALSE) {
   }
 
   # Density
-  log_dens <- c_vMF(p = p, kappa = kappa, log = TRUE) + kappa * x %*% mu
+  log_dens <- c_vMF(p = p, kappa = kappa, log = TRUE) + kappa * drop(x %*% mu)
   return(switch(log + 1, exp(log_dens), log_dens))
 
 }

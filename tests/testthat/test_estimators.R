@@ -55,3 +55,11 @@ test_that("spherical_loc_PCA recovers the axis for a girdle sample", {
   expect_equal(abs(sum(est * theta)), 1, tolerance = 1e-6)
 
 })
+
+test_that("spherical_loc_PCA ignores incomplete rows", {
+
+  # A single complete row must not collapse the data matrix
+  X <- rbind(c(1, 0, 0))
+  expect_equal(spherical_loc_PCA(rbind(X, c(NA, 0, 1))), spherical_loc_PCA(X))
+
+})

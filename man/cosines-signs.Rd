@@ -30,13 +30,13 @@ it does not have unit norm (with a \code{warning} message).}
 (default), the product with \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}
 is computed without forming the \eqn{p\times (p-1)} matrix.}
 
-\item{check_X}{whether to check the unit norms on the rows of \code{X}.
-Defaults to \code{FALSE} for performance reasons.}
+\item{check_X}{check the unit norms on the rows of \code{X}? Defaults to
+\code{FALSE} for performance reasons.}
 
-\item{eig}{whether \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is to be
-found using an eigendecomposition of
-\eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} (inefficient).
-Defaults to \code{FALSE}.}
+\item{eig}{find \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} using an
+eigendecomposition of
+\eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'}
+(inefficient)? Defaults to \code{FALSE}.}
 
 \item{transpose}{multiply by
 \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'} instead of by
@@ -53,8 +53,10 @@ signs of \code{X}.
 \item \code{Gamma_theta}: a projection matrix
 \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of size \code{c(p, p - 1)}.
 \item \code{prod_Gamma_theta}: a matrix of size \code{c(n, p - 1)} with
-\code{X \%*\% Gamma_theta(theta = theta)}, or of size \code{c(n, p)} with
-\code{X \%*\% t(Gamma_theta(theta = theta))} if \code{transpose = TRUE}.
+\eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}, or of size
+\code{c(n, p)} with
+\eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'} if
+\code{transpose = TRUE}.
 }
 }
 \description{
@@ -104,10 +106,13 @@ If \code{eig = TRUE}, then a much more expensive eigendecomposition of
 \boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} is performed for
 determining \eqn{\{\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}}.
 
-\code{prod_Gamma_theta} computes the products with the
-\eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of \code{eig = FALSE}
-without forming it, so it takes \eqn{O(np)} memory instead of
-\eqn{O(p^2)}.
+\code{prod_Gamma_theta} computes the products
+\eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} and
+\eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'}, with the
+\eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of \code{eig = FALSE},
+without forming \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}. This saves
+the \eqn{O(p^2)} memory of the \eqn{p\times (p-1)} matrix, which is relevant
+for large dimensions \eqn{p}.
 
 If \code{signs} and \code{cosines} are called with \code{X} without unit
 norms in the rows, then the results will be spurious. Setting
@@ -147,7 +152,7 @@ hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
 par(old_par)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
+García-Portugués, E., Paindaveine, D., Verdebout, T. (2020). On
 optimal tests for rotational symmetry against new classes of hyperspherical
 distributions. \emph{Journal of the American Statistical Association},
 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}

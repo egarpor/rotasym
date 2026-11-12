@@ -21,8 +21,8 @@ internally if required (with a \code{warning} message).}
 \item{Lambda}{the shape matrix \eqn{\boldsymbol{\Lambda}} of the ACG. A
 symmetric and positive definite matrix of size \code{c(p, p)}.}
 
-\item{log}{flag to indicate if the logarithm of the density (or the
-normalizing constant) is to be computed.}
+\item{log}{compute the logarithm of the density (or the normalizing
+constant)? Defaults to \code{FALSE}.}
 
 \item{p}{dimension of the ambient space \eqn{\mathbb{R}^p} that contains
 \eqn{\mathcal{S}^{p-1}}. A positive integer.}

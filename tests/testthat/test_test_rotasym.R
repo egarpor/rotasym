@@ -104,6 +104,20 @@ test_that("test_rotasym reuses supplied U and V", {
 
 })
 
+test_that("test_rotasym returns the cosines of data for every type", {
+
+  set.seed(42)
+  theta <- c(1, rep(0, 3))
+  X <- r_vMF(n = 100, mu = theta, kappa = 1)
+  for (ty in c("sc", "loc", "loc_vMF", "hyb", "hyb_vMF")) {
+
+    expect_equal(test_rotasym(X, theta = theta, type = ty)$V,
+                 cosines(X = X, theta = theta), info = ty)
+
+  }
+
+})
+
 test_that("Fisher's method combines the scatter and location p-values", {
 
   set.seed(987202226)

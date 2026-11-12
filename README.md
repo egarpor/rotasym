@@ -42,7 +42,7 @@ of the package, `test_rotasym`, with simulated data. More examples are
 available in `?test_rotasym`.
 
 ``` r
-# Sample data from a vMF (rotational symmetric distribution about mu)
+# Sample data from a vMF (rotationally symmetric distribution about mu)
 n <- 200
 p <- 10
 theta <- c(1, rep(0, p - 1))

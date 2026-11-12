@@ -36,12 +36,12 @@
 #' @param Gamma output from \code{Gamma_theta(theta = theta)}. If \code{NULL}
 #' (default), the product with \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}
 #' is computed without forming the \eqn{p\times (p-1)} matrix.
-#' @param check_X whether to check the unit norms on the rows of \code{X}.
-#' Defaults to \code{FALSE} for performance reasons.
-#' @param eig whether \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is to be
-#' found using an eigendecomposition of
-#' \eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} (inefficient).
-#' Defaults to \code{FALSE}.
+#' @param check_X check the unit norms on the rows of \code{X}? Defaults to
+#' \code{FALSE} for performance reasons.
+#' @param eig find \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} using an
+#' eigendecomposition of
+#' \eqn{\boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'}
+#' (inefficient)? Defaults to \code{FALSE}.
 #' @param transpose multiply by
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'} instead of by
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}? Defaults to
@@ -55,8 +55,10 @@
 #' \item \code{Gamma_theta}: a projection matrix
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of size \code{c(p, p - 1)}.
 #' \item \code{prod_Gamma_theta}: a matrix of size \code{c(n, p - 1)} with
-#' \code{X \%*\% Gamma_theta(theta = theta)}, or of size \code{c(n, p)} with
-#' \code{X \%*\% t(Gamma_theta(theta = theta))} if \code{transpose = TRUE}.
+#' \eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}, or of size
+#' \code{c(n, p)} with
+#' \eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'} if
+#' \code{transpose = TRUE}.
 #' }
 #' @details Note that the projection matrix
 #' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} is \emph{not} unique. In
@@ -79,18 +81,23 @@
 #' \boldsymbol{I}_p-\boldsymbol{\theta}\boldsymbol{\theta}'} is performed for
 #' determining \eqn{\{\boldsymbol{v}_1,\ldots,\boldsymbol{v}_{p-1}\}}.
 #'
-#' \code{prod_Gamma_theta} computes the products with the
-#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of \code{eig = FALSE}
-#' without forming it, so it takes \eqn{O(np)} memory instead of
-#' \eqn{O(p^2)}.
+#' \code{prod_Gamma_theta} computes the products
+#' \eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} and
+#' \eqn{\boldsymbol{X}\boldsymbol{\Gamma}_{\boldsymbol{\theta}}'}, with the
+#' \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}} of \code{eig = FALSE},
+#' without forming \eqn{\boldsymbol{\Gamma}_{\boldsymbol{\theta}}}. This saves
+#' the \eqn{O(p^2)} memory of the \eqn{p\times (p-1)} matrix, which is relevant
+#' for large dimensions \eqn{p}.
 #'
 #' If \code{signs} and \code{cosines} are called with \code{X} without unit
 #' norms in the rows, then the results will be spurious. Setting
 #' \code{check_X = TRUE} prevents this from happening.
-#' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
-#' optimal tests for rotational symmetry against new classes of hyperspherical
+#' @references
+#' García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal
+#' tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},
 #' 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
+#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{test_rotasym}}.
 #' @examples
 #' # Gamma_theta
 #' theta <- c(0, 1)
@@ -123,8 +130,6 @@
 #' hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
 #'      xlab = expression(x * "'" * theta))
 #' par(old_par)
-#' @seealso \code{\link{tang-norm-decomp}}, \code{\link{test_rotasym}}.
-#' @export
 #' @name cosines-signs
 
 
@@ -188,7 +193,7 @@ Gamma_theta <- function(theta, eig = FALSE) {
   I <- diag(1, nrow = p, ncol = p)
 
   # Matrix obtained by eigen decomposition or by an analytical orthonormal
-  # completion of theta (much faster)
+  # completion of theta (much faster).
   if (eig) {
 
     Gamma <- eigen(I - tcrossprod(theta),

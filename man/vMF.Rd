@@ -30,8 +30,8 @@ vector of length \code{p}.}
 \item{kappa}{concentration parameter \eqn{\kappa} of the vMF. A nonnegative
 scalar. Can be a vector for \code{c_vMF}.}
 
-\item{log}{flag to indicate if the logarithm of the density (or the
-normalizing constant) is to be computed.}
+\item{log}{compute the logarithm of the density, the normalizing constant, or
+the angular function? Defaults to \code{FALSE}.}
 
 \item{p}{dimension of the ambient space \eqn{\mathbb{R}^p} that contains
 \eqn{\mathcal{S}^{p-1}}. A positive integer.}
@@ -40,8 +40,8 @@ normalizing constant) is to be computed.}
 
 \item{t}{a vector with values in \eqn{[-1, 1]}.}
 
-\item{scaled}{whether to scale the angular function by the von Mises--Fisher
-normalizing constant. Defaults to \code{TRUE}.}
+\item{scaled}{scale the angular function by the von Mises--Fisher
+normalizing constant? Defaults to \code{TRUE}.}
 }
 \value{
 Depending on the function:
@@ -50,7 +50,7 @@ Depending on the function:
 evaluated density at \code{x}.
 \item \code{r_vMF}: a matrix of size \code{c(n, p)} with the random sample.
 \item \code{c_vMF}: the normalizing constant.
-\item \code{g_vMF}: a vector of size \code{length(t)} with the evaluated
+\item \code{g_vMF}: a vector of length \code{length(t)} with the evaluated
 angular function.
 \item \code{r_g_vMF}: a matrix of size \code{c(n, 1)} containing
 simulated values from the cosines density associated to the angular function.
@@ -129,9 +129,9 @@ for (p in 3:M) {
 }
 }
 \references{
-Wood, A. T. A. (1994) Simulation of the von Mises Fisher
-distribution. \emph{Commun. Stat. Simulat.}, 23(1):157--164.
-\doi{10.1080/03610919408813161}
+Wood, A. T. A. (1994). Simulation of the von Mises Fisher
+distribution. \emph{Communications in Statistics -- Simulation and
+Computation}, 23(1):157--164. \doi{10.1080/03610919408813161}
 }
 \seealso{
 \code{\link{tangent-vMF}}, \code{\link{unif}},

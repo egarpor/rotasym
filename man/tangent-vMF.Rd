@@ -16,7 +16,7 @@ r_TM(n, theta, r_V, mu, kappa)
 a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 internally if required (with a \code{warning} message).}
 
-\item{theta}{a unit norm vector of size \code{p} giving the axis of
+\item{theta}{a unit-norm vector of length \code{p} giving the axis of
 rotational symmetry.}
 
 \item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
@@ -31,8 +31,8 @@ multivariate signs. A unit-norm vector of length \code{p - 1}.}
 \item{kappa}{concentration parameter \eqn{\kappa} of the vMF used in the
 multivariate signs. A nonnegative scalar.}
 
-\item{log}{flag to indicate if the logarithm of the density (or the
-normalizing constant) is to be computed.}
+\item{log}{compute the logarithm of the density (or the normalizing
+constant)? Defaults to \code{FALSE}.}
 
 \item{n}{sample size, a positive integer.}
 
@@ -133,7 +133,7 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              angle = 20)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
+García-Portugués, E., Paindaveine, D., Verdebout, T. (2020). On
 optimal tests for rotational symmetry against new classes of hyperspherical
 distributions. \emph{Journal of the American Statistical Association},
 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}

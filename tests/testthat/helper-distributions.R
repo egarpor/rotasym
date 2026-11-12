@@ -68,6 +68,7 @@ expect_distribution <- function(d, r, p, seed, kernel = NULL, const = NULL,
   expect_equal(sqrt(rowSums(X^2)), rep(1, M), tolerance = 1e-10,
                info = lab("unit norm of the sample"))
   expect_true(all(d(X) > 0), info = lab("positive density"))
+  expect_null(dim(d(X)), info = lab("density is a vector"))
   expect_equal(d(X, log = TRUE), log(d(X)), info = lab("log-density"))
   expect_equal(as.numeric(d(X[1, ])),
                as.numeric(d(X[1, , drop = FALSE])),
