@@ -129,9 +129,9 @@ for (p in 3:M) {
 }
 }
 \references{
-Wood, A. T. A. (1994). Simulation of the von Mises Fisher
-distribution. \emph{Communications in Statistics -- Simulation and
-Computation}, 23(1):157--164. \doi{10.1080/03610919408813161}
+Wood, A. T. A. (1994). Simulation of the von Mises Fisher distribution.
+\emph{Communications in Statistics -- Simulation and Computation},
+23(1):157--164. \doi{10.1080/03610919408813161}
 }
 \seealso{
 \code{\link{tangent-vMF}}, \code{\link{unif}},

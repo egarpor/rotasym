@@ -152,8 +152,8 @@ hist(cosines(X = X, theta = theta), prob = TRUE, main = "Cosines",
 par(old_par)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2020). On
-optimal tests for rotational symmetry against new classes of hyperspherical
+García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal
+tests for rotational symmetry against new classes of hyperspherical
 distributions. \emph{Journal of the American Statistical Association},
 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 }
