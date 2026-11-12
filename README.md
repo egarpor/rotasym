@@ -185,7 +185,7 @@ example("sunspots_births")
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #> snspt_> # color) tend to appear at higher latitudes, gradually decreasing to the
-#> snspt_> # equator as the solar cycle advances (yellow color)
+#> snspt_> # equator as the solar cycle advances (yellow color).
 #> snspt_> 
 #> snspt_> # Estimation of the density of the cosines
 #> snspt_> V <- cosines(X = sp_bir_23$X_bir, theta = c(0, 0, 1))
@@ -231,7 +231,7 @@ example("sunspots_births")
 #> 
 #> snspt_> # Computation the level set of a kernel density estimator that contains
 #> snspt_> # at least 1 - alpha of the probability (kde stands for an object
-#> snspt_> # containing the output of density(x = data))
+#> snspt_> # containing the output of density(x = data)).
 #> snspt_> kde_level_set <- function(kde, data, alpha) {
 #> snspt_+ 
 #> snspt_+   # Estimate c from alpha
@@ -279,7 +279,7 @@ example("sunspots_births")
 #> snspt_> sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
 #> 
 #> snspt_> # Plot births and deaths associated to the 23rd cycle, and color according
-#> snspt_> # to movement direction of sunspots
+#> snspt_> # to movement direction of sunspots.
 #> snspt_> sc <- scatterplot3d::scatterplot3d(sp_23$X_bir, xlim = c(-1, 1),
 #> snspt_+                                    ylim = c(-1, 1), zlim = c(-1, 1),
 #> snspt_+                                    color = 1, cex.symbols = 0.1,
