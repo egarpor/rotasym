@@ -1,14 +1,16 @@
 Package: rotasym
 Type: Package
 Title: Tests for Rotational Symmetry on the Hypersphere
-Version: 1.3.1
-Date: 2026-07-25
+Version: 1.4.0
+Date: 2026-11-11
 Authors@R: c(
     person(given = "Eduardo", family = "García-Portugués",
            role = c("aut", "cre"), email = "edgarcia@est-econ.uc3m.es",
            comment = c(ORCID = "0000-0002-9224-4111")),
-    person(given = "Davy", family = "Paindaveine", role = "aut"),
-    person(given = "Thomas", family = "Verdebout", role = "aut")
+    person(given = "Davy", family = "Paindaveine", role = "aut",
+           comment = c(ORCID = "0000-0002-6758-4261")),
+    person(given = "Thomas", family = "Verdebout", role = "aut",
+           comment = c(ORCID = "0000-0002-3277-9587"))
     )
 Description: Implementation of the tests for rotational symmetry on the
     hypersphere proposed in García-Portugués, Paindaveine and Verdebout (2020)
@@ -21,13 +23,17 @@ LazyData: true
 Depends:
     R (>= 3.5.0),
     Rcpp
+Imports:
+    DirStats (>= 1.0.0)
 Suggests:
     dplyr,
     scatterplot3d,
     testthat (>= 3.0.0),
-    viridisLite
+    viridisLite,
+    withr
 LinkingTo: Rcpp, RcppArmadillo
 URL: https://github.com/egarpor/rotasym
 BugReports: https://github.com/egarpor/rotasym/issues
 Encoding: UTF-8
 RoxygenNote: 7.3.3
+Config/testthat/edition: 3

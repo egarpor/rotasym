@@ -3,17 +3,18 @@
 #' @title Estimators for the axis of rotational symmetry \eqn{\boldsymbol\theta}
 #'
 #' @description Estimation of the axis of rotational symmetry
-#' \eqn{\boldsymbol{\theta}} of a rotational symmetric unit-norm random vector
-#' \eqn{\boldsymbol{X}} in \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
+#' \eqn{\boldsymbol{\theta}} of a rotationally symmetric unit-norm random
+#' vector \eqn{\boldsymbol{X}} in \eqn{\mathcal{S}^{p-1}:=\{\boldsymbol{x}\in
 #' \mathbb{R}^p:\|\boldsymbol{x}\|=1\}}, \eqn{p \ge 2}, from a hyperspherical
 #' sample \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}}.
+#'
 #' @inheritParams test_rotasym
 #' @return A vector of length \code{p} with an estimate for
 #' \eqn{\boldsymbol{\theta}}.
 #' @details The \code{spherical_mean} estimator computes the sample mean of
-#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm
-#' (if the norm is different from zero). It estimates consistently
-#' \eqn{\boldsymbol{\theta}} for rotational symmetric models based on
+#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm,
+#' with an error if the norm is zero. It estimates consistently
+#' \eqn{\boldsymbol{\theta}} for rotationally symmetric models based on
 #' \link[=tang-norm-decomp]{angular functions} \eqn{g} that are monotone
 #' increasing.
 #'
@@ -25,10 +26,12 @@
 #' unique multiplicity of the expectation of
 #' \eqn{\boldsymbol{X}\boldsymbol{X}'}. Its use is recommended if the
 #' rotationally symmetric data is not unimodal.
-#' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
-#' optimal tests for rotational symmetry against new classes of hyperspherical
+#' @references
+#' García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal
+#' tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},
 #' 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
+#' @seealso \code{\link{test_rotasym}}, \code{\link{cosines-signs}}.
 #' @examples
 #' # Sample from a vMF
 #' n <- 200
@@ -52,7 +55,6 @@
 #' theta_PCA <- spherical_loc_PCA(data)
 #' sqrt(sum((theta - theta_mean)^2))
 #' sqrt(sum((theta - theta_PCA)^2)) # Better suited in this case
-#' @seealso \code{\link{test_rotasym}}.
 #' @name estimators
 
 
@@ -60,22 +62,21 @@
 #' @export
 spherical_mean <- function(data) {
 
+  # Remove NA's
+  data <- data[complete.cases(data), , drop = FALSE]
+
   # Check if data is spherical
   data <- check_unit_norm(x = data, warnings = TRUE)
 
   # Standardize spherical mean
-  mu <- colMeans(data, na.rm = TRUE)
+  mu <- colMeans(data)
   norm <- sqrt(sum(mu * mu))
   if (norm < sqrt(.Machine$double.eps)) {
 
-    warning("The directional mean is exactly zero")
-
-  } else {
-
-    mu <- mu / norm
+    stop("The directional mean is zero, so theta cannot be estimated.")
 
   }
-  return(mu)
+  return(mu / norm)
 
 }
 
@@ -85,7 +86,7 @@ spherical_mean <- function(data) {
 spherical_loc_PCA <- function(data) {
 
   # Remove NA's
-  data <- data[complete.cases(data), ]
+  data <- data[complete.cases(data), , drop = FALSE]
 
   # Check if data is spherical
   data <- check_unit_norm(x = data, warnings = TRUE)

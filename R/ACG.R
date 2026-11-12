@@ -32,9 +32,11 @@
 #'
 #' \code{c_ACG} is vectorized on \code{p}. If \eqn{p = 1}, then the ACG is the
 #' uniform distribution in the set \eqn{\{-1, 1\}}.
-#' @references Tyler, D. E. (1987). Statistical analysis for the angular central
-#' Gaussian distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
+#' @references
+#' Tyler, D. E. (1987). Statistical analysis for the angular central Gaussian
+#' distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
 #' \doi{10.1093/biomet/74.3.579}
+#' @seealso \code{\link{tangent-elliptical}}, \code{\link{unif}}.
 #' @examples
 #' # Simulation and density evaluation for p = 2
 #' Lambda <- diag(c(5, 1))
@@ -55,7 +57,6 @@
 #'                              zlim = c(-1, 1), color = col[rank(dens)],
 #'                              pch = 16, xlab = "", ylab = "", zlab = "",
 #'                              angle = 20)
-#' @seealso \code{\link{tangent-elliptical}}, \code{\link{unif}}.
 #' @name ACG
 
 
@@ -110,7 +111,7 @@ c_ACG <- function(p, Lambda, log = FALSE) {
   }
 
   # Log-determinant using Cholesky decomposition (generates an error if Lambda
-  # is not positive definite)
+  # is not positive definite).
   log_det <- 2 * sum(log(diag(chol(Lambda))))
   log_c_ACG <- - (w_p(p = p, log = TRUE) + 0.5 * log_det)
   return(switch(log + 1, exp(log_c_ACG), log_c_ACG))

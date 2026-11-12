@@ -18,7 +18,8 @@
 #' \describe{
 #'   \item{NOAA}{NOAA identifier of the group of sunspots, a factor.}
 #'   \item{date}{UTC date, as \code{\link[base:DateTimeClasses]{POSIXct}}, of
-#'   the first observation of a group of sunspots.}
+#'   the first (\code{sunspots_births}) or last (\code{sunspots_deaths})
+#'   observation of a group of sunspots.}
 #'   \item{cycle}{\href{https://en.wikipedia.org/wiki/List_of_solar_cycles}{
 #'   solar cycle} in which the group of sunspots was observed.}
 #'   \item{total_area}{total whole spot area of the group, measured in
@@ -53,21 +54,24 @@
 #'   \item Relabel the NOAA identifier for the sunspot group for records before
 #'   1974, prefixing the "GPR" string. Otherwise, very different groups of
 #'   sunspots from the two catalogs may share the same identifier.
-#'   \item Keep only the first row of each NOAA instance, the first-ever
-#'   observation of each sunspot group.
+#'   \item Keep only the first (births) or last (deaths) row of each NOAA
+#'   instance, that is, the first-ever or last-ever observation of each
+#'   sunspot group.
 #' }
 #' The script performing the preprocessing is available at
 #' \href{https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R}{
 #' \code{sunspots.R}}
 #' @source \url{http://fenyi.solarobs.epss.hun-ren.hu}
-#' @references Baranyi, T., Győri, L., Ludmány, A. (2016) On-line tools for
-#' solar data compiled at the Debrecen observatory and their extensions with the
-#' Greenwich sunspot data. \emph{Solar Physics}, 291(9--10):3081--3102.
+#' @references
+#' Baranyi, T., Győri, L., and Ludmány, A. (2016). On-line tools for solar data
+#' compiled at the Debrecen observatory and their extensions with the Greenwich
+#' sunspot data. \emph{Solar Physics}, 291(9--10):3081--3102.
 #' \doi{10.1007/s11207-016-0930-1}
 #'
-#' Győri, L., Ludmány, A., Baranyi, T. (2019) Comparative analysis of Debrecen
-#' sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical Society},
-#' 465(2):1259--1273. \doi{10.1093/mnras/stw2667}
+#' Győri, L., Ludmány, A., and Baranyi, T. (2017). Comparative analysis of
+#' Debrecen sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical
+#' Society}, 465(2):1259--1273. \doi{10.1093/mnras/stw2667}
+#' @seealso \code{\link{test_rotasym}}, \code{\link{cosines-signs}}.
 #' @examples
 #' # Load births data of the 23rd cycle
 #' data("sunspots_births")
@@ -91,7 +95,7 @@
 #'                              ylab = "", zlab = "", angle = 30)
 #' # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #' # color) tend to appear at higher latitudes, gradually decreasing to the
-#' # equator as the solar cycle advances (yellow color)
+#' # equator as the solar cycle advances (yellow color).
 #'
 #' # Estimation of the density of the cosines
 #' V <- cosines(X = sp_bir_23$X_bir, theta = c(0, 0, 1))
@@ -124,7 +128,7 @@
 #'
 #' # Computation the level set of a kernel density estimator that contains
 #' # at least 1 - alpha of the probability (kde stands for an object
-#' # containing the output of density(x = data))
+#' # containing the output of density(x = data)).
 #' kde_level_set <- function(kde, data, alpha) {
 #'
 #'   # Estimate c from alpha
@@ -165,7 +169,7 @@
 #' sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
 #'
 #' # Plot births and deaths associated to the 23rd cycle, and color according
-#' # to movement direction of sunspots
+#' # to movement direction of sunspots.
 #' sc <- scatterplot3d::scatterplot3d(sp_23$X_bir, xlim = c(-1, 1),
 #'                                    ylim = c(-1, 1), zlim = c(-1, 1),
 #'                                    color = 1, cex.symbols = 0.1,
@@ -177,13 +181,14 @@
 #'               col = ifelse((sp_23$theta_bir[i] - sp_23$theta_dea[i]) %%
 #'                             (2 * pi) < pi, 2, 3), type = "l")
 #' }
-#' @seealso \code{\link{test_rotasym}}.
 #' @name sunspots
 
 
 #' @rdname sunspots
+#' @format NULL
 "sunspots_births"
 
 
 #' @rdname sunspots
+#' @format NULL
 "sunspots_deaths"

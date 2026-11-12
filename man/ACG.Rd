@@ -21,8 +21,8 @@ internally if required (with a \code{warning} message).}
 \item{Lambda}{the shape matrix \eqn{\boldsymbol{\Lambda}} of the ACG. A
 symmetric and positive definite matrix of size \code{c(p, p)}.}
 
-\item{log}{flag to indicate if the logarithm of the density (or the
-normalizing constant) is to be computed.}
+\item{log}{compute the logarithm of the density (or the normalizing
+constant)? Defaults to \code{FALSE}.}
 
 \item{p}{dimension of the ambient space \eqn{\mathbb{R}^p} that contains
 \eqn{\mathcal{S}^{p-1}}. A positive integer.}
@@ -83,8 +83,8 @@ scatterplot3d::scatterplot3d(x, xlim = c(-1, 1), ylim = c(-1, 1),
                              angle = 20)
 }
 \references{
-Tyler, D. E. (1987). Statistical analysis for the angular central
-Gaussian distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
+Tyler, D. E. (1987). Statistical analysis for the angular central Gaussian
+distribution on the sphere. \emph{Biometrika}, 74(3):579--589.
 \doi{10.1093/biomet/74.3.579}
 }
 \seealso{

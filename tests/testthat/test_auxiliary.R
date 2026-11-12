@@ -33,6 +33,13 @@ test_that("check_unit_norm warns about excluded zero observations", {
 
 })
 
+test_that("check_unit_norm excludes zero rows silently if warnings = FALSE", {
+
+  expect_no_warning(check_unit_norm(rbind(c(0, 0), c(2, 0)),
+                                    warnings = FALSE))
+
+})
+
 test_that("check_unit_norm propagates NA rows", {
 
   out <- suppressWarnings(check_unit_norm(rbind(c(1, 0), c(NA, 1), c(2, 0))))

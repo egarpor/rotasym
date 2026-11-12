@@ -10,8 +10,8 @@ check_unit_norm(x, warnings = TRUE)
 \item{x}{observations claimed to have unit norms. Either a matrix of size
 \code{c(nx, p)} or a vector of length \code{p}.}
 
-\item{warnings}{whether to show warnings if the normalization of \code{x}
-happened.}
+\item{warnings}{show warnings if \code{x} is normalized or if zero
+observations are excluded? Defaults to \code{TRUE}.}
 }
 \value{
 A curated version of \code{x} with unit-norm observations and

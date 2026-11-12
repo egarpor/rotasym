@@ -13,15 +13,21 @@ test_that("spherical_mean returns a unit vector aligned with the axis", {
 
 })
 
-test_that("spherical_mean warns when the directional mean is zero", {
+test_that("spherical_mean errors when the directional mean is zero", {
 
   p <- 4
   theta <- c(1, rep(0, p - 1))
   set.seed(51)
   A <- r_vMF(n = 100, mu = theta, kappa = 5)
-  # Exactly antipodal data has a directional mean of exactly zero
   X <- rbind(A, -A)
-  expect_warning(spherical_mean(X), "zero")
+  expect_error(spherical_mean(X), "zero")
+
+})
+
+test_that("spherical_mean ignores incomplete rows", {
+
+  X <- rbind(c(1, 0, 0), c(0, 1, 0))
+  expect_equal(spherical_mean(rbind(X, c(NA, 0, 1))), spherical_mean(X))
 
 })
 
@@ -53,5 +59,13 @@ test_that("spherical_loc_PCA recovers the axis for a girdle sample", {
 
   expect_length(est, p)
   expect_equal(abs(sum(est * theta)), 1, tolerance = 1e-6)
+
+})
+
+test_that("spherical_loc_PCA ignores incomplete rows", {
+
+  # A single complete row must not collapse the data matrix
+  X <- rbind(c(1, 0, 0))
+  expect_equal(spherical_loc_PCA(rbind(X, c(NA, 0, 1))), spherical_loc_PCA(X))
 
 })

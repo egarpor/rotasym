@@ -8,6 +8,7 @@ status](https://github.com/egarpor/rotasym/workflows/R-CMD-check/badge.svg)](htt
 status](https://github.com/egarpor/rotasym/workflows/test-coverage/badge.svg)](https://github.com/egarpor/rotasym/actions)
 [![](https://codecov.io/gh/egarpor/rotasym/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egarpor/rotasym)
 [![](https://www.r-pkg.org/badges/version/rotasym?color=green)](https://cran.r-project.org/package=rotasym)
+[![](https://img.shields.io/badge/doi-10.32614/CRAN.package.rotasym-blue.svg)](https://doi.org/10.32614/CRAN.package.rotasym)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rotasym)](https://cran.r-project.org/package=rotasym)
 [![](http://cranlogs.r-pkg.org/badges/last-month/rotasym)](https://cran.r-project.org/package=rotasym)
 
@@ -41,7 +42,7 @@ of the package, `test_rotasym`, with simulated data. More examples are
 available in `?test_rotasym`.
 
 ``` r
-# Sample data from a vMF (rotational symmetric distribution about mu)
+# Sample data from a vMF (rotationally symmetric distribution about mu)
 n <- 200
 p <- 10
 theta <- c(1, rep(0, p - 1))
@@ -184,7 +185,7 @@ example("sunspots_births")
 #> 
 #> snspt_> # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 #> snspt_> # color) tend to appear at higher latitudes, gradually decreasing to the
-#> snspt_> # equator as the solar cycle advances (yellow color)
+#> snspt_> # equator as the solar cycle advances (yellow color).
 #> snspt_> 
 #> snspt_> # Estimation of the density of the cosines
 #> snspt_> V <- cosines(X = sp_bir_23$X_bir, theta = c(0, 0, 1))
@@ -230,7 +231,7 @@ example("sunspots_births")
 #> 
 #> snspt_> # Computation the level set of a kernel density estimator that contains
 #> snspt_> # at least 1 - alpha of the probability (kde stands for an object
-#> snspt_> # containing the output of density(x = data))
+#> snspt_> # containing the output of density(x = data)).
 #> snspt_> kde_level_set <- function(kde, data, alpha) {
 #> snspt_+ 
 #> snspt_+   # Estimate c from alpha
@@ -278,7 +279,7 @@ example("sunspots_births")
 #> snspt_> sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
 #> 
 #> snspt_> # Plot births and deaths associated to the 23rd cycle, and color according
-#> snspt_> # to movement direction of sunspots
+#> snspt_> # to movement direction of sunspots.
 #> snspt_> sc <- scatterplot3d::scatterplot3d(sp_23$X_bir, xlim = c(-1, 1),
 #> snspt_+                                    ylim = c(-1, 1), zlim = c(-1, 1),
 #> snspt_+                                    color = 1, cex.symbols = 0.1,

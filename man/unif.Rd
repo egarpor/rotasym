@@ -18,8 +18,8 @@ w_p(p, log = FALSE)
 a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 internally if required (with a \code{warning} message).}
 
-\item{log}{flag to indicate if the logarithm of the density (or the
-normalizing constant) is to be computed.}
+\item{log}{compute the logarithm of the density (or the normalizing
+constant)? Defaults to \code{FALSE}.}
 
 \item{n}{sample size, a positive integer.}
 
@@ -70,7 +70,7 @@ barplot(table(x) / n)
 head(d_unif_sphere(x))
 
 # p = 2
-x <- r_unif_sphere(n = n, p = 3)
+x <- r_unif_sphere(n = n, p = 2)
 plot(x)
 head(d_unif_sphere(x))
 

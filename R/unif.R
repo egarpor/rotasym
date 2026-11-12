@@ -14,8 +14,8 @@
 #' @param n sample size, a positive integer.
 #' @param p dimension of the ambient space \eqn{\mathbb{R}^p} that contains
 #' \eqn{\mathcal{S}^{p-1}}. A positive integer.
-#' @param log flag to indicate if the logarithm of the density (or the
-#' normalizing constant) is to be computed.
+#' @param log compute the logarithm of the density (or the normalizing
+#' constant)? Defaults to \code{FALSE}.
 #' @return Depending on the function:
 #' \itemize{
 #' \item \code{d_unif_sphere}: a vector of length \code{nx} or \code{1} with the
@@ -26,6 +26,8 @@
 #' }
 #' @details If \eqn{p = 1}, then \eqn{\mathcal{S}^{0} = \{-1, 1\}} and the
 #' "surface area" is \eqn{2}. The function \code{w_p} is vectorized on \code{p}.
+#' @seealso \code{\link{vMF}}, \code{\link{ACG}},
+#' \code{\link{tang-norm-decomp}}.
 #' @examples
 #' ## Area of S^{p - 1}
 #'
@@ -49,7 +51,7 @@
 #' head(d_unif_sphere(x))
 #'
 #' # p = 2
-#' x <- r_unif_sphere(n = n, p = 3)
+#' x <- r_unif_sphere(n = n, p = 2)
 #' plot(x)
 #' head(d_unif_sphere(x))
 #'
@@ -59,8 +61,6 @@
 #'                              zlim = c(-1, 1), pch = 16, xlab = "", ylab = "",
 #'                              zlab = "", angle = 20)
 #' head(d_unif_sphere(x))
-#' @seealso \code{\link{vMF}}, \code{\link{ACG}},
-#' \code{\link{tang-norm-decomp}}.
 #' @name unif
 
 

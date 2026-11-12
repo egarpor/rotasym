@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 .r_g_vMF_Cpp <- function(n, p, kappa) {
-    .Call('_rotasym_r_g_vMF_Cpp', PACKAGE = 'rotasym', n, p, kappa)
+    .Call(`_rotasym_r_g_vMF_Cpp`, n, p, kappa)
 }
 

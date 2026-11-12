@@ -14,16 +14,17 @@ test_rotasym(
 )
 }
 \arguments{
-\item{data}{hyperspherical data, a matrix of size \code{c(n, p)} with unit
-norm rows. Normalized internally if any row does not have unit norm (with a
-\code{warning} message). \code{NA}s are ignored.}
+\item{data}{hyperspherical data, a matrix of size \code{c(n, p)} with
+unit-norm rows. Normalized internally if any row does not have unit norm
+(with a \code{warning} message). \code{NA}s are ignored.}
 
-\item{theta}{either a unit norm vector of size \code{p} giving the axis of
+\item{theta}{either a unit-norm vector of length \code{p} giving the axis of
 rotational symmetry (for the specified-\eqn{\boldsymbol{\theta}} case) or a
 function that implements an estimator \eqn{\hat{\boldsymbol{\theta}}} of
 \eqn{\boldsymbol{\theta}} (for the unspecified-\eqn{\boldsymbol{\theta}}
-case). The default calls the \code{\link{spherical_mean}} function. See
-examples.}
+case). The default calls the \code{\link{spherical_mean}} function. A vector
+is normalized internally if it does not have unit norm (with a
+\code{warning} message). See examples.}
 
 \item{type}{a character string (case insensitive) indicating the type of test
 to conduct:
@@ -45,15 +46,14 @@ statistics \eqn{Q_{\boldsymbol{\theta}}^{\mathrm{sc}}} and
 }
 See the details below for further explanations of the tests.}
 
-\item{Fisher}{if \code{TRUE}, then Fisher's method is employed to aggregate
-the scatter and location tests in the hybrid test, see details below.
-Otherwise, the hybrid statistic is the sum of the scatter and location
-statistics. Defaults to \code{FALSE}.}
+\item{Fisher}{use Fisher's method to aggregate the scatter and location tests
+in the hybrid test? Otherwise, the hybrid statistic is the sum of the scatter
+and location statistics. See details below. Defaults to \code{FALSE}.}
 
 \item{U}{\emph{multivariate signs} of \code{data}, a matrix of size
 \code{c(n, p - 1)}. Computed if \code{NULL} (the default).}
 
-\item{V}{\emph{cosines} of \code{data}, a vector of size \code{n}. Computed
+\item{V}{\emph{cosines} of \code{data}, a vector of length \code{n}. Computed
 if \code{NULL} (the default).}
 }
 \value{
@@ -77,7 +77,7 @@ random vector \eqn{\boldsymbol{X}} in
 \eqn{\boldsymbol{\theta}\in \mathcal{S}^{p-1}}, from a hyperspherical sample
 \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}}.
 
-The vector \eqn{\boldsymbol{X}} is said to be rotational symmetric about
+The vector \eqn{\boldsymbol{X}} is said to be rotationally symmetric about
 \eqn{\boldsymbol{\theta}} if the distributions of \eqn{\boldsymbol{OX}} and
 \eqn{\boldsymbol{X}} coincide, where \eqn{\boldsymbol{O}} is any
 \eqn{p\times p} rotation matrix that fixes \eqn{\boldsymbol{\theta}}, i.e.,
@@ -150,7 +150,7 @@ rotational symmetry. Therefore, the tests are not consistent against
 \examples{
 ## Rotational symmetry holds
 
-# Sample data from a vMF (rotational symmetric distribution about mu)
+# Sample data from a vMF (rotationally symmetric distribution about mu)
 n <- 200
 p <- 10
 theta <- c(1, rep(0, p - 1))
@@ -177,9 +177,9 @@ test_rotasym(data = data_0, type = "hyb_vMF", Fisher = TRUE)
 
 ## Rotational symmetry does not hold
 
-# Sample non-rotational symmetric data from a tangent-vMF distribution
+# Sample non-rotationally symmetric data from a tangent-vMF distribution.
 # The scatter test is blind to these deviations, while the location tests
-# are optimal
+# are optimal.
 n <- 200
 p <- 10
 theta <- c(1, rep(0, p - 1))
@@ -209,9 +209,9 @@ test_rotasym(data = data_1, type = "hyb", Fisher = TRUE) # Warning
 test_rotasym(data = data_1, type = "hyb_vMF")
 test_rotasym(data = data_1, type = "hyb_vMF", Fisher = TRUE)
 
-# Sample non-rotational symmetric data from a tangent-elliptical distribution
-# The location tests are blind to these deviations, while the
-# scatter test is optimal
+# Sample non-rotationally symmetric data from a tangent-elliptical
+# distribution. The location tests are blind to these deviations, while the
+# scatter test is optimal.
 n <- 200
 p <- 10
 theta <- c(1, rep(0, p - 1))
@@ -279,12 +279,12 @@ test_rotasym(data = sunspots_22$X, type = "hyb_vMF",
              theta = spherical_loc_PCA)
 }
 \references{
-García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
-optimal tests for rotational symmetry against new classes of hyperspherical
+García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal
+tests for rotational symmetry against new classes of hyperspherical
 distributions. \emph{Journal of the American Statistical Association},
 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
 }
 \seealso{
 \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
-\code{\link{spherical_mean}}.
+\code{\link{estimators}}.
 }

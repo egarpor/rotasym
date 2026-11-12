@@ -11,7 +11,8 @@ A data frame with 51303 rows and 7 variables:
 \describe{
   \item{NOAA}{NOAA identifier of the group of sunspots, a factor.}
   \item{date}{UTC date, as \code{\link[base:DateTimeClasses]{POSIXct}}, of
-  the first observation of a group of sunspots.}
+  the first (\code{sunspots_births}) or last (\code{sunspots_deaths})
+  observation of a group of sunspots.}
   \item{cycle}{\href{https://en.wikipedia.org/wiki/List_of_solar_cycles}{
   solar cycle} in which the group of sunspots was observed.}
   \item{total_area}{total whole spot area of the group, measured in
@@ -23,8 +24,6 @@ A data frame with 51303 rows and 7 variables:
   \item{phi}{mean latitude angle \eqn{\phi \in [-\pi/2, \pi/2)} of the group
   position.}
 }
-
-An object of class \code{data.frame} with 51303 rows and 7 columns.
 }
 \source{
 \url{http://fenyi.solarobs.epss.hun-ren.hu}
@@ -70,8 +69,9 @@ The data has been preprocessed using the following pipeline:
   \item Relabel the NOAA identifier for the sunspot group for records before
   1974, prefixing the "GPR" string. Otherwise, very different groups of
   sunspots from the two catalogs may share the same identifier.
-  \item Keep only the first row of each NOAA instance, the first-ever
-  observation of each sunspot group.
+  \item Keep only the first (births) or last (deaths) row of each NOAA
+  instance, that is, the first-ever or last-ever observation of each
+  sunspot group.
 }
 The script performing the preprocessing is available at
 \href{https://github.com/egarpor/rotasym/blob/master/data-raw/sunspots.R}{
@@ -100,7 +100,7 @@ scatterplot3d::scatterplot3d(sp_bir_23$X_bir, xlim = c(-1, 1),
                              ylab = "", zlab = "", angle = 30)
 # Spörer's law: sunspots at the beginning of the solar cycle (dark blue
 # color) tend to appear at higher latitudes, gradually decreasing to the
-# equator as the solar cycle advances (yellow color)
+# equator as the solar cycle advances (yellow color).
 
 # Estimation of the density of the cosines
 V <- cosines(X = sp_bir_23$X_bir, theta = c(0, 0, 1))
@@ -133,7 +133,7 @@ lines(kde2 <- density(x = V2, bw = h2, n = 2^13, from = -1, to = 1),
 
 # Computation the level set of a kernel density estimator that contains
 # at least 1 - alpha of the probability (kde stands for an object
-# containing the output of density(x = data))
+# containing the output of density(x = data)).
 kde_level_set <- function(kde, data, alpha) {
 
   # Estimate c from alpha
@@ -174,7 +174,7 @@ sp_23 <- dplyr::full_join(sp_bir_23, sp_dea_23, by = "NOAA",
 sp_23 <- sp_23[sp_23$date_bir != sp_23$date_dea, ]
 
 # Plot births and deaths associated to the 23rd cycle, and color according
-# to movement direction of sunspots
+# to movement direction of sunspots.
 sc <- scatterplot3d::scatterplot3d(sp_23$X_bir, xlim = c(-1, 1),
                                    ylim = c(-1, 1), zlim = c(-1, 1),
                                    color = 1, cex.symbols = 0.1,
@@ -188,16 +188,16 @@ for (i in seq_len(nrow(sp_23))) {
 }
 }
 \references{
-Baranyi, T., Győri, L., Ludmány, A. (2016) On-line tools for
-solar data compiled at the Debrecen observatory and their extensions with the
-Greenwich sunspot data. \emph{Solar Physics}, 291(9--10):3081--3102.
+Baranyi, T., Győri, L., and Ludmány, A. (2016). On-line tools for solar data
+compiled at the Debrecen observatory and their extensions with the Greenwich
+sunspot data. \emph{Solar Physics}, 291(9--10):3081--3102.
 \doi{10.1007/s11207-016-0930-1}
 
-Győri, L., Ludmány, A., Baranyi, T. (2019) Comparative analysis of Debrecen
-sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical Society},
-465(2):1259--1273. \doi{10.1093/mnras/stw2667}
+Győri, L., Ludmány, A., and Baranyi, T. (2017). Comparative analysis of
+Debrecen sunspot catalogues. \emph{Monthly Notices of the Royal Astronomical
+Society}, 465(2):1259--1273. \doi{10.1093/mnras/stw2667}
 }
 \seealso{
-\code{\link{test_rotasym}}.
+\code{\link{test_rotasym}}, \code{\link{cosines-signs}}.
 }
 \keyword{datasets}

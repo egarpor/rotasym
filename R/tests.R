@@ -9,21 +9,22 @@
 #' \eqn{\boldsymbol{\theta}\in \mathcal{S}^{p-1}}, from a hyperspherical sample
 #' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}}.
 #'
-#' The vector \eqn{\boldsymbol{X}} is said to be rotational symmetric about
+#' The vector \eqn{\boldsymbol{X}} is said to be rotationally symmetric about
 #' \eqn{\boldsymbol{\theta}} if the distributions of \eqn{\boldsymbol{OX}} and
 #' \eqn{\boldsymbol{X}} coincide, where \eqn{\boldsymbol{O}} is any
 #' \eqn{p\times p} rotation matrix that fixes \eqn{\boldsymbol{\theta}}, i.e.,
 #' \eqn{\boldsymbol{O}\boldsymbol{\theta}=\boldsymbol{\theta}}.
 #'
-#' @param data hyperspherical data, a matrix of size \code{c(n, p)} with unit
-#' norm rows. Normalized internally if any row does not have unit norm (with a
-#' \code{warning} message). \code{NA}s are ignored.
-#' @param theta either a unit norm vector of size \code{p} giving the axis of
+#' @param data hyperspherical data, a matrix of size \code{c(n, p)} with
+#' unit-norm rows. Normalized internally if any row does not have unit norm
+#' (with a \code{warning} message). \code{NA}s are ignored.
+#' @param theta either a unit-norm vector of length \code{p} giving the axis of
 #' rotational symmetry (for the specified-\eqn{\boldsymbol{\theta}} case) or a
 #' function that implements an estimator \eqn{\hat{\boldsymbol{\theta}}} of
 #' \eqn{\boldsymbol{\theta}} (for the unspecified-\eqn{\boldsymbol{\theta}}
-#' case). The default calls the \code{\link{spherical_mean}} function. See
-#' examples.
+#' case). The default calls the \code{\link{spherical_mean}} function. A vector
+#' is normalized internally if it does not have unit norm (with a
+#' \code{warning} message). See examples.
 #' @param type a character string (case insensitive) indicating the type of test
 #' to conduct:
 #' \itemize{
@@ -43,13 +44,12 @@
 #' \eqn{Q_{\mathrm{vMF}}^{\mathrm{loc}}}.
 #' }
 #' See the details below for further explanations of the tests.
-#' @param Fisher if \code{TRUE}, then Fisher's method is employed to aggregate
-#' the scatter and location tests in the hybrid test, see details below.
-#' Otherwise, the hybrid statistic is the sum of the scatter and location
-#' statistics. Defaults to \code{FALSE}.
+#' @param Fisher use Fisher's method to aggregate the scatter and location tests
+#' in the hybrid test? Otherwise, the hybrid statistic is the sum of the scatter
+#' and location statistics. See details below. Defaults to \code{FALSE}.
 #' @param U \emph{multivariate signs} of \code{data}, a matrix of size
 #' \code{c(n, p - 1)}. Computed if \code{NULL} (the default).
-#' @param V \emph{cosines} of \code{data}, a vector of size \code{n}. Computed
+#' @param V \emph{cosines} of \code{data}, a vector of length \code{n}. Computed
 #' if \code{NULL} (the default).
 #' @return An object of the \code{htest} class with the following elements:
 #' \itemize{
@@ -124,14 +124,17 @@
 #' Finally, recall that the tests are designed to test \emph{implications} of
 #' rotational symmetry. Therefore, the tests are not consistent against
 #' \emph{all} types of alternatives to rotational symmetry.
-#' @references García-Portugués, E., Paindaveine, D., Verdebout, T. (2020) On
-#' optimal tests for rotational symmetry against new classes of hyperspherical
+#' @references
+#' García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020). On optimal
+#' tests for rotational symmetry against new classes of hyperspherical
 #' distributions. \emph{Journal of the American Statistical Association},
 #' 115(532):1873--1887. \doi{10.1080/01621459.2019.1665527}
+#' @seealso \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
+#' \code{\link{estimators}}.
 #' @examples
 #' ## Rotational symmetry holds
 #'
-#' # Sample data from a vMF (rotational symmetric distribution about mu)
+#' # Sample data from a vMF (rotationally symmetric distribution about mu)
 #' n <- 200
 #' p <- 10
 #' theta <- c(1, rep(0, p - 1))
@@ -158,9 +161,9 @@
 #'
 #' ## Rotational symmetry does not hold
 #'
-#' # Sample non-rotational symmetric data from a tangent-vMF distribution
+#' # Sample non-rotationally symmetric data from a tangent-vMF distribution.
 #' # The scatter test is blind to these deviations, while the location tests
-#' # are optimal
+#' # are optimal.
 #' n <- 200
 #' p <- 10
 #' theta <- c(1, rep(0, p - 1))
@@ -190,9 +193,9 @@
 #' test_rotasym(data = data_1, type = "hyb_vMF")
 #' test_rotasym(data = data_1, type = "hyb_vMF", Fisher = TRUE)
 #'
-#' # Sample non-rotational symmetric data from a tangent-elliptical distribution
-#' # The location tests are blind to these deviations, while the
-#' # scatter test is optimal
+#' # Sample non-rotationally symmetric data from a tangent-elliptical
+#' # distribution. The location tests are blind to these deviations, while the
+#' # scatter test is optimal.
 #' n <- 200
 #' p <- 10
 #' theta <- c(1, rep(0, p - 1))
@@ -258,8 +261,6 @@
 #'              theta = spherical_loc_PCA)
 #' test_rotasym(data = sunspots_22$X, type = "hyb_vMF",
 #'              theta = spherical_loc_PCA)
-#' @seealso \code{\link{tangent-elliptical}}, \code{\link{tangent-vMF}},
-#' \code{\link{spherical_mean}}.
 #' @export
 test_rotasym <- function(data, theta = spherical_mean,
                          type = c("sc", "loc", "loc_vMF", "hyb", "hyb_vMF")[5],
@@ -305,8 +306,8 @@ test_rotasym <- function(data, theta = spherical_mean,
 
   }
 
-  # Compute V's
-  if (type == "loc_vmf" && is.null(V)) {
+  # Compute V's (always, as they are returned)
+  if (is.null(V)) {
 
     V <- cosines(X = data, theta = theta, check_X = FALSE)
 
@@ -320,7 +321,7 @@ test_rotasym <- function(data, theta = spherical_mean,
   if (type == "sc") {
 
     # Test (sum(S^2) equals tr(S S') = tr(tcrossprod(S)) since S is symmetric,
-    # and avoids forming the (p - 1) x (p - 1) product matrix)
+    # and avoids forming the (p - 1) x (p - 1) product matrix).
     S <- crossprod(U) / n
     statistic <- 0.5 * n * (p * p - 1) *
       (sum(S * S) - 1 / (p - 1))
@@ -348,7 +349,7 @@ test_rotasym <- function(data, theta = spherical_mean,
 
     # Inverse of Gamma, a scalar multiple of the identity, so the quadratic form
     # Delta' inv_Gamma Delta reduces to inv_Gamma_diag * sum(Delta^2) (so no
-    # need to build the (p - 1) x (p - 1) matrix)
+    # need to build the (p - 1) x (p - 1) matrix).
     inv_Gamma_diag <- (p - 1) / (1 - 2 * D_pg * mean(V_sqrt) +
                                    D_pg * D_pg * mean(V2))
 

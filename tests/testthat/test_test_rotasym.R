@@ -89,6 +89,55 @@ test_that("Degrees of freedom and hybrid statistic match their references", {
 
 })
 
+test_that("test_rotasym reuses supplied U and V", {
+
+  set.seed(987202226)
+  theta <- c(1, rep(0, 3))
+  X <- r_vMF(n = 100, mu = theta, kappa = 1)
+  supplied <- test_rotasym(X, theta = theta, type = "loc_vMF",
+                           U = signs(X = X, theta = theta),
+                           V = cosines(X = X, theta = theta))
+  internal <- test_rotasym(X, theta = theta, type = "loc_vMF")
+
+  expect_equal(supplied$statistic, internal$statistic)
+  expect_equal(supplied$p.value, internal$p.value)
+
+})
+
+test_that("test_rotasym returns the cosines of data for every type", {
+
+  set.seed(42)
+  theta <- c(1, rep(0, 3))
+  X <- r_vMF(n = 100, mu = theta, kappa = 1)
+  for (ty in c("sc", "loc", "loc_vMF", "hyb", "hyb_vMF")) {
+
+    expect_equal(test_rotasym(X, theta = theta, type = ty)$V,
+                 cosines(X = X, theta = theta), info = ty)
+
+  }
+
+})
+
+test_that("Fisher's method combines the scatter and location p-values", {
+
+  set.seed(987202226)
+  theta <- c(1, rep(0, 3))
+  X <- r_vMF(n = 100, mu = theta, kappa = 1)
+  sc <- test_rotasym(X, theta = theta, type = "sc")
+  for (type in c("hyb", "hyb_vMF")) {
+
+    loc <- test_rotasym(X, theta = theta,
+                        type = sub(pattern = "hyb", replacement = "loc",
+                                   x = type))
+    hyb <- test_rotasym(X, theta = theta, type = type, Fisher = TRUE)
+    expect_equal(unname(hyb$statistic),
+                 unname(-2 * (log(sc$p.value) + log(loc$p.value))))
+    expect_match(hyb$method, "Fisher's method")
+
+  }
+
+})
+
 test_that("Edge cases", {
 
   set.seed(13)

@@ -15,6 +15,8 @@ W  checking whether package ‘rotasym’ can be installed (4s)
 
 ## Comments
 
-Submitted after fixing flaky test in polykde that were raising errors in reverse dependencies checks.
+The URL https://doi.org/10.1080/01621459.2019.1665527 has been double-checked.
 
-Warning is benign and does not show up in the check_win_devel() checks
+The warning from Boolean.h is out of my control.
+
+Revdep tested with revdepcheck::revdep_check(pkg, num_workers = 1).
