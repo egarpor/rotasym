@@ -17,7 +17,8 @@ a matrix of size \code{c(nx, p)} or a vector of length \code{p}. Normalized
 internally if required (with a \code{warning} message).}
 
 \item{theta}{a unit-norm vector of length \code{p} giving the axis of
-rotational symmetry.}
+rotational symmetry. Normalized internally if it does not have unit norm
+(with a \code{warning} message).}
 
 \item{g_scaled}{the \emph{scaled} angular density \eqn{c_g g}. In the form
 \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.}

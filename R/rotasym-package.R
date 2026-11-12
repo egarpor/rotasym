@@ -17,5 +17,5 @@
 #' @name rotasym-package
 #' @aliases rotasym
 #' @import stats Rcpp
-#' @useDynLib rotasym
+#' @useDynLib rotasym, .registration = TRUE
 "_PACKAGE"

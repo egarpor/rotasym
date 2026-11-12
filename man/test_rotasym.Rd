@@ -22,8 +22,9 @@ unit-norm rows. Normalized internally if any row does not have unit norm
 rotational symmetry (for the specified-\eqn{\boldsymbol{\theta}} case) or a
 function that implements an estimator \eqn{\hat{\boldsymbol{\theta}}} of
 \eqn{\boldsymbol{\theta}} (for the unspecified-\eqn{\boldsymbol{\theta}}
-case). The default calls the \code{\link{spherical_mean}} function. See
-examples.}
+case). The default calls the \code{\link{spherical_mean}} function. A vector
+is normalized internally if it does not have unit norm (with a
+\code{warning} message). See examples.}
 
 \item{type}{a character string (case insensitive) indicating the type of test
 to conduct:

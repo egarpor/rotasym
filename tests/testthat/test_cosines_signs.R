@@ -7,6 +7,8 @@ test_that("Gamma_theta is semi-orthogonal (analytic and eigen branches)", {
                  c(1, 1, 1) / sqrt(3),
                  c(-1, 0, 0),
                  c(-cos(1e-7), sin(1e-7), 0),
+                 c(-1, 1e-160, 0),
+                 c(-1, 1e-158, 1e-158),
                  c(-1, 1, 0, 0) / sqrt(2),
                  c(2, -1, 0.5, 1) / sqrt(6.25))
   for (theta in thetas) {

@@ -225,26 +225,37 @@ prod_Gamma_theta <- function(X, theta, transpose = FALSE) {
 
   }
 
-  # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1. For theta_1 < 0,
-  # w_1 = 1 + theta_1 = ||theta_{-1}||^2 / (1 - theta_1) avoids the
-  # cancellation that breaks orthogonality for theta near -e_1.
-  w <- theta
-  w[1] <- switch((theta[1] < 0) + 1, 1 + theta[1],
-                 sum(theta[-1]^2) / (1 - theta[1]))
+  # Gamma_theta = (w w' / w_1 - I_p)[, -1], w = theta + e_1, that is,
+  # Gamma_theta = rbind(theta_{-1}', f u u' - I_{p - 1}), with u = theta_{-1}
+  # and f = 1 / (1 + theta_1). For theta_1 < 0, use instead
+  # 1 + theta_1 = ||theta_{-1}||^2 / (1 - theta_1), so u = theta_{-1} /
+  # ||theta_{-1}|| and f = 1 - theta_1. This avoids the cancellation in
+  # 1 + theta_1 and, with the rescaled norm, the underflow of
+  # ||theta_{-1}||^2 for theta near -e_1. theta = -e_1 gives u = 0.
+  t_1 <- theta[-1]
+  if (theta[1] < 0) {
 
-  # a = w / w_1, except for theta = -e_1, where w = 0 and
-  # Gamma_theta = -I_p[, -1].
-  a <- switch((w[1] == 0) + 1, w / w[1], w)
-
-  # X Gamma_theta = (X w) a_{-1}' - X[, -1] and
-  # X Gamma_theta' = (X w_{-1}) a' - (0, X).
-  if (transpose) {
-
-    XG <- tcrossprod(drop(X %*% w[-1]), a) - cbind(0, X)
+    m <- max(abs(t_1), 0)
+    u <- t_1 / switch((m > 0) + 1, 1, m * sqrt(sum((t_1 / m)^2)))
+    f <- 1 - theta[1]
 
   } else {
 
-    XG <- tcrossprod(drop(X %*% w), a[-1]) - X[, -1, drop = FALSE]
+    u <- t_1
+    f <- 1 / (1 + theta[1])
+
+  }
+
+  # X Gamma_theta = X[, 1] theta_{-1}' + f (X[, -1] u) u' - X[, -1] and
+  # X Gamma_theta' = (X theta_{-1}, f (X u) u' - X).
+  if (transpose) {
+
+    XG <- cbind(X %*% t_1, f * tcrossprod(drop(X %*% u), u) - X)
+
+  } else {
+
+    X_1 <- X[, -1, drop = FALSE]
+    XG <- tcrossprod(X[, 1], t_1) + f * tcrossprod(drop(X_1 %*% u), u) - X_1
 
   }
 

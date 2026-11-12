@@ -12,8 +12,8 @@
 #' @return A vector of length \code{p} with an estimate for
 #' \eqn{\boldsymbol{\theta}}.
 #' @details The \code{spherical_mean} estimator computes the sample mean of
-#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm
-#' (if the norm is different from zero). It estimates consistently
+#' \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm,
+#' with an error if the norm is zero. It estimates consistently
 #' \eqn{\boldsymbol{\theta}} for rotationally symmetric models based on
 #' \link[=tang-norm-decomp]{angular functions} \eqn{g} that are monotone
 #' increasing.
@@ -62,22 +62,21 @@
 #' @export
 spherical_mean <- function(data) {
 
+  # Remove NA's
+  data <- data[complete.cases(data), , drop = FALSE]
+
   # Check if data is spherical
   data <- check_unit_norm(x = data, warnings = TRUE)
 
   # Standardize spherical mean
-  mu <- colMeans(data, na.rm = TRUE)
+  mu <- colMeans(data)
   norm <- sqrt(sum(mu * mu))
   if (norm < sqrt(.Machine$double.eps)) {
 
-    warning("The directional mean is exactly zero")
-
-  } else {
-
-    mu <- mu / norm
+    stop("The directional mean is zero, so theta cannot be estimated.")
 
   }
-  return(mu)
+  return(mu / norm)
 
 }
 

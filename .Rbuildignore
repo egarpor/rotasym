@@ -12,3 +12,4 @@
 ^CRAN-SUBMISSION$
 ^rotasym\.code-workspace$
 ^codecov\.yml$
+^revdep$

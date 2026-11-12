@@ -13,15 +13,21 @@ test_that("spherical_mean returns a unit vector aligned with the axis", {
 
 })
 
-test_that("spherical_mean warns when the directional mean is zero", {
+test_that("spherical_mean errors when the directional mean is zero", {
 
   p <- 4
   theta <- c(1, rep(0, p - 1))
   set.seed(51)
   A <- r_vMF(n = 100, mu = theta, kappa = 5)
-  # Exactly antipodal data has a directional mean of exactly zero
   X <- rbind(A, -A)
-  expect_warning(spherical_mean(X), "zero")
+  expect_error(spherical_mean(X), "zero")
+
+})
+
+test_that("spherical_mean ignores incomplete rows", {
+
+  X <- rbind(c(1, 0, 0), c(0, 1, 0))
+  expect_equal(spherical_mean(rbind(X, c(NA, 0, 1))), spherical_mean(X))
 
 })
 

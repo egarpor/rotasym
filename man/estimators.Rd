@@ -28,8 +28,8 @@ sample \eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n\in \mathcal{S}^{p-1}}.
 }
 \details{
 The \code{spherical_mean} estimator computes the sample mean of
-\eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm
-(if the norm is different from zero). It estimates consistently
+\eqn{\boldsymbol{X}_1,\ldots,\boldsymbol{X}_n} and normalizes it by its norm,
+with an error if the norm is zero. It estimates consistently
 \eqn{\boldsymbol{\theta}} for rotationally symmetric models based on
 \link[=tang-norm-decomp]{angular functions} \eqn{g} that are monotone
 increasing.

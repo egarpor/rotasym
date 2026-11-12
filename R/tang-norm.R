@@ -37,7 +37,8 @@
 #'
 #' @inheritParams unif
 #' @param theta a unit-norm vector of length \code{p} giving the axis of
-#' rotational symmetry.
+#' rotational symmetry. Normalized internally if it does not have unit norm
+#' (with a \code{warning} message).
 #' @param g_scaled the \emph{scaled} angular density \eqn{c_g g}. In the form
 #' \cr\code{g_scaled <- function(t, log = TRUE) {...}}. See examples.
 #' @param d_V the density \eqn{f_V}. In the form
